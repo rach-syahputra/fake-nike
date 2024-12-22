@@ -1,0 +1,303 @@
+{
+  "products": [
+    {
+      "name": "Nike Air Force 1 '07",
+      "slug": "nike-air-force-1-07-men",
+      "description": "The radiance lives on in the Nike Air Force 1 '07, the b-ball icon that puts a fresh spin on what you know best: crisp leather, bold colours and the perfect amount of flash to make you shine.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/AIR+FORCE+1+'07-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0FJUitGT1JDRSsxKycwNy1BLnBuZyIsImlhdCI6MTczNDcxOTM0MSwiZXhwIjoxNzM3MzExMzQxfQ.6kxKt0OWQBnDOYk3OABpL-lqN9heP7jREAzDoZF9WC0&t=2024-12-20T18%3A29%3A05.210Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/AIR+FORCE+1+'07-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0FJUitGT1JDRSsxKycwNy1CLnBuZyIsImlhdCI6MTczNDcxOTM2MCwiZXhwIjoxNzM3MzExMzYwfQ.KmWhsfSkg40lPXKDwqI6SPGe4qS9rv2ndfk5FM_egVU&t=2024-12-20T18%3A29%3A24.147Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/AIR+FORCE+1+'07-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0FJUitGT1JDRSsxKycwNy1DLnBuZyIsImlhdCI6MTczNDcxOTQ0MSwiZXhwIjoxNzM3MzExNDQxfQ.Od93d829x37h3UOQX2AzHOrRA2nvZI0WDYlzzYDlBrw&t=2024-12-20T18%3A30%3A44.623Z"
+      ],
+      "sizes": ["40", "41", "42", "43", "44", "45"],
+      "price": 1549000
+    },
+    {
+      "name": "Nike Court Vision Low",
+      "slug": "nike-court-vision-low",
+      "description": "In love with the retro look of '80s basketball but have a thing for the fast-paced culture of today's game? Meet the Court Vision Low. A classic remixed, its crisp upper and stitched overlays keep the soul of the original style. The plush, low-cut collar keeps it sleek and comfortable for your world.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+COURT+VISION+LO%20-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrQ09VUlQrVklTSU9OK0xPIC1BLnBuZyIsImlhdCI6MTczNDcyMDAyMSwiZXhwIjoxNzM3MzEyMDIxfQ.SZq8APRrkAfRwg-8zofeALqzhkHAgMjjUoimdVXMsk4&t=2024-12-20T18%3A40%3A25.270Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+COURT+VISION+LO%20-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrQ09VUlQrVklTSU9OK0xPIC1CLnBuZyIsImlhdCI6MTczNDcxOTk5NywiZXhwIjoxNzM3MzExOTk3fQ.IeNwq4ez3j4bJk3KmjauQJKskpCnDuZR1BOhIPO8CQE&t=2024-12-20T18%3A40%3A00.352Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+COURT+VISION+LO%20-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrQ09VUlQrVklTSU9OK0xPIC1DLnBuZyIsImlhdCI6MTczNDcyMDAzMSwiZXhwIjoxNzM3MzEyMDMxfQ.dLC2aKNryUanLV4scj3rTCS1UeCvCHRwNYyo55YSdRg&t=2024-12-20T18%3A40%3A34.602Z"
+      ],
+      "sizes": ["40", "43", "44", "45"],
+      "price": 1069000
+    },
+    {
+      "name": "Nike Air Max Plus",
+      "slug": "nike-air-max-plus",
+      "description": "Let your attitude have the edge in your Nike Air Max Plus, a Tuned Air experience that offers premium stability and unbelievable cushioning. Featuring the original's wavy design lines, TPU accents and airy mesh on the upper, it celebrates defiant style.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+COURT+VISION+LO%20-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrQ09VUlQrVklTSU9OK0xPIC1BLnBuZyIsImlhdCI6MTczNDcyMDM5NSwiZXhwIjoxNzM3MzEyMzk1fQ.WxlDfI7BQ4qflIVcJboMNV6HFqYBdkUBq37LpUJXxjQ&t=2024-12-20T18%3A46%3A38.480Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+COURT+VISION+LO%20-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrQ09VUlQrVklTSU9OK0xPIC1CLnBuZyIsImlhdCI6MTczNDcyMDQwMywiZXhwIjoxNzM3MzEyNDAzfQ.wS27sxkvXjyfpENmVtWdvDnjhtSqQSqHDzNVNsZAtGU&t=2024-12-20T18%3A46%3A46.482Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+COURT+VISION+LO%20-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrQ09VUlQrVklTSU9OK0xPIC1DLnBuZyIsImlhdCI6MTczNDcyMDQxMSwiZXhwIjoxNzM3MzEyNDExfQ.HTj1Veo2s3LqKR22ULS4_Izbcz44nMs_XGO7Oen6tHw&t=2024-12-20T18%3A46%3A54.348Z"
+      ],
+      "sizes": ["40", "41", "42", "43", "44", "45", "46", "47"],
+      "price": 2389000
+    },
+    {
+      "name": "Jordan Stadium 90",
+      "slug": "jordan-stadium-90",
+      "description": "Comfort is king, but that doesn't mean you have to sacrifice style. Taking design inspiration from the AJ1 and AJ5, the Stadium 90 is ready for everyday wear. The upper is made from leather and airy woven, so you get both breathability and durability, and Nike Air cushioning in the sole keeps your every step light and cushioned.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+STADIUM+90-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitTVEFESVVNKzkwLUEucG5nIiwiaWF0IjoxNzM0NzIwODM0LCJleHAiOjE3MzczMTI4MzR9.72xHjDvd16jq3SA3hqGXqnHuR46Oy3JxEFnX816dmJM&t=2024-12-20T18%3A53%3A57.320Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+STADIUM+90-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitTVEFESVVNKzkwLUIucG5nIiwiaWF0IjoxNzM0NzIwODQ2LCJleHAiOjE3MzczMTI4NDZ9.BGI6NMqaD9JKVHkWAsBX8KtDk5L3ikbv6PjQmHlu-VI&t=2024-12-20T18%3A54%3A09.984Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+STADIUM+90-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitTVEFESVVNKzkwLUMucG5nIiwiaWF0IjoxNzM0NzIwODU1LCJleHAiOjE3MzczMTI4NTV9.mX5wzU7Utwk8uw8iNu6ipH9tPe7ylN7G8jBtcJBRLSk&t=2024-12-20T18%3A54%3A19.170Z"
+      ],
+      "sizes": ["40", "41", "42", "43", "44", "45"],
+      "price": 2199000
+    },
+    {
+      "name": "Giannis Immortality 4 EP",
+      "slug": "giannis-immortality-4-ep",
+      "description": "The Giannis Immortality 4 is for the multi-faceted player. The sleek, supportive heel shape is combined with an upgraded traction pattern from the previous iteration to help keep you making all those game-changing plays. With its extra-durable rubber outsole, this version gives you traction for outdoor courts.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/GIANNIS+IMMORTALITY+4+EP-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0dJQU5OSVMrSU1NT1JUQUxJVFkrNCtFUC1BLnBuZyIsImlhdCI6MTczNDcyMTM1MywiZXhwIjoxNzM3MzEzMzUzfQ.QfMNknls1h2FDpcz45Ft37-w8HqfrIVIm1MHKx1vk-c&t=2024-12-20T19%3A02%3A37.267Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/GIANNIS+IMMORTALITY+4+EP-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0dJQU5OSVMrSU1NT1JUQUxJVFkrNCtFUC1CLnBuZyIsImlhdCI6MTczNDcyMTM3MywiZXhwIjoxNzM3MzEzMzczfQ.9d1E1O-bGa1JKz1I5BzLg2c_L65CcQXONvvpfxycUFc&t=2024-12-20T19%3A02%3A56.722Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/GIANNIS+IMMORTALITY+4+EP-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0dJQU5OSVMrSU1NT1JUQUxJVFkrNCtFUC1DLnBuZyIsImlhdCI6MTczNDcyMTM4NSwiZXhwIjoxNzM3MzEzMzg1fQ.IYiwdYXJROx492xMFcBpxp5fPyo4TUvtve0tqyxNO2E&t=2024-12-20T19%3A03%3A08.501Z"
+      ],
+      "sizes": ["40", "41", "42", "43", "44", "45", "46", "47"],
+      "price": 1199000
+    },
+    {
+      "name": "Sabrina 2 'Mirrored' EP",
+      "slug": "sabrina-2-mirrored-ep",
+      "description": "Sabrina Ionescu's success is no secret. Her game is based on living in the gym, getting in rep after rep to perfect her craft. The Sabrina 2 sets you up to do more, so you're ready to go when it's game time. Our newest Cushlon foam helps keep you fresh, Air Zoom cushioning adds the pop and sticky traction helps you create that next-level distance. Sabrina's handed you the tools. Time to go to work. With its extra-durable rubber outsole, this version gives you traction for outdoor courts.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/SABRINA+2+EP-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1NBQlJJTkErMitFUC1BLnBuZyIsImlhdCI6MTczNDc2NTgzMSwiZXhwIjoxNzM3MzU3ODMxfQ.bo849ari0yBhipKf099UEm0QSR2T3HmVJoeSKg_YnKY&t=2024-12-21T07%3A23%3A54.431Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/SABRINA+2+EP-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1NBQlJJTkErMitFUC1CLnBuZyIsImlhdCI6MTczNDc2NTg0MCwiZXhwIjoxNzM3MzU3ODQwfQ.2v3hZ3PJwrUhlR6ElXXXhuHd7IZYLbR5lu-YoeAOW_c&t=2024-12-21T07%3A24%3A03.169Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/SABRINA+2+EP-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1NBQlJJTkErMitFUC1CLnBuZyIsImlhdCI6MTczNDc2NTg0MCwiZXhwIjoxNzM3MzU3ODQwfQ.2v3hZ3PJwrUhlR6ElXXXhuHd7IZYLbR5lu-YoeAOW_c&t=2024-12-21T07%3A24%3A03.169Z"
+      ],
+      "sizes": ["42", "43", "44"],
+      "price": 2099000
+    },
+    {
+      "name": "Ja 2 'Nightmare' EP",
+      "slug": "ja-2-nightmare-ep",
+      "description": "Ja puts in the work to be great so he can be at his best when the game's on the line. That's why we gave the Ja 2 a lighter design. It works with Air Zoom cushioning to help keep him fresh when he's in the lab. And the tractor tyre-inspired traction helps him change direction with ease. Ja's about that grind. Are you? With its extra-durable rubber outsole, this version gives you traction for outdoor courts. This gory, grimy design pays homage to Ja's spooky status as an unsolvable mismatch on the floor.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JA+2+NIGHTMARE+EP-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pBKzIrTklHSFRNQVJFK0VQLUEucG5nIiwiaWF0IjoxNzM0NzY2MzI5LCJleHAiOjE3MzczNTgzMjl9.zPP5CSWefZeA46s7hUrtz_3OwLr4GgbyFMrZ1GYw5Sw&t=2024-12-21T07%3A32%3A13.030Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JA+2+NIGHTMARE+EP-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pBKzIrTklHSFRNQVJFK0VQLUIucG5nIiwiaWF0IjoxNzM0NzY2MzM3LCJleHAiOjE3MzczNTgzMzd9.rcTBQhoruggQUOPmiNeYjt8l_UVT-mF8k5dHwPP0qDk&t=2024-12-21T07%3A32%3A20.258Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JA+2+NIGHTMARE+EP-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pBKzIrTklHSFRNQVJFK0VQLUMucG5nIiwiaWF0IjoxNzM0NzY2MzQ1LCJleHAiOjE3MzczNTgzNDV9.4Oyv2lZMjQAZHzwkErt0rfWF8Y_cjEO6oqgo-Q_G2fs&t=2024-12-21T07%3A32%3A28.267Z"
+      ],
+      "sizes": ["42", "43", "44", "45", "48"],
+      "price": 2099000
+    },
+    {
+      "name": "Tatum 3 PF 'Zen'",
+      "slug": "tatum-3-pf-zen",
+      "description": "Calm under pressure. That's Jayson in a nutshell. Sure, he hears the back and forth, but he doesn't let the pressure get to him. This Tatum 3 is all about that balance. Soothing shades of grey mix with just the right amount of energising colour. Plus, a contouring fit and court-ready tech like Cushlon 3.0 foam support you throughout the game.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+TATUM+3+PF-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitUQVRVTSszK1BGLUEucG5nIiwiaWF0IjoxNzM0NzY2ODEyLCJleHAiOjE3MzczNTg4MTJ9.5DNH-6azjJvcZHvKF9E5zDDZUvBVJw0B66nTt2NiA3I&t=2024-12-21T07%3A40%3A15.269Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+TATUM+3+PF-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitUQVRVTSszK1BGLUIucG5nIiwiaWF0IjoxNzM0NzY2ODIwLCJleHAiOjE3MzczNTg4MjB9.uOX5yly32fTBrVqOoqH2pNzkF96b90y_c5Y8tS37BIU&t=2024-12-21T07%3A40%3A23.800Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+TATUM+3+PF-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitUQVRVTSszK1BGLUMucG5nIiwiaWF0IjoxNzM0NzY2ODI2LCJleHAiOjE3MzczNTg4MjZ9.idzxpOmNAqO4FPoovt7FBumHfEHqtB1Vv9JNsW0u214&t=2024-12-21T07%3A40%3A30.095Z"
+      ],
+      "sizes": ["41", "42", "43", "44", "45", "46"],
+      "price": 1939000
+    },
+    {
+      "name": "Nike Precision 7",
+      "slug": "nike-precision-7",
+      "description": "Score at will at the rim or from deep in the Nike Precision 7. Crafted with a combination of ground control, comfort and on-court traction, it's perfect for instant impact plays when your name is called for the next casual game. Check in and make the plays that swing the outcome in your favour.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+PRECISION+VII-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrUFJFQ0lTSU9OK1ZJSS1BLnBuZyIsImlhdCI6MTczNDc2NzA3MSwiZXhwIjoxNzM3MzU5MDcxfQ.wPm97XLuD5VxkkcoUNCQLlmSe0Lt4QdYoKtvkrJcIxA&t=2024-12-21T07%3A44%3A35.018Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+PRECISION+VII-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrUFJFQ0lTSU9OK1ZJSS1CLnBuZyIsImlhdCI6MTczNDc2NzA4MiwiZXhwIjoxNzM3MzU5MDgyfQ.LU1oqkeQOxUAFaMARVu4uR0x-rG8bn58dPpy27oMCO4&t=2024-12-21T07%3A44%3A45.668Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+PRECISION+VII-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrUFJFQ0lTSU9OK1ZJSS1DLnBuZyIsImlhdCI6MTczNDc2NzA4NywiZXhwIjoxNzM3MzU5MDg3fQ.9NpTjandMcF0026gH6tLgteDbjOalXN75lEJlzSpN54&t=2024-12-21T07%3A44%3A50.926Z"
+      ],
+      "sizes": ["41", "42", "43", "44", "45", "46", "47"],
+      "price": 1069000
+    },
+    {
+      "name": "LeBron XXII 'Crown Jewel' EP",
+      "slug": "lebron-xxi-crown-jewel-ep",
+      "description": "LeBron isn't slowing down any time soon. The open-court nightmare is as fast and spry as ever. But even Bron needs support when he's at full throttle. That's why we levelled up the LeBron 22. Newly implemented saddle wings offer optimal midfoot stability. They complement the heel and forefoot Air Zoom units, so the King can keep pushing the sport forwards. This version is inspired by LeBron's relationship with his youngest son and the sense of clarity it brings. With its extra-durable rubber outsole, this version gives you traction for outdoor courts.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/LEBRON+XXII+EP-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0xFQlJPTitYWElJK0VQLUEucG5nIiwiaWF0IjoxNzM0NzY4MjUyLCJleHAiOjE3MzczNjAyNTJ9.zbEn8wyL_Dic8LseGvCgv_-DbhTnAi3HuHKna_Oa5i0&t=2024-12-21T08%3A04%3A15.818Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/LEBRON+XXII+EP-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0xFQlJPTitYWElJK0VQLUIucG5nIiwiaWF0IjoxNzM0NzY4MjYwLCJleHAiOjE3MzczNjAyNjB9.GvQpkGvb4nV4Ri3SSZm7T9E1KEo6GFTZp5vwOYdUgBQ&t=2024-12-21T08%3A04%3A23.652Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/LEBRON+XXII+EP-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0xFQlJPTitYWElJK0VQLUMucG5nIiwiaWF0IjoxNzM0NzY4MjY3LCJleHAiOjE3MzczNjAyNjd9.X9_4m6PuyvXEd-7v7Y2N6lzk730ehjadyk8WqURRFck&t=2024-12-21T08%3A04%3A30.539Z"
+      ],
+      "sizes": ["40", "41", "42", "43", "44", "45", "46", "47"],
+      "price": 2849000
+    },
+    {
+      "name": "Tatum 3 PF 'Zero Days Off'",
+      "slug": "taum-3-pf-zero-days-off",
+      "description": "When it comes to putting in the work, Jayson's entirely self-motivated—and he doesn't believe in taking a day off. As his expectations are so high, he feels zero pressure from the outside world. We're honouring that tireless pursuit of greatness with this Tatum 3. Lightweight and packed with court-ready tech like responsive Cushlon foam and a contouring fit, it helps support you in your push to be the best. Can you commit to zero days off?",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+TATUM+3+PF-ZERO-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitUQVRVTSszK1BGLVpFUk8tQS5wbmciLCJpYXQiOjE3MzQ3Njg1NTcsImV4cCI6MTczNzM2MDU1N30.ea8zt_bNQihxgrU4UlNbxIzLkSFahR9A7vpNa2aj0pQ&t=2024-12-21T08%3A09%3A20.611Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+TATUM+3+PF-ZERO-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitUQVRVTSszK1BGLVpFUk8tQi5wbmciLCJpYXQiOjE3MzQ3Njg1NjQsImV4cCI6MTczNzM2MDU2NH0.BJ7eem_K8HYNdL1VzZTyDG6V-SYvbEDISmYCk-lCvKY&t=2024-12-21T08%3A09%3A28.150Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/JORDAN+TATUM+3+PF-ZERO-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL0pPUkRBTitUQVRVTSszK1BGLVpFUk8tQy5wbmciLCJpYXQiOjE3MzQ3Njg1NzIsImV4cCI6MTczNzM2MDU3Mn0.WjD7uKJNlHb5HvL23XlPHla1bPCpiaOeEBCwQs2uS7U&t=2024-12-21T08%3A09%3A35.451Z"
+      ],
+      "sizes": ["43", "44", "45", "46"],
+      "price": 1939000
+    },
+    {
+      "name": "Nike Dunk Low Retro",
+      "slug": "nike-dunk-low-retro",
+      "description": "Created for the hardwood but taken to the streets, the Nike Dunk Low Retro returns with crisp overlays and original team colours. This basketball icon channels '80s vibes with premium leather in the upper that looks good and breaks in even better. Modern footwear technology helps bring the comfort into the 21st century.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+DUNK+LOW+RETRO-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrRFVOSytMT1crUkVUUk8tQS5wbmciLCJpYXQiOjE3MzQ3Njg4ODksImV4cCI6MTczNzM2MDg4OX0.180dHz1rGc_M8nAxLU_zq-2d3ygYenfRNNJ7SM6kpWs&t=2024-12-21T08%3A14%3A52.611Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+DUNK+LOW+RETRO-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrRFVOSytMT1crUkVUUk8tQi5wbmciLCJpYXQiOjE3MzQ3Njg4OTYsImV4cCI6MTczNzM2MDg5Nn0.mMe9zgqBw8-a9WjugVr7Q3uBELMZGn5_QogQk-jTrH0&t=2024-12-21T08%3A14%3A59.281Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+DUNK+LOW+RETRO-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrRFVOSytMT1crUkVUUk8tQy5wbmciLCJpYXQiOjE3MzQ3Njg5MDIsImV4cCI6MTczNzM2MDkwMn0.x02AEyyP8OMcfeWQR2GFxRmnZf8ei13Fg6O2yAK73DQ&t=2024-12-21T08%3A15%3A05.897Z"
+      ],
+      "sizes": ["39", "40", "41", "42", "43", "44", "45", "46", "47"],
+      "price": 1549000
+    },
+    {
+      "name": "Nike SB Dunk Low Pro",
+      "slug": "nike-sb-dunk-low-pro",
+      "description": "An '80s b-ball icon returns with classic details and throwback hoops flair. Channelling vintage style back onto the streets, the Nike SB Dunk features a padded low-cut collar that lets you comfortably take your game anywhere.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+SB+DUNK+LOW+PRO-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrU0IrRFVOSytMT1crUFJPLUEucG5nIiwiaWF0IjoxNzM0NzY5Mjc5LCJleHAiOjE3MzczNjEyNzl9.Ou0G7_Mn0ohf229Kzpu5OKTpC_erD11puw2V7H9rDyE&t=2024-12-21T08%3A21%3A22.427Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+SB+DUNK+LOW+PRO-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrU0IrRFVOSytMT1crUFJPLUIucG5nIiwiaWF0IjoxNzM0NzY5Mjg3LCJleHAiOjE3MzczNjEyODd9.0n77a0s8tyR230zBmtdCDEj-rNSUZ4XPl0b3UOfNxd4&t=2024-12-21T08%3A21%3A31.301Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+SB+DUNK+LOW+PRO-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrU0IrRFVOSytMT1crUFJPLUMucG5nIiwiaWF0IjoxNzM0NzY5Mjk3LCJleHAiOjE3MzczNjEyOTd9.U7zN4xjQEpucBbh7iRXN24Xlsrug8-Yu-1szKu8LnYY&t=2024-12-21T08%3A21%3A40.572Z"
+      ],
+      "sizes": ["46", "47"],
+      "price": 1729000
+    },
+    {
+      "name": "Nike SB Dunk Low Pro Electric",
+      "slug": "nike-sb-dunk-low-pro-electric",
+      "description": "Before it was adopted by skateboarders for its durability and responsive boardfeel, the Dunk originally made its mark on the hardwood as a basketball shoe. The silhouette was re-engineered to meet the needs of skateboarding, including durable construction and a padded, low-cut collar that lets you take your session anywhere—in comfort.",
+      "category": "men",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+SB+DUNK+LOW+PRO+ELECTRIC-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrU0IrRFVOSytMT1crUFJPK0VMRUNUUklDLUEucG5nIiwiaWF0IjoxNzM0NzY5NjI5LCJleHAiOjE3MzczNjE2Mjl9.ROEjpL0tnOt7KNDpm_c16FpSil9ku1XJqOyHIpl6rtE&t=2024-12-21T08%3A27%3A12.437Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+SB+DUNK+LOW+PRO+ELECTRIC-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrU0IrRFVOSytMT1crUFJPK0VMRUNUUklDLUIucG5nIiwiaWF0IjoxNzM0NzY5NjM2LCJleHAiOjE3MzczNjE2MzZ9.KisN7i2w-eZrmdaD4ehPuT7UpyNF0eE791oz-hUfaow&t=2024-12-21T08%3A27%3A19.271Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/NIKE+SB+DUNK+LOW+PRO+ELECTRIC-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL05JS0UrU0IrRFVOSytMT1crUFJPK0VMRUNUUklDLUMucG5nIiwiaWF0IjoxNzM0NzY5NjQxLCJleHAiOjE3MzczNjE2NDF9.iKHp1LLbZrbQO9ADzL6eYyBT0mtAI5fhmvLNiijg9Aw&t=2024-12-21T08%3A27%3A24.952Z"
+      ],
+      "sizes": ["36", "37", "38", "39", "40"],
+      "price": 2099000
+    },
+    {
+      "name": "Nike Air Force 1 '07",
+      "slug": "nike-air-force-1-07-women",
+      "description": "The radiance lives on in the Nike Air Force 1 '07, the b-ball icon that puts a fresh spin on what you know best: durable textiles, classic colours and a subtle amount of flash to make you shine.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+FORCE+1+'07+WOMEN-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0ZPUkNFKzErJzA3K1dPTUVOLUEucG5nIiwiaWF0IjoxNzM0Nzc3NzU4LCJleHAiOjE3MzczNjk3NTh9.khnI3crtqSIxhDO-leJIS9fXYvAoS40E2tcoxJKA62U&t=2024-12-21T10%3A42%3A41.798Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+FORCE+1+'07+WOMEN-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0ZPUkNFKzErJzA3K1dPTUVOLUIucG5nIiwiaWF0IjoxNzM0Nzc3NzY1LCJleHAiOjE3MzczNjk3NjV9.US4hYNpnlQorAvXezGPpT61mLzpfZ-vVI97t5B4TcXw&t=2024-12-21T10%3A42%3A49.181Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+FORCE+1+'07+WOMEN-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0ZPUkNFKzErJzA3K1dPTUVOLUMucG5nIiwiaWF0IjoxNzM0Nzc3NzcyLCJleHAiOjE3MzczNjk3NzJ9.iI4RD_QpFoZsZxCi9OmM-isLG_VMTqMBU9MwArV8Q6M&t=2024-12-21T10%3A42%3A56.056Z"
+      ],
+      "sizes": ["38", "39", "40", "41", "42"],
+      "price": 1208000
+    },
+    {
+      "name": "Air Jordan 1 Low",
+      "slug": "air-jordan-1-low",
+      "description": "Always in, always fresh. The Air Jordan 1 Low sets you up with a piece of Jordan history and heritage that's comfortable all day. Choose your colours, then step out in the iconic profile that's built with a high-end mix of materials and encapsulated Air in the heel.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+JORDAN+1+LOW-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0pPUkRBTisxK0xPVy1BLnBuZyIsImlhdCI6MTczNDc3ODE3NSwiZXhwIjoxNzM3MzcwMTc1fQ.rEA90ZXnrDiqrWpe0k8m6w-QCf7R3mCyuFQWEUeykpc&t=2024-12-21T10%3A49%3A38.773Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+JORDAN+1+LOW-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0pPUkRBTisxK0xPVy1CLnBuZyIsImlhdCI6MTczNDc3ODE4MywiZXhwIjoxNzM3MzcwMTgzfQ.8OCtNN4A6SdB38i61p_a-6r5PleZ1Jw8iLi30hEgiZs&t=2024-12-21T10%3A49%3A47.007Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+JORDAN+1+LOW-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0pPUkRBTisxK0xPVy1DLnBuZyIsImlhdCI6MTczNDc3ODE5MCwiZXhwIjoxNzM3MzcwMTkwfQ.PuMBgGTqClFxWnDWAWEBGu6vBNugcoJChaO-CReQzFg&t=2024-12-21T10%3A49%3A53.513Z"
+      ],
+      "sizes": ["35", "36", "37", "38", "39", "40", "41"],
+      "price": 1729000
+    },
+    {
+      "name": "Nike V2K Run",
+      "slug": "nike-v2k-run",
+      "description": "Fast-forward. Rewind. Doesn't matter—this shoe takes retro into the future. The V2K remasters everything you love about the Vomero in a look pulled straight from an early '00s running catalogue. Layer up in a mixture of flashy metallics, breathable mesh and a midsole with a perfectly aged aesthetic. The dual-density foam midsole and chunky heel make sure wherever you go, it's in comfort.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+V2K+RUN-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStWMksrUlVOLUEucG5nIiwiaWF0IjoxNzM0Nzc4NDIxLCJleHAiOjE3MzczNzA0MjF9.Zr9m9MNKYsuEbtlVLJrWhc_B7JTRH4p6j3J_6ps-8MQ&t=2024-12-21T10%3A53%3A44.969Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+V2K+RUN-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStWMksrUlVOLUIucG5nIiwiaWF0IjoxNzM0Nzc4NDMzLCJleHAiOjE3MzczNzA0MzN9.5X5YhsYUuibedcbKTYwTb56fy7x6otp5tkllae4GH1I&t=2024-12-21T10%3A53%3A56.731Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+V2K+RUN-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStWMksrUlVOLUMucG5nIiwiaWF0IjoxNzM0Nzc4NDQxLCJleHAiOjE3MzczNzA0NDF9.SoH9aOOCZzqUJVXkiq7v-bPjhJ-v1-RjaIT7vq3x-KE&t=2024-12-21T10%3A54%3A04.699Z"
+      ],
+      "sizes": ["35", "40"],
+      "price": 1678000
+    },
+    {
+      "name": "Nike Quest 6",
+      "slug": "nike-quest-6",
+      "description": "The Nike Quest 6 is for runners of all levels. But make no mistake, it's anything but entry level. A super-comfortable and supportive midfoot fit band helps keep you stable for your miles. Plus, a super-soft midsole foam helps cushion each step.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+NIKE+QUEST+6-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrTklLRStRVUVTVCs2LUEucG5nIiwiaWF0IjoxNzM0Nzc4NjU2LCJleHAiOjE3MzczNzA2NTZ9.AhCwggZWyGnF8JNfQYx6kR6gQMLStqitKxcU_ydPntE&t=2024-12-21T10%3A57%3A40.166Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+NIKE+QUEST+6-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrTklLRStRVUVTVCs2LUIucG5nIiwiaWF0IjoxNzM0Nzc4NjY2LCJleHAiOjE3MzczNzA2NjZ9.bmVz99B84csHzuKzY9xrWIHT-lMooM_8F0wA_G1RiMQ&t=2024-12-21T10%3A57%3A50.192Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+NIKE+QUEST+6-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrTklLRStRVUVTVCs2LUMucG5nIiwiaWF0IjoxNzM0Nzc4NjczLCJleHAiOjE3MzczNzA2NzN9.cGqMYsslZelzQ7VWr4je1CZV-M9ogyJvM0QveJrdm3A&t=2024-12-21T10%3A57%3A57.135Z"
+      ],
+      "sizes": ["39", "40", "41", "42"],
+      "price": 1199000
+    },
+    {
+      "name": "Air Jordan 1 Elevate Low",
+      "slug": "air-jordan-1-elevate-low",
+      "description": "Rise to the occasion in style that soars. This shoe reworks an icon's original magic with a platform sole and low-cut silhouette. Air cushioning keeps you lifted, and sleek leather in contrasting colours adds visual interest.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+JORDAN+1+ELEVATE+LOW-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0pPUkRBTisxK0VMRVZBVEUrTE9XLUEucG5nIiwiaWF0IjoxNzM0Nzc4ODcxLCJleHAiOjE3MzczNzA4NzF9.g9Z9eqIEW0C8tqnYs7DnZiCbBtMImMJJRI8AsCRmZtU&t=2024-12-21T11%3A01%3A15.331Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+JORDAN+1+ELEVATE+LOW-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0pPUkRBTisxK0VMRVZBVEUrTE9XLUIucG5nIiwiaWF0IjoxNzM0Nzc4ODc3LCJleHAiOjE3MzczNzA4Nzd9.wbJM2gXRbaQ5mAJrD8bZeu79fChSEfvBj5qAoMWs2nw&t=2024-12-21T11%3A01%3A21.160Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+AIR+JORDAN+1+ELEVATE+LOW-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrQUlSK0pPUkRBTisxK0VMRVZBVEUrTE9XLUMucG5nIiwiaWF0IjoxNzM0Nzc4ODgzLCJleHAiOjE3MzczNzA4ODN9.1UbdVcSV2MxniAeYmDcVVpBLct4T_FHHxPFTJ5ESeQU&t=2024-12-21T11%3A01%3A27.140Z"
+      ],
+      "sizes": ["36", "37", "38", "39", "40", "41", "44"],
+      "price": 1438000
+    },
+    {
+      "name": "Nike Cortez Textile",
+      "slug": "nike-cortez-textile",
+      "description": "One word: tradition. From heritage running to a fashion phenom, the Cortez's retro appeal, sponge-soft midsole and seesaw detailing deliver decade after decade. This iteration combines ribbon lacing and a monochromatic look for elevated style.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+CORTEZ-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStDT1JURVotQS5wbmciLCJpYXQiOjE3MzQ3NzkwOTcsImV4cCI6MTczNzM3MTA5N30.CAhvzeoRFUwh7lBvmLbgFxjZ7T3rjxOheoC8H73Mgdk&t=2024-12-21T11%3A05%3A00.742Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+CORTEZ-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStDT1JURVotQi5wbmciLCJpYXQiOjE3MzQ3NzkxMDUsImV4cCI6MTczNzM3MTEwNX0.DznQI3mzdKd_fKaI2RiWsI3L0vFM53z8ESc4hsG0kxY&t=2024-12-21T11%3A05%3A08.542Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+CORTEZ-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStDT1JURVotQy5wbmciLCJpYXQiOjE3MzQ3NzkxMTIsImV4cCI6MTczNzM3MTExMn0.gFVRPnBsdSvSxpmPePjfQgwbIbJzoWK2Mc71Cci9h34&t=2024-12-21T11%3A05%3A15.486Z"
+      ],
+      "sizes": ["35", "36", "37", "38", "39", "40", "41"],
+      "price": 1549000
+    },
+    {
+      "name": "Nike P-6000",
+      "slug": "nike-p-6000",
+      "description": "A mash-up of past Pegasus sneakers, the P-6000 takes early-2000s running to modern heights. Featuring airy mesh and sporty lines, it's the perfect mix of head-turning looks and breathable comfort. Plus, its foam cushioning adds a lifted, athletics-inspired stance and unbelievable cushioning.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+NIKE+P-6000-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrTklLRStQLTYwMDAtQS5wbmciLCJpYXQiOjE3MzQ3Nzk0MzUsImV4cCI6MTczNzM3MTQzNX0.tFXY4mFBKB0FXukXE5AY_xQ5hCOvxcRbuNdK8Xw1DCc&t=2024-12-21T11%3A10%3A38.553Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+NIKE+P-6000-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrTklLRStQLTYwMDAtQi5wbmciLCJpYXQiOjE3MzQ3Nzk0NDEsImV4cCI6MTczNzM3MTQ0MX0.gQCHvWxthV8vWHI07d054ZzgSgiQfH0NEdrS3-thWN4&t=2024-12-21T11%3A10%3A44.894Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/WMNS+NIKE+P-6000-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1dNTlMrTklLRStQLTYwMDAtQy5wbmciLCJpYXQiOjE3MzQ3Nzk0NDgsImV4cCI6MTczNzM3MTQ0OH0.OZd7X4Cqn3RO8_ZQoqL9NNkDirxoTWh3HY1bpVvgWqE&t=2024-12-21T11%3A10%3A51.729Z"
+      ],
+      "sizes": ["35", "36", "37", "38", "39", "40"],
+      "price": 1729000
+    },
+    {
+      "name": "Nike Journey Run",
+      "slug": "nike-journey-run",
+      "description": "Enjoy every step, route and jaunt in the Nike Journey Run. It'll have you striding and smiling on punishing pavements, thanks to extra-high foam stacks and super-soft cushioning. It's so comfy that you'll already be looking forward to lacing 'em up again.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+JOURNEY+RUN-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStKT1VSTkVZK1JVTi1BLnBuZyIsImlhdCI6MTczNDc3OTcyMSwiZXhwIjoxNzM3MzcxNzIxfQ.dhnc_s6IDwLNBbxsXWBp-4AKAFrGTb6hgdaQAXkwvCQ&t=2024-12-21T11%3A15%3A24.992Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+JOURNEY+RUN-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStKT1VSTkVZK1JVTi1CLnBuZyIsImlhdCI6MTczNDc3OTcyOCwiZXhwIjoxNzM3MzcxNzI4fQ.FXeArvNLcEn_slTgM5rEACaY1Xe0c2TD0PgCMbmu8Gg&t=2024-12-21T11%3A15%3A31.491Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+JOURNEY+RUN-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStKT1VSTkVZK1JVTi1DLnBuZyIsImlhdCI6MTczNDc3OTczNCwiZXhwIjoxNzM3MzcxNzM0fQ.mqvOvBH_2-7Nn6VYLFWFGEp2J2wGZOtJryRrY7ZSe9E&t=2024-12-21T11%3A15%3A38.317Z"
+      ],
+      "sizes": ["38", "39", "40"],
+      "price": 1118000
+    },
+    {
+      "name": "Nike Dunk Low Twist",
+      "slug": "nike-dunk-low-twist",
+      "description": "The '80s b-ball icon returns with classic details and throwback hoops flair. Channelling vintage style back onto the streets, its padded collar and extra-puffy silhouette let you take your game anywhere—in comfort.",
+      "category": "women",
+      "imageUrls": [
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+DUNK+LOW++TWIST-A.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStEVU5LK0xPVysrVFdJU1QtQS5wbmciLCJpYXQiOjE3MzQ3Nzk5NTQsImV4cCI6MTczNzM3MTk1NH0.brm66F2fY3-EoIjaYySBnily6ZBjrSYofBxuaI62JMU&t=2024-12-21T11%3A19%3A17.463Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+DUNK+LOW++TWIST-B.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStEVU5LK0xPVysrVFdJU1QtQi5wbmciLCJpYXQiOjE3MzQ3Nzk5NjAsImV4cCI6MTczNzM3MTk2MH0.nYXZXgVsz7_ASdb2eakcuENLCquSTWrEMKR8lyxXDHY&t=2024-12-21T11%3A19%3A23.843Z",
+        "https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/W+NIKE+DUNK+LOW++TWIST-C.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL1crTklLRStEVU5LK0xPVysrVFdJU1QtQy5wbmciLCJpYXQiOjE3MzQ3Nzk5NjksImV4cCI6MTczNzM3MTk2OX0.nEyclvWY6t0VvbdNMCrbELCTdf7B7iIacEumxVaj0qA&t=2024-12-21T11%3A19%3A32.405Z"
+      ],
+      "sizes": ["35", "36", "37", "38", "39", "40", "41", "42"],
+      "price": 1729000
+    }
+  ]
+}
