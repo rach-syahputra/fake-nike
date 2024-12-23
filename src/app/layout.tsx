@@ -1,10 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import { SearchProvider } from '@/context/SearchContext'
-import { NavigationProvider } from '@/context/NavigationContext'
-import Navbar from '@/components/navbar/Navbar'
-import SearchBar from '@/components/search/SearchBar'
 
 const helveticaNowText = localFont({
   src: './fonts/HelveticaNowText-Regular.woff',
@@ -38,13 +34,7 @@ export default function RootLayout({
       className={`${helveticaNowText.variable} ${helveticaNowTextMedium.variable} ${helveticaNowDisplayMedium.variable}`}
     >
       <body className='font-[family-name:var(--font-helvetica-now-text-medium)] antialiased'>
-        <NavigationProvider>
-          <SearchProvider>
-            <Navbar />
-            <SearchBar />
-          </SearchProvider>
-          <main>{children}</main>
-        </NavigationProvider>
+        {children}
       </body>
     </html>
   )
