@@ -4,12 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { useSearch } from '@/context/SearchContext'
 import { navLinks } from '@/lib/constants/nav-links'
-import Container from './Container'
-import SearchInput from '../elements/SearchInput'
+import { useSearch } from '@/context/SearchContext'
+import Container from '../layouts/Container'
 import User from '../elements/User'
 import MobileMenu from './MobileMenu'
+import SearchInput from './SearchInput'
 
 export default function Navbar() {
   const { onSearch, setOnSearch } = useSearch()
@@ -48,10 +48,7 @@ export default function Navbar() {
             onClick={() => setOnSearch(true)}
             className='h-6 w-6 text-gray-800 lg:hidden'
           />
-          <SearchInput
-            onClick={() => setOnSearch(true)}
-            className='hidden lg:flex'
-          />
+          <SearchInput />
           <div className='relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-200'>
             <Image
               src='/icons/market.png'

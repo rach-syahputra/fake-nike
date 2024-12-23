@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { SearchProvider } from '@/context/SearchContext'
 import { NavigationProvider } from '@/context/NavigationContext'
-import Navbar from '@/components/layouts/Navbar'
+import Navbar from '@/components/navbar/Navbar'
 import SearchBar from '@/components/search/SearchBar'
 
 const helveticaNowText = localFont({

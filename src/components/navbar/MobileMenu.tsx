@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navLinks } from '@/lib/constants/nav-links'
 import { useNavigation } from '@/context/NavigationContext'
-import ModalContainer from './ModalContainer'
+import ModalContainer from '../layouts/ModalContainer'
 
 export default function MobileMenu() {
   const { onMobileMenu, setOnMobileMenu } = useNavigation()

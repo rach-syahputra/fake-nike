@@ -8,7 +8,7 @@ import { popularSearches } from '@/lib/constants/products'
 import { useSearch } from '@/context/SearchContext'
 import Container from '../layouts/Container'
 import ModalContainer from '../layouts/ModalContainer'
-import SearchInput from '../elements/SearchInput'
+import SearchInput from './SearchInput'
 import Button from '../elements/Button'
 import ProductSearchList from '../products/ProductSearchList'
 import PopularSearchTerms from './PopularSearchTerms'
@@ -88,8 +88,8 @@ export default function SearchBar() {
               <SearchInput
                 name='search'
                 value={searchQuery}
+                setSearchQuery={setSearchQuery}
                 onChange={(event) => handleSearchChange(event)}
-                className='col-span-6 h-9 w-full md:max-w-screen-md'
               />
               <div className='col-span-2 flex items-center justify-end'>
                 <Button onClick={() => setOnSearch(false)} variant='secondary'>
