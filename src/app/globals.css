@@ -9,4 +9,26 @@ html {
 
 body {
   font-family: Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    background-color: transparent;
+    height: 14px;
+  }
+
+  .scrollbar::-webkit-scrollbar-button {
+    background-color: white;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  .scrollbar:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: #777777;
+    }
+  }
 }
