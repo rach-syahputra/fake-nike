@@ -1,12 +1,11 @@
-import Image from 'next/image'
+import Trending from './_components/Trending'
+import ProductListCarousel from '@/components/products/ProductListCarousel'
 
 export default function Home() {
   return (
-    <div>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur,
-        amet.
-      </p>
+    <div className='flex flex-col gap-20 py-8'>
+      <Trending />
+      <ProductListCarousel />
     </div>
   )
 }
