@@ -1,34 +1,27 @@
 import Link from 'next/link'
-import { User as UserType } from 'next-auth'
+import { auth } from '@/auth'
 import { cn } from '@/lib/utils'
+import Button from '../elements/Button'
+import Avatar from './Avatar'
 
 type UserProps = {
-  user: UserType | null
   className?: string
 }
 
-export default function Auth({ user, className }: UserProps) {
-  return user ? (
-    <Link
-      href='/'
-      aria-label='User profile page'
-      className={cn(
-        'hidden text-sm font-medium hover:underline md:block md:text-base',
-        className
-      )}
-    >
-      {user?.name}
-    </Link>
+export default async function Auth({ className }: UserProps) {
+  const session = await auth()
+
+  return session?.user ? (
+    <Avatar image={session.user.image || ''} className='max-md:hidden' />
   ) : (
-    <Link
-      href='/sign-in'
-      aria-label='Sign in page'
-      className={cn(
-        'hidden text-sm font-medium hover:underline md:block md:text-base',
-        className
-      )}
-    >
-      Sign in
-    </Link>
+    <Button variant='secondary' className='hidden w-fit px-0 md:block'>
+      <Link
+        href='/sign-in'
+        aria-label='Sign in page'
+        className={cn('text-sm font-medium md:text-base', className)}
+      >
+        Sign in
+      </Link>
+    </Button>
   )
 }

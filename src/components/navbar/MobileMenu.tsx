@@ -10,17 +10,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navLinks } from '@/lib/constants/nav-links'
 import { useNavigation } from '@/context/NavigationContext'
 import ModalContainer from '../layouts/ModalContainer'
+import AuthMobile from './AuthMobile'
 
 export default function MobileMenu() {
   const { onMobileMenu, setOnMobileMenu } = useNavigation()
 
   return (
-    <div className='flex items-center justify-center md:hidden'>
+    <div className='flex h-8 w-8 items-center justify-center md:hidden'>
       {/* BURGER */}
       <FontAwesomeIcon
         icon={faBars}
         onClick={() => setOnMobileMenu(true)}
-        className='h-6 w-6'
+        className='h-5 w-5'
       />
       {onMobileMenu && (
         <ModalContainer>
@@ -51,6 +52,7 @@ export default function MobileMenu() {
                 </li>
               ))}
             </ul>
+            <AuthMobile />
           </div>
         </ModalContainer>
       )}

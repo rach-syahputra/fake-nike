@@ -1,15 +1,15 @@
 'use server'
 
-import { signIn } from '@/auth'
 import { AuthError } from 'next-auth'
+import { signIn, signOut } from '@/auth'
 
-export async function handleCredentialsSignin({
+export const handleCredentialsSignin = async ({
   email,
   password
 }: {
   email: string
   password: string
-}) {
+}) => {
   try {
     await signIn('credentials', { email, password, redirectTo: '/' })
   } catch (error) {
@@ -31,4 +31,8 @@ export async function handleCredentialsSignin({
     }
     throw error
   }
+}
+
+export const handleSignOut = async () => {
+  return await signOut()
 }

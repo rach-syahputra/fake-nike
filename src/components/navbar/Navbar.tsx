@@ -1,15 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { auth } from '@/auth'
+import { SessionProvider } from 'next-auth/react'
 import { navLinks } from '@/lib/constants/nav-links'
 import Container from '../layouts/Container'
 import MobileMenu from './MobileMenu'
 import SearchInput from './SearchInput'
 import Auth from './Auth'
+import Cart from './Cart'
 
 export default async function Navbar() {
-  const session = await auth()
-
   return (
     <nav className='sticky top-0 flex h-[60px] w-full items-center justify-center border bg-white'>
       <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
@@ -38,18 +37,11 @@ export default async function Navbar() {
 
         <div className='flex w-full items-center justify-end gap-2'>
           <SearchInput />
-          <div className='relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-200'>
-            <Image
-              src='/icons/market.png'
-              alt='cart icon'
-              width={40}
-              height={40}
-              className='h-7 w-7'
-            />
-            <p className='absolute bottom-2 select-none text-xs font-bold'>1</p>
-          </div>
-          <Auth user={session?.user || null} />
-          <MobileMenu />
+          <Cart />
+          <SessionProvider>
+            <Auth />
+            <MobileMenu />
+          </SessionProvider>
         </div>
       </Container>
     </nav>
