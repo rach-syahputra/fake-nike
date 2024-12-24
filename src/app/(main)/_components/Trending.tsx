@@ -13,6 +13,7 @@ export default function Trending() {
             alt='Trending image'
             width={800}
             height={800}
+            priority
             style={{ objectFit: 'cover' }}
             className='aspect-square w-full'
           />
@@ -21,6 +22,7 @@ export default function Trending() {
             alt='Trending image'
             width={800}
             height={800}
+            priority
             style={{ objectFit: 'cover' }}
             className='hidden aspect-square w-full md:block'
           />

@@ -1,23 +1,17 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { auth } from '@/auth'
 import { navLinks } from '@/lib/constants/nav-links'
-import { useSearch } from '@/context/SearchContext'
 import Container from '../layouts/Container'
-import User from '../elements/User'
 import MobileMenu from './MobileMenu'
 import SearchInput from './SearchInput'
+import Auth from './Auth'
 
-export default function Navbar() {
-  const { onSearch, setOnSearch } = useSearch()
+export default async function Navbar() {
+  const session = await auth()
 
   return (
-    <nav
-      className={`${onSearch ? 'hidden' : 'flex'} sticky top-0 h-[60px] w-full items-center justify-center border bg-white`}
-    >
+    <nav className='sticky top-0 flex h-[60px] w-full items-center justify-center border bg-white'>
       <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
         <Image
           src='/logo.svg'
@@ -43,11 +37,6 @@ export default function Navbar() {
         </ul>
 
         <div className='flex w-full items-center justify-end gap-2'>
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            onClick={() => setOnSearch(true)}
-            className='h-6 w-6 text-gray-800 lg:hidden'
-          />
           <SearchInput />
           <div className='relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-200'>
             <Image
@@ -59,7 +48,7 @@ export default function Navbar() {
             />
             <p className='absolute bottom-2 select-none text-xs font-bold'>1</p>
           </div>
-          <User className='hidden md:block' />
+          <Auth user={session?.user || null} />
           <MobileMenu />
         </div>
       </Container>
