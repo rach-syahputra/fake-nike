@@ -33,6 +33,32 @@ export const handleCredentialsSignin = async ({
   }
 }
 
+export const handleGoogleSignIn = async () => {
+  try {
+    await signIn('google', {
+      redirectTo: '/'
+    })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'OAuthSignInError':
+          return {
+            error: {
+              message: 'Sign in error.'
+            }
+          }
+        default:
+          return {
+            error: {
+              message: 'Something went wrong.'
+            }
+          }
+      }
+    }
+    throw error
+  }
+}
+
 export const handleSignOut = async () => {
   return await signOut()
 }

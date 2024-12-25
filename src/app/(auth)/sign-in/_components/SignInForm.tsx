@@ -3,12 +3,14 @@
 import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { handleCredentialsSignin } from '@/app/actions/auth'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { handleCredentialsSignin, handleGoogleSignIn } from '@/app/actions/auth'
 import { SignInFormFields } from '@/lib/types/types'
 import { signInSchema } from '@/lib/validations/schema'
 import Input from '@/components/elements/Input'
 import Button from '@/components/elements/Button'
 import FormErrorMessage from '@/components/elements/FormErrorMessage'
+import Icon from '@/components/elements/Icon'
 
 export default function SignInForm() {
   const {
@@ -30,6 +32,10 @@ export default function SignInForm() {
     } catch (error) {
       console.error(error)
     }
+  }
+
+  const handleSignInWithGoogle = async () => {
+    await handleGoogleSignIn()
   }
 
   return (
@@ -57,13 +63,28 @@ export default function SignInForm() {
         <FormErrorMessage>{errors.root.message}</FormErrorMessage>
       )}
 
-      <Link href='/sign-up' className='text-gray-500 hover:underline'>
+      <Link
+        href='/sign-up'
+        className='text-sm text-gray-500 hover:underline lg:text-base'
+      >
         Don&rsquo;t have an account? Sign up
       </Link>
 
       <Button type='submit' disabled={isSubmitting} className='self-end'>
         {isSubmitting ? 'Signing in...' : 'Sign in'}
       </Button>
+
+      <div className='flex flex-col gap-3'>
+        <p className='text-sm'>Or continue with</p>
+        <Button
+          type='button'
+          onClick={() => handleSignInWithGoogle()}
+          className='flex w-full items-center justify-center gap-2 bg-red-700'
+        >
+          <Icon icon={faGoogle} className='h-4 w-4' />
+          Sign in with google
+        </Button>
+      </div>
     </form>
   )
 }

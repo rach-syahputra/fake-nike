@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
+import Google from 'next-auth/providers/google'
 import { fetchUserByEmailAndPassword } from './lib/api/services'
 import { User } from './lib/types/types'
 
@@ -23,7 +24,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         return user[0]
       }
-    })
+    }),
+    Google
   ],
   callbacks: {
     async jwt({ token, user }) {
