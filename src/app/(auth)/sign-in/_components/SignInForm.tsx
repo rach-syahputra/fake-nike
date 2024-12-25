@@ -11,6 +11,7 @@ import Input from '@/components/elements/Input'
 import Button from '@/components/elements/Button'
 import FormErrorMessage from '@/components/elements/FormErrorMessage'
 import Icon from '@/components/elements/Icon'
+import Heading from '@/components/elements/Heading'
 
 export default function SignInForm() {
   const {
@@ -43,6 +44,7 @@ export default function SignInForm() {
       onSubmit={handleSubmit(onSubmit)}
       className='flex w-full flex-col gap-6 font-[family-name:var(--font-helvetica-now-text)]'
     >
+      <Heading level={1}>Sign in to nike.</Heading>
       <Input
         type='email'
         name='email'

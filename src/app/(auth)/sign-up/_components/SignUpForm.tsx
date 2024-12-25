@@ -10,6 +10,7 @@ import { signUpSchema } from '@/lib/validations/schema'
 import Input from '@/components/elements/Input'
 import Button from '@/components/elements/Button'
 import FormErrorMessage from '@/components/elements/FormErrorMessage'
+import Heading from '@/components/elements/Heading'
 
 export default function SignUpForm() {
   const router = useRouter()
@@ -41,6 +42,7 @@ export default function SignUpForm() {
       onSubmit={handleSubmit(onSubmit)}
       className='flex w-full flex-col gap-6 font-[family-name:var(--font-helvetica-now-text)]'
     >
+      <Heading level={1}>Join us.</Heading>
       <Input
         type='text'
         name='name'
