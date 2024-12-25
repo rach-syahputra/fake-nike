@@ -1,9 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { handleCredentialsSignin } from '@/app/actions/auth'
-import { FormFields } from '@/lib/types/types'
+import { SignInFormFields } from '@/lib/types/types'
 import { signInSchema } from '@/lib/validations/schema'
 import Input from '@/components/elements/Input'
 import Button from '@/components/elements/Button'
@@ -15,11 +16,11 @@ export default function SignInForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError
-  } = useForm<FormFields>({
+  } = useForm<SignInFormFields>({
     resolver: zodResolver(signInSchema)
   })
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
     try {
       const res = await handleCredentialsSignin(data)
 
@@ -56,11 +57,9 @@ export default function SignInForm() {
         <FormErrorMessage>{errors.root.message}</FormErrorMessage>
       )}
 
-      <p className='text-gray-500'>
-        By continuing, I agree to Nike’s{' '}
-        <span className='underline'>Privacy Policy</span> and{' '}
-        <span className='underline'>Terms of Use.</span>
-      </p>
+      <Link href='/sign-up' className='text-gray-500 hover:underline'>
+        Don&rsquo;t have an account? Sign up
+      </Link>
 
       <Button type='submit' disabled={isSubmitting} className='self-end'>
         {isSubmitting ? 'Signing in...' : 'Sign in'}

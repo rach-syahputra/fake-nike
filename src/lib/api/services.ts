@@ -45,3 +45,32 @@ export const fetchUserByEmailAndPassword = async ({
 
   return await res.json()
 }
+
+export const fetchAddUserByEmailAndPassword = async ({
+  name,
+  email,
+  password
+}: {
+  name: string
+  email: string
+  password: string
+}) => {
+  const data = {
+    name,
+    email,
+    password,
+    id: email,
+    image:
+      'https://gtzyhzmsbukqrxnztxjc.supabase.co/storage/v1/object/sign/naik-shoes/woman-profile.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuYWlrLXNob2VzL3dvbWFuLXByb2ZpbGUucG5nIiwiaWF0IjoxNzM1MDM5NTE5LCJleHAiOjE3Mzc2MzE1MTl9.59xUWqQto4yDQXzd4843j7472EBwcAW7RctetTe0SQo&t=2024-12-24T11%3A25%3A19.395Z'
+  }
+
+  const res = await fetch(`${BASE_URL}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+
+  return await res.json()
+}

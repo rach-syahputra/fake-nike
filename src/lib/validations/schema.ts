@@ -11,6 +11,7 @@ export const signInSchema = z.object({
 
 export const signUpSchema = z
   .object({
+    name: z.string({ required_error: 'Required' }),
     email: z
       .string({ required_error: 'Required' })
       .email({ message: 'Invalid email address' }),

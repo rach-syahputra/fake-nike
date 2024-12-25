@@ -18,7 +18,7 @@ export default async function Auth({ className }: UserProps) {
       <Link
         href='/sign-in'
         aria-label='Sign in page'
-        className={cn('text-sm font-medium md:text-base', className)}
+        className={cn('text-sm font-medium', className)}
       >
         Sign in
       </Link>
