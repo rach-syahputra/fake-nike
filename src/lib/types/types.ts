@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { signInSchema } from '../validations/schema'
+import { signInSchema, signUpSchema } from '../validations/schema'
 
 export interface IProductJson {
   name: string
@@ -30,5 +30,5 @@ export interface User {
   image: string
 }
 
-export type FormFields = z.infer<typeof signInSchema>
-export type FieldNames = 'email' | 'password'
+export type SignInFormFields = z.infer<typeof signInSchema>
+export type SignUpFormFields = z.infer<typeof signUpSchema>

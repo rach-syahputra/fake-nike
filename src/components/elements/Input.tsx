@@ -1,22 +1,22 @@
-import { FieldError, UseFormRegister } from 'react-hook-form'
-import { FieldNames, FormFields } from '@/lib/types/types'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FieldError, Path, UseFormRegister } from 'react-hook-form'
 import FormErrorMessage from './FormErrorMessage'
 
-interface InputProps {
+type InputProps<T extends Record<string, any>> = {
   type: string
   placeholder: string
-  name: FieldNames
-  register: UseFormRegister<FormFields>
+  name: Path<T>
+  register: UseFormRegister<T>
   error: FieldError | undefined
 }
 
-export default function Input({
+export default function Input<T extends Record<string, any>>({
   name,
   type,
   placeholder,
   register,
   error
-}: InputProps) {
+}: InputProps<T>) {
   return (
     <div className='flex w-full flex-col gap-2 font-[family-name:var(--font-helvetica-now-text)]'>
       <label htmlFor={name} className='sr-only'>
