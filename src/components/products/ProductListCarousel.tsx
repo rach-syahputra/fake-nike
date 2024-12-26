@@ -24,7 +24,7 @@ export default function ProductListCarousel() {
       setProducts(
         data.map((product) => ({
           name: product.name,
-          slug: product.slug,
+          id: product.id,
           category: product.category,
           price: product.price,
           imageUrl: product.imageUrls[0]

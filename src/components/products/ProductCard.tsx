@@ -5,7 +5,7 @@ import Heading from '../elements/Heading'
 
 type ProductCardProps = {
   name: string
-  slug: string
+  id: string
   category: string
   price: number
   imageUrl: string
@@ -14,7 +14,7 @@ type ProductCardProps = {
 
 export default function ProductCard({
   name,
-  slug,
+  id,
   category,
   price,
   imageUrl,
@@ -22,7 +22,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Link
-      href={`/products/${slug}`}
+      href={`/products/${id}`}
       className={cn('flex flex-col gap-2', className)}
     >
       <Image
