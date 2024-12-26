@@ -3,17 +3,17 @@ import { signInSchema, signUpSchema } from '../validations/schema'
 
 export interface IProductJson {
   name: string
-  slug: string
+  id: string
   description: string
   category: string
   imageUrls: string[]
-  sizes: string[]
+  sizes: number[]
   price: number
 }
 
 export interface IProductCard {
   name: string
-  slug: string
+  id: string
   category: string
   price: number
   imageUrl: string
