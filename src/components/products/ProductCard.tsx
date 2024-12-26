@@ -31,7 +31,7 @@ export default function ProductCard({
         width={500}
         height={500}
         style={{ objectFit: 'cover' }}
-        className='aspect-square h-auto w-full'
+        className='aspect-square h-auto w-full bg-gray-200'
       />
       <div className='flex flex-col'>
         <Heading level={2}>{name}</Heading>
