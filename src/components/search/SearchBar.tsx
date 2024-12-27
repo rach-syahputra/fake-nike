@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
-import { fetchProductByName } from '@/lib/api/services'
+import { fetchFilteredProducts } from '@/lib/api/services'
 import { IProductCard, IProductJson, ITopSuggestions } from '@/lib/types/types'
 import { popularSearches } from '@/lib/constants/products'
 import { useSearch } from '@/context/SearchContext'
@@ -15,8 +16,13 @@ import PopularSearchTerms from './PopularSearchTerms'
 import TopSuggestions from './TopSuggestions'
 
 export default function SearchBar() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
   const { onSearch, setOnSearch } = useSearch()
-  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [searchQuery, setSearchQuery] = useState<string>(
+    searchParams.get('q') || ''
+  )
   const [products, setProducts] = useState<IProductCard[]>([])
   const [topSuggestions, setTopSuggestions] = useState<ITopSuggestions[]>([])
 
@@ -25,7 +31,6 @@ export default function SearchBar() {
       // hide overvlow y scroll
       document.documentElement.style.overflowY = 'hidden'
     } else {
-      setSearchQuery('')
       setProducts([])
     }
     return () => {
@@ -43,12 +48,14 @@ export default function SearchBar() {
 
   const getProductByName = async () => {
     try {
-      const data: IProductJson[] = await fetchProductByName(searchQuery, 5)
+      const data: IProductJson[] = await fetchFilteredProducts(searchQuery, {
+        limit: 5
+      })
 
       setProducts(
         data.map((product) => ({
           name: product.name,
-          slug: product.slug,
+          id: product.id,
           category: product.category,
           price: product.price,
           imageUrl: product.imageUrls[0]
@@ -58,7 +65,7 @@ export default function SearchBar() {
       setTopSuggestions(
         data.slice(0, 3).map((product) => ({
           name: product.name,
-          slug: product.slug
+          id: product.id
         }))
       )
     } catch (error) {
@@ -70,6 +77,13 @@ export default function SearchBar() {
     event.preventDefault()
 
     setSearchQuery(event.target.value)
+  }
+
+  const handleSearchEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setOnSearch(false)
+      router.push(`/search?q=${searchQuery}`)
+    }
   }
 
   if (onSearch)
@@ -90,6 +104,7 @@ export default function SearchBar() {
                 value={searchQuery}
                 setSearchQuery={setSearchQuery}
                 onChange={(event) => handleSearchChange(event)}
+                onKeyDown={(event) => handleSearchEnter(event)}
               />
               <div className='col-span-2 flex items-center justify-end'>
                 <Button onClick={() => setOnSearch(false)} variant='secondary'>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { fetchGreatestPoducts } from '@/lib/api/services'
+import { fetchGreatestProducts } from '@/lib/api/services'
 import { IProductCard, IProductJson } from '@/lib/types/types'
 import Container from '../layouts/Container'
 import ProductCard from './ProductCard'
@@ -19,7 +19,7 @@ export default function ProductListCarousel() {
 
   const getProducts = async () => {
     try {
-      const data: IProductJson[] = await fetchGreatestPoducts('desc', 10)
+      const data: IProductJson[] = await fetchGreatestProducts('desc', 10)
 
       setProducts(
         data.map((product) => ({

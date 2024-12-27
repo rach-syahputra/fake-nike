@@ -5,7 +5,7 @@ export const fetchAllProducts = async () => {
   return await res.json()
 }
 
-export const fetchGreatestPoducts = async (
+export const fetchGreatestProducts = async (
   order: 'asc' | 'desc' = 'asc',
   limit: number = 10
 ) => {
@@ -17,12 +17,27 @@ export const fetchGreatestPoducts = async (
   return await res.json()
 }
 
-export const fetchProductByName = async (query: string, limit: number = 5) => {
-  const res = await fetch(
-    `${BASE_URL}/products?name_like=${query}&_limit=${limit.toString()}`,
-    { cache: 'force-cache' }
-  )
+export const fetchFilteredProducts = async (
+  query: string,
+  filter?: {
+    category?: 'men' | 'women'
+    page?: number
+    limit?: number
+    order?: 'asc' | 'desc'
+  }
+) => {
+  const params = new URLSearchParams()
 
+  params.append('name_like', query)
+
+  if (filter?.category) params.append('category', filter.category)
+  if (filter?.page) params.append('_page', filter.page.toString())
+  if (filter?.limit) params.append('_limit', filter.limit.toString())
+  if (filter?.order) params.append('_order', filter.order)
+
+  const res = await fetch(`${BASE_URL}/products?${params.toString()}`, {
+    cache: 'force-cache'
+  })
   return await res.json()
 }
 
