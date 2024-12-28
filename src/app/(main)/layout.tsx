@@ -3,7 +3,6 @@ import { FilterProvider } from '@/context/FilterContext'
 import { SearchProvider } from '@/context/SearchContext'
 import Navbar from '@/components/navbar/Navbar'
 import SearchBar from '@/components/search/SearchBar'
-import { Suspense } from 'react'
 
 export default function MainLayout({
   children
@@ -14,13 +13,11 @@ export default function MainLayout({
     <>
       <NavigationProvider>
         <FilterProvider>
-          <Suspense>
-            <SearchProvider>
-              <Navbar />
-              <SearchBar />
-            </SearchProvider>
-            <main>{children}</main>
-          </Suspense>
+          <SearchProvider>
+            <Navbar />
+            <SearchBar />
+          </SearchProvider>
+          <main>{children}</main>
         </FilterProvider>
       </NavigationProvider>
     </>
