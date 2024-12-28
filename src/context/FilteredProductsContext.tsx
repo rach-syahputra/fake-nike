@@ -4,6 +4,7 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
+  Suspense,
   useContext,
   useState
 } from 'react'
@@ -27,7 +28,7 @@ const FilteredProductsProvider = ({
 
   return (
     <FilteredProductsContext.Provider value={{ products, setProducts }}>
-      {children}
+      <Suspense>{children}</Suspense>
     </FilteredProductsContext.Provider>
   )
 }
