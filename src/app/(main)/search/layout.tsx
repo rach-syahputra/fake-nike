@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { FilteredProductsProvider } from '@/context/FilteredProductsContext'
 
 export default function SearchLayout({
@@ -6,9 +5,5 @@ export default function SearchLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <Suspense>
-      <FilteredProductsProvider>{children}</FilteredProductsProvider>
-    </Suspense>
-  )
+  return <FilteredProductsProvider>{children}</FilteredProductsProvider>
 }
