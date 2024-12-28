@@ -1,5 +1,4 @@
 import { NavigationProvider } from '@/context/NavigationContext'
-import { FilterProvider } from '@/context/FilterContext'
 import { SearchProvider } from '@/context/SearchContext'
 import Navbar from '@/components/navbar/Navbar'
 import SearchBar from '@/components/search/SearchBar'
@@ -12,13 +11,11 @@ export default function MainLayout({
   return (
     <>
       <NavigationProvider>
-        <FilterProvider>
-          <SearchProvider>
-            <Navbar />
-            <SearchBar />
-          </SearchProvider>
-          <main>{children}</main>
-        </FilterProvider>
+        <SearchProvider>
+          <Navbar />
+          <SearchBar />
+        </SearchProvider>
+        <main>{children}</main>
       </NavigationProvider>
     </>
   )
