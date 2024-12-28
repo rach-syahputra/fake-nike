@@ -20,24 +20,37 @@ export const fetchGreatestProducts = async (
 export const fetchFilteredProducts = async (
   query: string,
   filter?: {
-    category?: 'men' | 'women'
+    sort?: string
+    categories?: string[]
     page?: number
     limit?: number
-    order?: 'asc' | 'desc'
+    order?: string
+    sizes?: string[]
   }
 ) => {
   const params = new URLSearchParams()
 
   params.append('name_like', query)
 
-  if (filter?.category) params.append('category', filter.category)
+  if (filter?.sort) params.append('_sort', filter.sort)
+  if (filter?.categories) {
+    filter.categories.forEach((category) => {
+      params.append('category', category)
+    })
+  }
   if (filter?.page) params.append('_page', filter.page.toString())
   if (filter?.limit) params.append('_limit', filter.limit.toString())
   if (filter?.order) params.append('_order', filter.order)
+  if (filter?.sizes) {
+    filter.sizes.forEach((size) => {
+      params.append('sizes_like', size)
+    })
+  }
 
   const res = await fetch(`${BASE_URL}/products?${params.toString()}`, {
     cache: 'force-cache'
   })
+
   return await res.json()
 }
 

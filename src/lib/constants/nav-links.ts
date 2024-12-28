@@ -5,11 +5,11 @@ type NavLinks = {
 
 export const navLinks: NavLinks[] = [
   {
-    href: '/men',
+    href: '/search?q=&category=men',
     label: 'Men'
   },
   {
-    href: '/women',
+    href: '/search?q=&category=women',
     label: 'Women'
   }
 ]

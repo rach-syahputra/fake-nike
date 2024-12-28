@@ -21,7 +21,7 @@ export interface IProductCard {
 
 export interface ITopSuggestions {
   name: string
-  slug: string
+  id: string
 }
 
 export interface User {

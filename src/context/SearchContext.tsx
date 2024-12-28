@@ -5,6 +5,7 @@ import {
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
   useState
 } from 'react'
 
@@ -18,6 +19,17 @@ const SearchContext = createContext<ISearchContext | undefined>(undefined)
 const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [onSearch, setOnSearch] = useState<boolean>(false)
 
+  useEffect(() => {
+    if (onSearch) {
+      // hide overvlow y scroll
+      document.documentElement.style.overflowY = 'hidden'
+    }
+
+    return () => {
+      document.documentElement.style.overflowY = 'scroll'
+    }
+  }, [onSearch])
+
   return (
     <SearchContext.Provider value={{ onSearch, setOnSearch }}>
       {children}
@@ -25,12 +37,12 @@ const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const useSearch = (): ISearchContext => {
+const useSearchContext = (): ISearchContext => {
   const context = useContext(SearchContext)
   if (context === undefined) {
-    throw new Error('useSearch must be used within a SearchProvider')
+    throw new Error('useSearchContext must be used within a SearchProvider')
   }
   return context
 }
 
-export { SearchProvider, useSearch }
+export { SearchProvider, useSearchContext }
