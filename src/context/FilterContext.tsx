@@ -4,7 +4,6 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
-  Suspense,
   useContext,
   useEffect,
   useState
@@ -143,32 +142,30 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <Suspense>
-      <FilterContext.Provider
-        value={{
-          onSidebar,
-          setOnSidebar,
-          onMobileFilterModal,
-          setOnMobileFilterModal,
-          searchQuery,
-          setSearchQuery,
-          sort,
-          setSort,
-          order,
-          setOrder,
-          categories,
-          setCategories,
-          sizes,
-          setSizes,
-          openFilterActions,
-          setOpenFilterActions,
-          selectedFilterCount,
-          updateSearchURL
-        }}
-      >
-        {children}
-      </FilterContext.Provider>
-    </Suspense>
+    <FilterContext.Provider
+      value={{
+        onSidebar,
+        setOnSidebar,
+        onMobileFilterModal,
+        setOnMobileFilterModal,
+        searchQuery,
+        setSearchQuery,
+        sort,
+        setSort,
+        order,
+        setOrder,
+        categories,
+        setCategories,
+        sizes,
+        setSizes,
+        openFilterActions,
+        setOpenFilterActions,
+        selectedFilterCount,
+        updateSearchURL
+      }}
+    >
+      {children}
+    </FilterContext.Provider>
   )
 }
 

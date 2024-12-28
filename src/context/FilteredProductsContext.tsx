@@ -4,7 +4,6 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
-  Suspense,
   useContext,
   useState
 } from 'react'
@@ -27,11 +26,9 @@ const FilteredProductsProvider = ({
   const [products, setProducts] = useState<IProductCard[]>([])
 
   return (
-    <Suspense>
-      <FilteredProductsContext.Provider value={{ products, setProducts }}>
-        {children}
-      </FilteredProductsContext.Provider>
-    </Suspense>
+    <FilteredProductsContext.Provider value={{ products, setProducts }}>
+      {children}
+    </FilteredProductsContext.Provider>
   )
 }
 

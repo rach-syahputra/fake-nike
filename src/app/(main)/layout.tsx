@@ -1,4 +1,6 @@
+import { Suspense } from 'react'
 import { NavigationProvider } from '@/context/NavigationContext'
+import { FilterProvider } from '@/context/FilterContext'
 import { SearchProvider } from '@/context/SearchContext'
 import Navbar from '@/components/navbar/Navbar'
 import SearchBar from '@/components/search/SearchBar'
@@ -11,11 +13,15 @@ export default function MainLayout({
   return (
     <>
       <NavigationProvider>
-        <SearchProvider>
-          <Navbar />
-          <SearchBar />
-        </SearchProvider>
-        <main>{children}</main>
+        <Suspense fallback={<div>Loading...</div>}>
+          <FilterProvider>
+            <SearchProvider>
+              <Navbar />
+              <SearchBar />
+            </SearchProvider>
+            <main>{children}</main>
+          </FilterProvider>
+        </Suspense>
       </NavigationProvider>
     </>
   )
