@@ -4,7 +4,6 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
-  Suspense,
   useContext,
   useEffect,
   useState
@@ -165,7 +164,7 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
         updateSearchURL
       }}
     >
-      <Suspense>{children}</Suspense>
+      {children}
     </FilterContext.Provider>
   )
 }
