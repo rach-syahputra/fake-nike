@@ -7,16 +7,18 @@ type SearchInputProps = {
   className?: string
   name?: string
   value?: string
-  setSearchQuery: Dispatch<SetStateAction<string>>
+  setSearchBarQuery: Dispatch<SetStateAction<string>>
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
 }
 
 export default function SearchInput({
   className,
   name,
   value,
-  setSearchQuery,
-  onChange
+  setSearchBarQuery,
+  onChange,
+  onKeyDown
 }: SearchInputProps) {
   return (
     <form
@@ -35,10 +37,11 @@ export default function SearchInput({
         name={name}
         value={value}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         className='h-full w-full bg-gray-100 font-medium focus-within:outline-none'
       />
       {value && (
-        <button onClick={() => setSearchQuery('')}>
+        <button onClick={() => setSearchBarQuery('')}>
           <Icon icon={faXmark} className='h-5 w-5 text-gray-900' />
         </button>
       )}

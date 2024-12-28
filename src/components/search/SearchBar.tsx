@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { fetchFilteredProducts } from '@/lib/api/services'
-import { IProductCard, IProductJson, ITopSuggestions } from '@/lib/types/types'
 import { popularSearches } from '@/lib/constants/products'
-import { useSearch } from '@/context/SearchContext'
+import { useSearchContext } from '@/context/SearchContext'
+import { useFilterContext } from '@/context/FilterContext'
 import Container from '../layouts/Container'
 import ModalContainer from '../layouts/ModalContainer'
 import SearchInput from './SearchInput'
@@ -16,73 +16,31 @@ import PopularSearchTerms from './PopularSearchTerms'
 import TopSuggestions from './TopSuggestions'
 
 export default function SearchBar() {
-  const searchParams = useSearchParams()
   const router = useRouter()
+  const pathname = usePathname()
 
-  const { onSearch, setOnSearch } = useSearch()
-  const [searchQuery, setSearchQuery] = useState<string>(
-    searchParams.get('q') || ''
+  const { onSearch, setOnSearch } = useSearchContext()
+  const { searchQuery, setSearchQuery } = useFilterContext()
+
+  const [searchBarQuery, setSearchBarQuery] = useState<string>(
+    searchQuery || ''
   )
-  const [products, setProducts] = useState<IProductCard[]>([])
-  const [topSuggestions, setTopSuggestions] = useState<ITopSuggestions[]>([])
 
   useEffect(() => {
-    if (onSearch) {
-      // hide overvlow y scroll
-      document.documentElement.style.overflowY = 'hidden'
-    } else {
-      setProducts([])
-    }
-    return () => {
-      document.documentElement.style.overflowY = 'scroll'
-    }
-  }, [onSearch])
-
-  useEffect(() => {
-    if (searchQuery) {
-      getProductByName()
-    } else {
-      setProducts([])
-    }
+    setSearchBarQuery(searchQuery)
   }, [searchQuery])
-
-  const getProductByName = async () => {
-    try {
-      const data: IProductJson[] = await fetchFilteredProducts(searchQuery, {
-        limit: 5
-      })
-
-      setProducts(
-        data.map((product) => ({
-          name: product.name,
-          id: product.id,
-          category: product.category,
-          price: product.price,
-          imageUrl: product.imageUrls[0]
-        }))
-      )
-
-      setTopSuggestions(
-        data.slice(0, 3).map((product) => ({
-          name: product.name,
-          id: product.id
-        }))
-      )
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
 
-    setSearchQuery(event.target.value)
+    setSearchBarQuery(event.target.value)
   }
 
   const handleSearchEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
+      if (pathname !== '/search') router.push('/search')
       setOnSearch(false)
-      router.push(`/search?q=${searchQuery}`)
+      setSearchQuery(searchBarQuery)
     }
   }
 
@@ -92,20 +50,28 @@ export default function SearchBar() {
         <div className='sticky top-0 flex w-full flex-col items-center justify-center border bg-white pb-20 pt-2'>
           <Container className='flex flex-col gap-6'>
             <div className='flex w-full items-center justify-between lg:grid lg:grid-cols-10'>
-              <Image
-                src='/logo.svg'
-                alt='nike logo'
-                width={100}
-                height={42.86}
+              <Link
+                href='/'
+                aria-label='Home page'
                 className='col-span-2 hidden h-[27.43px] w-16 lg:block'
-              />
+              >
+                <Image
+                  src='/logo.svg'
+                  alt='nike logo'
+                  width={100}
+                  height={42.86}
+                  className='h-full w-full'
+                />
+              </Link>
+
               <SearchInput
                 name='search'
-                value={searchQuery}
-                setSearchQuery={setSearchQuery}
+                value={searchBarQuery}
+                setSearchBarQuery={setSearchBarQuery}
                 onChange={(event) => handleSearchChange(event)}
                 onKeyDown={(event) => handleSearchEnter(event)}
               />
+
               <div className='col-span-2 flex items-center justify-end'>
                 <Button onClick={() => setOnSearch(false)} variant='secondary'>
                   Cancel
@@ -113,10 +79,10 @@ export default function SearchBar() {
               </div>
             </div>
             <div className='flex w-full flex-col items-center justify-between gap-4 lg:grid lg:grid-cols-10'>
-              {searchQuery && products.length > 0 ? (
+              {searchBarQuery ? (
                 <>
-                  <TopSuggestions topSuggestions={topSuggestions} />
-                  <ProductSearchList products={products} />
+                  <TopSuggestions />
+                  <ProductSearchList />
                 </>
               ) : (
                 <PopularSearchTerms

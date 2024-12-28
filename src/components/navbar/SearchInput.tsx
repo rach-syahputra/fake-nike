@@ -1,11 +1,11 @@
 'use client'
 
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { useSearch } from '@/context/SearchContext'
+import { useSearchContext } from '@/context/SearchContext'
 import Icon from '../elements/Icon'
 
 export default function SearchInput() {
-  const { setOnSearch } = useSearch()
+  const { setOnSearch } = useSearchContext()
 
   return (
     <div onClick={() => setOnSearch(true)}>

@@ -10,16 +10,18 @@ import Cart from './Cart'
 
 export default async function Navbar() {
   return (
-    <nav className='sticky top-0 flex h-[60px] w-full items-center justify-center border bg-white'>
+    <nav className='sticky top-0 z-10 flex h-[60px] w-full items-center justify-center border bg-white'>
       <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
-        <Image
-          src='/logo.svg'
-          alt='nike logo'
-          width={100}
-          height={43}
-          style={{ objectFit: 'cover' }}
-          className='h-[20.57px] w-12 md:h-[27.43px] md:w-16'
-        />
+        <Link href='/' aria-label='Home page'>
+          <Image
+            src='/logo.svg'
+            alt='nike logo'
+            width={100}
+            height={43}
+            style={{ objectFit: 'cover' }}
+            className='h-[20.57px] w-12 md:h-[27.43px] md:w-16'
+          />
+        </Link>
 
         <ul className='hidden w-full items-center justify-center gap-6 md:flex'>
           {navLinks.map((navLink, index) => (
