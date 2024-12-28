@@ -18,7 +18,11 @@ export default function SizeFilter() {
     <MobileFilterCard title='Size' selectedCount={selectedCount}>
       <div className='flex flex-wrap items-center gap-2.5 gap-y-1.5'>
         {sizesData.map((size, index) => (
-          <SizeItem key={index} size={size} />
+          <SizeItem
+            key={index}
+            size={size}
+            setSelectedCount={setSelectedCount}
+          />
         ))}
       </div>
     </MobileFilterCard>
