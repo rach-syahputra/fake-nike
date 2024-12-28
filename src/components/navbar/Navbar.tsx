@@ -8,7 +8,7 @@ import SearchInput from './SearchInput'
 import Auth from './Auth'
 import Cart from './Cart'
 
-export default async function Navbar() {
+export default function Navbar() {
   return (
     <nav className='sticky top-0 z-10 flex h-[60px] w-full items-center justify-center border bg-white'>
       <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
