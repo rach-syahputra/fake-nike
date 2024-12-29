@@ -4,18 +4,20 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { fetchFilteredProducts } from '@/lib/api/services'
 import { IProductJson, ITopSuggestions } from '@/lib/types/types'
-import { useFilterContext } from '@/context/FilterContext'
 
-export default function TopSuggestions() {
-  const { searchQuery } = useFilterContext()
+type TopSuggestionsType = {
+  searchBarQuery: string
+}
+
+export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
   const [topSuggestions, setTopSuggestions] = useState<ITopSuggestions[]>([])
 
   useEffect(() => {
     getTopSuggestions()
-  }, [searchQuery])
+  }, [searchBarQuery])
 
   const getTopSuggestions = async () => {
-    const data: IProductJson[] = await fetchFilteredProducts(searchQuery, {
+    const data: IProductJson[] = await fetchFilteredProducts(searchBarQuery, {
       limit: 3
     })
 

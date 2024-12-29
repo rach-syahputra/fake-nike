@@ -3,19 +3,23 @@
 import { useEffect, useState } from 'react'
 import { IProductCard, IProductJson } from '@/lib/types/types'
 import { fetchFilteredProducts } from '@/lib/api/services'
-import { useFilterContext } from '@/context/FilterContext'
 import ProductCard from './ProductCard'
 
-export default function ProductSearchList() {
-  const { searchQuery } = useFilterContext()
+type ProductSearchListType = {
+  searchBarQuery: string
+}
+
+export default function ProductSearchList({
+  searchBarQuery
+}: ProductSearchListType) {
   const [products, setProducts] = useState<IProductCard[]>([])
 
   useEffect(() => {
     getProducts()
-  }, [searchQuery])
+  }, [searchBarQuery])
 
   const getProducts = async () => {
-    const data: IProductJson[] = await fetchFilteredProducts(searchQuery, {
+    const data: IProductJson[] = await fetchFilteredProducts(searchBarQuery, {
       limit: 3
     })
 

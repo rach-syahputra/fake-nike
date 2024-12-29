@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { fetchFilteredProducts } from '@/lib/api/services'
 import { IProductJson } from '@/lib/types/types'
 import { useFilteredProductsContext } from '@/context/FilteredProductsContext'
@@ -9,12 +10,13 @@ import SearchProductCard from './SearchedProductCard'
 import Container from '@/components/layouts/Container'
 
 export default function SearchedProductList() {
+  const searchParams = useSearchParams()
   const { searchQuery, sort, order, categories, sizes } = useFilterContext()
   const { products, setProducts } = useFilteredProductsContext()
 
   useEffect(() => {
     getFilteredProducts()
-  }, [searchQuery, sort, order, categories, sizes])
+  }, [searchParams])
 
   const getFilteredProducts = async () => {
     const data: IProductJson[] = await fetchFilteredProducts(searchQuery, {
