@@ -61,6 +61,22 @@ export const fetchFilteredProducts = async (
   return await res.json()
 }
 
+export const fetchCartProduct = async (ids: string[]) => {
+  const params = new URLSearchParams()
+
+  if (ids) {
+    ids.forEach((id) => {
+      params.append('id', id)
+    })
+
+    const res = await fetch(`${BASE_URL}/products?${params.toString()}`, {
+      cache: 'force-cache'
+    })
+
+    return await res.json()
+  }
+}
+
 export const fetchUserByEmailAndPassword = async ({
   email,
   password
