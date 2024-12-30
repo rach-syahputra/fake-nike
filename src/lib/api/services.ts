@@ -5,6 +5,13 @@ export const fetchAllProducts = async () => {
   return await res.json()
 }
 
+export const fetchProduct = async (id: string) => {
+  const res = await fetch(`${BASE_URL}/products?id=${id}&_limit=1`, {
+    cache: 'force-cache'
+  })
+  return await res.json()
+}
+
 export const fetchGreatestProducts = async (
   order: 'asc' | 'desc' = 'asc',
   limit: number = 10
