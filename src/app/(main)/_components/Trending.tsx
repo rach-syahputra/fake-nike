@@ -1,7 +1,7 @@
-import Button from '@/components/elements/Button'
+import Image from 'next/image'
 import Heading from '@/components/elements/Heading'
 import Container from '@/components/layouts/Container'
-import Image from 'next/image'
+import TrendingCTA from './TrendingCTA'
 
 export default function Trending() {
   return (
@@ -33,19 +33,7 @@ export default function Trending() {
           </div>
         </div>
 
-        <div className='flex flex-col items-center justify-center gap-6'>
-          <div className='flex flex-col items-center justify-center gap-1'>
-            <span>Air Force</span>
-            <h3 className='font-[family-name:var(--font-nike-futura-nd)] text-5xl font-bold'>
-              JUST DO IT
-            </h3>
-            <p className='text-center'>
-              In 1988, one of the world&rsquo;s most recognisable slogans was
-              coined: Just Do It.
-            </p>
-          </div>
-          <Button className='px-4'>Shop</Button>
-        </div>
+        <TrendingCTA />
       </Container>
     </section>
   )
