@@ -34,7 +34,7 @@ export default function ProductDetail({
 
       <Size sizes={product.sizes} />
 
-      <ProductActions />
+      <ProductActions productId={product.id} />
 
       <p className='pt-5 font-[family-name:var(--font-helvetica-now-text)]'>
         {product.description}

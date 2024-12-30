@@ -1,5 +1,7 @@
+'use client'
+
 import Link from 'next/link'
-import { auth } from '@/auth'
+import { useSession } from 'next-auth/react'
 import { cn } from '@/lib/utils'
 import Button from '../elements/Button'
 import Avatar from './Avatar'
@@ -8,8 +10,8 @@ type UserProps = {
   className?: string
 }
 
-export default async function Auth({ className }: UserProps) {
-  const session = await auth()
+export default function Auth({ className }: UserProps) {
+  const { data: session } = useSession()
 
   return session?.user ? (
     <Avatar image={session.user.image || ''} className='max-md:hidden' />

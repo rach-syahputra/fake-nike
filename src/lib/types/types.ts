@@ -40,5 +40,28 @@ export interface User {
   image: string
 }
 
+export interface ICart {
+  id: string
+  size: number
+}
+
+export interface ICartContextErrors {
+  size: string
+}
+
+export interface IAddedProduct {
+  id: string
+  size: string
+}
+
+export interface IAddedProductCard {
+  name: string
+  id: string
+  category: string
+  price: number
+  imageUrl: string
+  size: string
+}
+
 export type SignInFormFields = z.infer<typeof signInSchema>
 export type SignUpFormFields = z.infer<typeof signUpSchema>

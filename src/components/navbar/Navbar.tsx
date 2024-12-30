@@ -1,4 +1,7 @@
+'use client'
+
 import { SessionProvider } from 'next-auth/react'
+import { useCartContext } from '@/context/CartContext'
 import Container from '../layouts/Container'
 import MobileMenu from './MobileMenu'
 import SearchInput from './SearchInput'
@@ -6,8 +9,11 @@ import Auth from './Auth'
 import Cart from './Cart'
 import Categories from './Categories'
 import Logo from '../elements/Logo'
+import AddedProductToCart from './AddedProductToCart'
 
 export default function Navbar() {
+  const { AddedProduct } = useCartContext()
+
   return (
     <nav className='sticky top-0 z-20 flex h-[60px] w-full items-center justify-center border bg-white'>
       <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
@@ -23,6 +29,8 @@ export default function Navbar() {
             <MobileMenu />
           </SessionProvider>
         </div>
+
+        {AddedProduct && <AddedProductToCart />}
       </Container>
     </nav>
   )

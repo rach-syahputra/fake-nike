@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import { NavigationProvider } from '@/context/NavigationContext'
 import { FilterProvider } from '@/context/FilterContext'
 import { SearchProvider } from '@/context/SearchContext'
+import { CartProvider } from '@/context/CartContext'
 import Navbar from '@/components/navbar/Navbar'
 import SearchBar from '@/components/search/SearchBar'
 import LoadingSpinner from '@/components/elements/LoadingSpinner'
@@ -22,11 +23,13 @@ export default function MainLayout({
           }
         >
           <FilterProvider>
-            <SearchProvider>
-              <Navbar />
-              <SearchBar />
-            </SearchProvider>
-            <main>{children}</main>
+            <CartProvider>
+              <SearchProvider>
+                <Navbar />
+                <SearchBar />
+              </SearchProvider>
+              <main>{children}</main>
+            </CartProvider>
           </FilterProvider>
         </Suspense>
       </NavigationProvider>
