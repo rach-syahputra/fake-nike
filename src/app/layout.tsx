@@ -17,6 +17,11 @@ const helveticaNowDisplayMedium = localFont({
   variable: '--font-helvetica-now-display-medium'
 })
 
+const nikeFuturaND = localFont({
+  src: './fonts/NikeFuturaND.woff',
+  variable: '--font-nike-futura-nd'
+})
+
 export const metadata: Metadata = {
   title: 'Nike. Just Do It. Nike ID',
   description:
@@ -31,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${helveticaNowText.variable} ${helveticaNowTextMedium.variable} ${helveticaNowDisplayMedium.variable}`}
+      className={`${helveticaNowText.variable} ${helveticaNowTextMedium.variable} ${helveticaNowDisplayMedium.variable} ${nikeFuturaND.variable}`}
     >
       <body className='font-[family-name:var(--font-helvetica-now-text-medium)] antialiased'>
         {children}
