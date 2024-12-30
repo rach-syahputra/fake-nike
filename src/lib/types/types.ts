@@ -64,5 +64,10 @@ export interface IAddedProductCard {
   size: string
 }
 
+export interface ICartProductCard extends IProductCard {
+  size: number
+  count: number
+}
+
 export type SignInFormFields = z.infer<typeof signInSchema>
 export type SignUpFormFields = z.infer<typeof signUpSchema>
