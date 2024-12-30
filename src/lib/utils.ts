@@ -7,7 +7,7 @@ export function capitalizeFirstLetter(string: string) {
   return trimmedString.charAt(0).toUpperCase() + trimmedString.slice(1)
 }
 
-export function formatToRupiah(amount: number, replaceDots: string): string {
+export function formatToRupiah(amount: number, replaceDots?: string): string {
   const formattedAmount = new Intl.NumberFormat('id-ID', {
     style: 'currency',
     currency: 'IDR',
