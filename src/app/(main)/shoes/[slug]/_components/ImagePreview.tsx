@@ -24,7 +24,7 @@ export default function ImagePreview({
         width={1000}
         height={1000}
         priority
-        className='aspect-square w-full'
+        className='aspect-square w-full bg-gray-200'
       />
       <div className='absolute bottom-6 right-6 flex items-center justify-center gap-3'>
         <button
