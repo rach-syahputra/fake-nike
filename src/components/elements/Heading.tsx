@@ -16,7 +16,7 @@ export default function Heading({ level, className, children }: HeadingProps) {
         {
           'font-[family-name:var(--font-helvetica-now-display-medium)] text-2xl':
             level === 1,
-          'font-[family-name:var(--font-helvetica-now-text-medium)] text-sm font-medium lg:text-base':
+          'font-[family-name:var(--font-helvetica-now-text-medium)] font-medium':
             level === 2
         },
         className

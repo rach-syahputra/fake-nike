@@ -11,6 +11,16 @@ export interface IProductJson {
   price: number
 }
 
+export interface IProduct {
+  name: string
+  id: string
+  description: string
+  category: string
+  imageUrls: string[]
+  sizes: number[]
+  price: number
+}
+
 export interface IProductCard {
   name: string
   id: string

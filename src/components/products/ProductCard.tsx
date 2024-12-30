@@ -22,7 +22,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Link
-      href={`/products/${id}`}
+      href={`/shoes/${id}`}
       className={cn('flex flex-col gap-2', className)}
     >
       <Image
@@ -39,7 +39,7 @@ export default function ProductCard({
           {capitalizeFirstLetter(category)}
         </p>
       </div>
-      <p className='text-sm lg:text-base'>{formatToRupiah(price)}</p>
+      <p className='text-sm lg:text-base'>{formatToRupiah(price, ',')}</p>
     </Link>
   )
 }
