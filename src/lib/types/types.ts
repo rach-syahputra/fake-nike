@@ -43,6 +43,7 @@ export interface User {
 export interface ICart {
   id: string
   size: number
+  count: number
 }
 
 export interface ICartContextErrors {

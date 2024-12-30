@@ -14,7 +14,7 @@ import { IAddedProduct, ICart, ICartContextErrors } from '@/lib/types/types'
 
 interface ICartContext {
   cart: ICart[]
-  addToCart: ({ id, size }: ICart) => void
+  addToCart: ({ id, size }: { id: string; size: number }) => void
   selectedSize: string
   setSelectedSize: Dispatch<SetStateAction<string>>
   errors: ICartContextErrors | null
@@ -45,10 +45,26 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setLocalStorage(cartKey, cart)
   }, [cart])
 
-  const addToCart = ({ id, size }: ICart) => {
+  const addToCart = ({ id, size }: { id: string; size: number }) => {
+    console.log('addToCart is called')
     if (size) {
       setErrors({ size: '' })
-      setCart((prevState) => [...prevState, { id, size }])
+
+      setCart((prevState) => {
+        const existingIndex = prevState.findIndex(
+          (item) => item.id === id && item.size === size
+        )
+
+        if (existingIndex !== -1) {
+          const updatedCart = [...prevState]
+          updatedCart[existingIndex].count += 1
+
+          return updatedCart
+        }
+
+        return [...prevState, { id, size, count: 1 }]
+      })
+
       setAddedProduct({ id: id, size: size.toString() })
 
       setTimeout(() => {
