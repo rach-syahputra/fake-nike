@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { fetchFilteredProducts } from '@/lib/api/services'
 import { IProductJson } from '@/lib/types/types'
 import { useFilteredProductsContext } from '@/context/FilteredProductsContext'
@@ -14,7 +14,7 @@ export default function SearchedProductList() {
   const { searchQuery, sort, order, categories, sizes } = useFilterContext()
   const { products, setProducts } = useFilteredProductsContext()
   const [page, setPage] = useState<number>(1)
-  const productListContainerRef = useRef<HTMLDivElement | null>(null)
+  const [hasMore, setHasMore] = useState<boolean>(true)
 
   const getFilteredProducts = async () => {
     const res: IProductJson[] = await fetchFilteredProducts(searchQuery, {
@@ -31,6 +31,8 @@ export default function SearchedProductList() {
       imageUrl: item.imageUrls[0]
     }))
 
+    if (data.length < 9) setHasMore(false)
+
     setProducts((prevState) => (page === 1 ? data : [...prevState, ...data]))
   }
 
@@ -39,6 +41,8 @@ export default function SearchedProductList() {
   }, [page])
 
   useEffect(() => {
+    setHasMore(true)
+
     if (page === 1) {
       getFilteredProducts()
     } else {
@@ -48,10 +52,7 @@ export default function SearchedProductList() {
 
   return (
     <Container className='px-0 py-1 pb-6 md:px-0 lg:px-12'>
-      <div
-        ref={productListContainerRef}
-        className='grid grid-cols-2 gap-1.5 overflow-auto pb-8 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-6'
-      >
+      <div className='grid grid-cols-2 gap-1.5 overflow-auto pb-8 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-6'>
         {products && products.length > 0 ? (
           products.map((product, index) => (
             <SearchProductCard key={index} {...product} />
@@ -65,11 +66,13 @@ export default function SearchedProductList() {
           </>
         )}
       </div>
-      <div className='flex items-center justify-center'>
-        <Button onClick={() => setPage((prev) => prev + 1)} className=''>
-          Load more
-        </Button>
-      </div>
+      {hasMore && (
+        <div className='flex items-center justify-center'>
+          <Button onClick={() => setPage((prev) => prev + 1)} className=''>
+            Load more
+          </Button>
+        </div>
+      )}
     </Container>
   )
 }
