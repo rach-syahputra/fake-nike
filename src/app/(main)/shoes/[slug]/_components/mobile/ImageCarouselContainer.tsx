@@ -7,9 +7,7 @@ import {
   Carousel,
   CarouselApi,
   CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
+  CarouselItem
 } from '@/components/ui/carousel'
 
 type ImageCarouselContainerProps = {
@@ -52,8 +50,6 @@ export default function ImageCarouselContainer({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
       <div className='absolute bottom-6 flex w-full items-center justify-center gap-2'>
         {images.map((_, index) => (
