@@ -9,9 +9,9 @@ import MobileFilterModal from './_components/filter/mobile/MobileFilterModal'
 export async function generateMetadata({
   searchParams
 }: {
-  searchParams: { q?: string }
+  searchParams: Promise<{ q: string }>
 }): Promise<Metadata> {
-  const query = searchParams.q || ''
+  const query = (await searchParams).q || ''
 
   const products: IProductJson[] = await fetchFilteredProducts(query, {
     limit: 5
