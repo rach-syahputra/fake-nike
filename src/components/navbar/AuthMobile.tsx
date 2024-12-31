@@ -1,8 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useSession } from 'next-auth/react'
-import { handleSignOut } from '@/app/actions/auth'
+import { signOut, useSession } from 'next-auth/react'
 import Button from '../elements/Button'
 import Avatar from './Avatar'
 
@@ -17,7 +16,7 @@ export default function AuthMobile() {
       </div>
       <Button
         variant='secondary'
-        onClick={() => handleSignOut()}
+        onClick={() => signOut()}
         className='px-0 text-lg text-red-500'
       >
         Logout

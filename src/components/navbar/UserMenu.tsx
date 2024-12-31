@@ -1,6 +1,6 @@
-import { handleSignOut } from '@/app/actions/auth'
-import Button from '../elements/Button'
+import { signOut } from 'next-auth/react'
 import { cn } from '@/lib/utils'
+import Button from '../elements/Button'
 
 type UserMenuProps = {
   className?: string
@@ -14,11 +14,7 @@ export default function UserMenu({ className }: UserMenuProps) {
         className
       )}
     >
-      <Button
-        variant='secondary'
-        onClick={() => handleSignOut()}
-        className='w-fit'
-      >
+      <Button variant='secondary' onClick={() => signOut()} className='w-fit'>
         Logout
       </Button>
     </div>
