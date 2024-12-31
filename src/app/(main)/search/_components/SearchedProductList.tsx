@@ -9,31 +9,41 @@ import SearchProductCard from './SearchedProductCard'
 import Container from '@/components/layouts/Container'
 import SearchedProductCardSkeleton from './loading/SearchedProductCardSkeleton'
 import Button from '@/components/elements/Button'
+import Heading from '@/components/elements/Heading'
 
 export default function SearchedProductList() {
   const { searchQuery, sort, order, categories, sizes } = useFilterContext()
   const { products, setProducts } = useFilteredProductsContext()
   const [page, setPage] = useState<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const getFilteredProducts = async () => {
-    const res: IProductJson[] = await fetchFilteredProducts(searchQuery, {
-      categories: categories,
-      order: order,
-      sort: sort,
-      sizes: sizes,
-      limit: 9,
-      page: page
-    })
+    setIsLoading(true)
 
-    const data = res.map((item) => ({
-      ...item,
-      imageUrl: item.imageUrls[0]
-    }))
+    try {
+      const res: IProductJson[] = await fetchFilteredProducts(searchQuery, {
+        categories: categories,
+        order: order,
+        sort: sort,
+        sizes: sizes,
+        limit: 9,
+        page: page
+      })
 
-    if (data.length < 9) setHasMore(false)
+      const data = res.map((item) => ({
+        ...item,
+        imageUrl: item.imageUrls[0]
+      }))
 
-    setProducts((prevState) => (page === 1 ? data : [...prevState, ...data]))
+      if (data.length < 9) setHasMore(false)
+
+      setProducts((prevState) => (page === 1 ? data : [...prevState, ...data]))
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -53,17 +63,24 @@ export default function SearchedProductList() {
   return (
     <Container className='px-0 py-1 pb-6 md:px-0 lg:px-12'>
       <div className='grid grid-cols-2 gap-1.5 overflow-auto pb-8 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-6'>
-        {products && products.length > 0 ? (
-          products.map((product, index) => (
-            <SearchProductCard key={index} {...product} />
-          ))
-        ) : (
+        {isLoading ? (
           <>
             <SearchedProductCardSkeleton />
             <SearchedProductCardSkeleton />
             <SearchedProductCardSkeleton />
             <SearchedProductCardSkeleton />
           </>
+        ) : products && products?.length === 0 ? (
+          <div className='col-span-3 flex w-full items-center justify-center'>
+            <Heading level={1}>
+              Sorry, we couldn&rsquo;t find the products you&rsquo;re looking
+              for
+            </Heading>
+          </div>
+        ) : (
+          products.map((product, index) => (
+            <SearchProductCard key={index} {...product} />
+          ))
         )}
       </div>
       {hasMore && (

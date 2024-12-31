@@ -30,6 +30,8 @@ interface ICartContext {
   setAddedProduct: Dispatch<SetStateAction<IAddedProduct | null>>
   cartProducts: ICartProductCard[] | undefined
   setCartProducts: Dispatch<SetStateAction<ICartProductCard[] | undefined>>
+  isLoading: boolean
+  setIsLoading: Dispatch<SetStateAction<boolean>>
   increaseCount: ({ id, size }: { id: string; size: number }) => void
   decreaseCount: ({ id, size }: { id: string; size: number }) => void
 }
@@ -41,6 +43,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartProducts, setCartProducts] = useState<
     ICartProductCard[] | undefined
   >(undefined)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [AddedProduct, setAddedProduct] = useState<IAddedProduct | null>(null)
   const [errors, setErrors] = useState<ICartContextErrors | null>(null)
@@ -90,6 +93,8 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const updateCartProducts = async () => {
+    setIsLoading(true)
+
     const cartProductIds = cart?.map((data) => data.id)
 
     const data: IProductJson[] = await fetchCartProduct(cartProductIds)
@@ -109,6 +114,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     })
 
     setCartProducts(mergedData)
+    setIsLoading(false)
   }
 
   const increaseCount = ({ id, size }: { id: string; size: number }) => {
@@ -163,6 +169,8 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         setAddedProduct,
         cartProducts,
         setCartProducts,
+        isLoading,
+        setIsLoading,
         increaseCount,
         decreaseCount
       }}
