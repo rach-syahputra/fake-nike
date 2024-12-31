@@ -1,9 +1,27 @@
+import { Metadata } from 'next'
 import { IProductJson } from '@/lib/types/types'
 import { fetchProduct } from '@/lib/api/services'
 import Container from '@/components/layouts/Container'
 import ProductDetail from './_components/ProductDetail'
 import ImageContainer from './_components/ImageContainer'
 import ImageCarouselContainer from './_components/mobile/ImageCarouselContainer'
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const slug = (await params).slug
+
+  const product: IProductJson = (await fetchProduct(slug))[0]
+
+  return {
+    title: product ? `${product.name}. Nike ID` : 'Nike. Just Do It. Nike ID',
+    description:
+      product?.description ||
+      "Inspiring the world's athletes, Nike delivers innovative products, experiences and services"
+  }
+}
 
 export default async function ShoeDetailPage({
   params

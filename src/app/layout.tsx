@@ -25,7 +25,13 @@ const nikeFuturaND = localFont({
 export const metadata: Metadata = {
   title: 'Nike. Just Do It. Nike ID',
   description:
-    "Inspiring the world's athletes, Nike delivers innovative products, experiences and services."
+    "Inspiring the world's athletes, Nike delivers innovative products, experiences and services.",
+  openGraph: {
+    images: {
+      url: '/nike-black-seo.jpg',
+      alt: 'Nike logo'
+    }
+  }
 }
 
 export default function RootLayout({

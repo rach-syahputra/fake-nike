@@ -1,6 +1,13 @@
+import { Metadata } from 'next'
 import Container from '@/components/layouts/Container'
 import Bag from './_components/Bag'
 import Summary from './_components/Summary'
+
+export const metadata: Metadata = {
+  title: 'Bag. Nike Store.',
+  description:
+    "Inspiring the world's athletes, Nike delivers innovative products, experiences and services."
+}
 
 export default function CartPage() {
   return (
