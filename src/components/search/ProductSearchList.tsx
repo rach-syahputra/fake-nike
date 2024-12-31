@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { IProductCard, IProductJson } from '@/lib/types/types'
 import { fetchFilteredProducts } from '@/lib/api/services'
-import ProductCard from './ProductCard'
+import ProductSearchCard from './ProductSearchCard'
 
 type ProductSearchListType = {
   searchBarQuery: string
@@ -39,7 +39,7 @@ export default function ProductSearchList({
       <div className='grid w-full grid-cols-2 items-start gap-x-4 gap-y-6 md:grid-cols-3 lg:grid-cols-5 lg:gap-2'>
         {products && products.length > 0 ? (
           products.map((product, index) => (
-            <ProductCard key={index} {...product} className='w-full' />
+            <ProductSearchCard key={index} {...product} className='w-full' />
           ))
         ) : (
           <p>Loading...</p>
