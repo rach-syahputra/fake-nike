@@ -30,6 +30,11 @@ body {
       background-color: #777777;
     }
   }
+
+  .transparent-scrollbar::-webkit-scrollbar {
+    background-color: transparent;
+    height: 0;
+  }
 }
 
 @layer base {
