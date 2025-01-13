@@ -51,7 +51,7 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const sizeParams = searchParams.getAll('size')
 
   // initialize state
-  const initialQuery = queryParams
+  const initialQuery = queryParams || ''
 
   const initialOrder: string =
     orderOptions.filter(

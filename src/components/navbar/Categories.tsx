@@ -1,17 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { navLinks } from '@/lib/constants/nav-links'
 import { useFilterContext } from '@/context/FilterContext'
 
 export default function Categories() {
-  const router = useRouter()
-  const { setSearchQuery, setCategories } = useFilterContext()
+  const { updateParams, state } = useFilterContext()
 
   const handleCategoryClick = (category: string) => {
-    router.push('/search')
-    setSearchQuery('')
-    setCategories([category])
+    updateParams({ q: state.q, category: category }, 'add')
   }
 
   return (

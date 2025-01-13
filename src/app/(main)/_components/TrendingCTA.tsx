@@ -1,16 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useFilterContext } from '@/context/FilterContext'
 import Button from '@/components/elements/Button'
 
 export default function TrendingCTA() {
-  const router = useRouter()
-  const { setSearchQuery } = useFilterContext()
+  const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
-    router.push('/search')
-    setSearchQuery('air force')
+    updateParams({ q: 'air force' })
   }
 
   return (
