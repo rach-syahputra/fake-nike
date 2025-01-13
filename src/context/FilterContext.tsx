@@ -114,7 +114,9 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
       }
     })
 
-    router.push(`/search?${updatedParams.toString()}`, { scroll: true })
+    router.push(`/search?${updatedParams.toString().toLowerCase()}`, {
+      scroll: true
+    })
   }
 
   return (
