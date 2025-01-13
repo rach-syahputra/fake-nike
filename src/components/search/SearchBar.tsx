@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+
 import { popularSearches } from '@/lib/constants/products'
 import { useSearchContext } from '@/context/SearchContext'
 import { useFilterContext } from '@/context/FilterContext'
@@ -15,19 +15,10 @@ import TopSuggestions from './TopSuggestions'
 import Logo from '../elements/Logo'
 
 export default function SearchBar() {
-  const router = useRouter()
-  const pathname = usePathname()
-
   const { onSearch, setOnSearch } = useSearchContext()
-  const { searchQuery, setSearchQuery } = useFilterContext()
+  const { updateParams, state } = useFilterContext()
 
-  const [searchBarQuery, setSearchBarQuery] = useState<string>(
-    searchQuery || ''
-  )
-
-  useEffect(() => {
-    setSearchBarQuery(searchQuery)
-  }, [searchQuery])
+  const [searchBarQuery, setSearchBarQuery] = useState<string>('')
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
@@ -37,11 +28,14 @@ export default function SearchBar() {
 
   const handleSearchEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      if (pathname !== '/search') router.push('/search')
       setOnSearch(false)
-      setSearchQuery(searchBarQuery)
+      updateParams({ q: searchBarQuery })
     }
   }
+
+  useEffect(() => {
+    setSearchBarQuery(state.q || '')
+  }, [state.q])
 
   if (onSearch)
     return (

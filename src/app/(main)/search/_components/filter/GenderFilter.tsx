@@ -1,24 +1,27 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+
 import { useFilterContext } from '@/context/FilterContext'
 import FilterCard from './FilterCard'
 
 export default function GenderFilter() {
-  const { categories, setCategories } = useFilterContext()
+  const searchParams = useSearchParams()
+  const categoryParams = searchParams.getAll('category')
+
+  const { updateParams } = useFilterContext()
   const [selectedCount, setSelectedCount] = useState<number>(0)
 
   useEffect(() => {
-    setSelectedCount(categories.length)
-  }, [categories])
+    if (categoryParams) setSelectedCount(categoryParams.length)
+    else setSelectedCount(0)
+  }, [categoryParams])
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, name } = event.target
 
-    setSelectedCount((prevState) => (checked ? prevState + 1 : prevState - 1))
-    setCategories((prevState) =>
-      checked ? [...prevState, name] : prevState.filter((item) => item !== name)
-    )
+    updateParams({ category: name }, checked ? 'add' : 'remove')
   }
 
   return (
@@ -31,7 +34,7 @@ export default function GenderFilter() {
           <input
             type='checkbox'
             name='men'
-            checked={categories.includes('men')}
+            checked={categoryParams ? categoryParams?.includes('men') : false}
             onChange={handleCheckboxChange}
             className='h-5 w-5 border-gray-800 accent-black'
           />
@@ -44,7 +47,7 @@ export default function GenderFilter() {
           <input
             type='checkbox'
             name='women'
-            checked={categories.includes('women')}
+            checked={categoryParams ? categoryParams?.includes('women') : false}
             onChange={handleCheckboxChange}
             className='h-5 w-5 border-gray-800 accent-black'
           />

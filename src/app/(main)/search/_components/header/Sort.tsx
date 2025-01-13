@@ -1,30 +1,49 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
+
 import { sortOptions } from '@/lib/constants/products'
 import { capitalizeFirstLetter, cn } from '@/lib/utils'
-import { useFilterContext } from '@/context/FilterContext'
+import { ParamsType, useFilterContext } from '@/context/FilterContext'
 import Icon from '@/components/elements/Icon'
 
 export default function Sort() {
-  const { sort, setSort, order, setOrder } = useFilterContext()
+  const searchParams = useSearchParams()
+  const sortParams = searchParams.get('sort')
+  const orderParams = searchParams.get('order')
+
+  const { updateParams } = useFilterContext()
   const [openSort, setOpenSort] = useState<boolean>(false)
-  const [activeSort, setActiveSort] = useState<string>('')
+  const [activeSort, setActiveSort] = useState<string>('Newest')
 
   useEffect(() => {
-    setActiveSort(
-      sort === 'price' && order === 'desc'
-        ? 'Price: High-Low'
-        : sort === 'price' && order === 'asc'
-          ? 'Price: Low-High'
-          : capitalizeFirstLetter(sort)
-    )
-  }, [sort, order])
+    if (sortParams) {
+      setActiveSort(
+        sortParams === 'price' && orderParams === 'desc'
+          ? 'Price: High-Low'
+          : sortParams === 'price' && orderParams === 'asc'
+            ? 'Price: Low-High'
+            : capitalizeFirstLetter(sortParams as string)
+      )
+    }
+  }, [sortParams, orderParams])
 
   const handleSortChange = (sortOption: string) => {
-    setOrder(sortOption.includes('high-low') ? 'desc' : 'asc')
-    setSort(sortOption.includes('price') ? 'price' : sortOption)
+    const newParams: ParamsType = {
+      order: null,
+      sort: null
+    }
+    // update order params
+    if (sortOption.includes('high-low')) newParams.order = 'desc'
+    if (sortOption.includes('low-high')) newParams.order = 'asc'
+
+    // update sort params
+    if (sortOption.includes('price')) newParams.sort = 'price'
+    else newParams.sort = sortOption
+
+    updateParams(newParams, 'add')
   }
 
   return (

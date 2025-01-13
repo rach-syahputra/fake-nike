@@ -2,7 +2,6 @@
 
 import { useFilterContext } from '@/context/FilterContext'
 import { useSearchContext } from '@/context/SearchContext'
-import { usePathname, useRouter } from 'next/navigation'
 
 type PopularSearchTermsProps = {
   popularSearches: string[]
@@ -13,15 +12,11 @@ export default function PopularSearchTerms({
   popularSearches,
   className
 }: PopularSearchTermsProps) {
-  const router = useRouter()
-  const pathname = usePathname()
-
   const { setOnSearch } = useSearchContext()
-  const { setSearchQuery } = useFilterContext()
+  const { updateParams } = useFilterContext()
 
   const handlePopularSearch = (query: string) => {
-    if (pathname !== '/search') router.push('/search')
-    setSearchQuery(query)
+    updateParams({ q: query })
     setOnSearch(false)
   }
 

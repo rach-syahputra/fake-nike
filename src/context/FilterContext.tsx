@@ -8,36 +8,40 @@ import {
   useEffect,
   useState
 } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+
 import { categoryData, sizeData, sortData } from '@/lib/constants/filter'
 import { orderOptions } from '@/lib/constants/products'
+
+export type ParamsType = {
+  q?: string | null
+  category?: string | null
+  order?: string | null
+  sort?: string | null
+  size?: string | null
+}
+
+type StateType = {
+  q?: string | null
+  category?: string[] | null
+  order?: string | null
+  sort?: string | null
+  size?: string[] | null
+}
 
 interface IFilterContext {
   onSidebar: boolean
   setOnSidebar: Dispatch<SetStateAction<boolean>>
   onMobileFilterModal: boolean
   setOnMobileFilterModal: Dispatch<SetStateAction<boolean>>
-  searchQuery: string
-  setSearchQuery: Dispatch<SetStateAction<string>>
-  sort: string
-  setSort: Dispatch<SetStateAction<string>>
-  order: string
-  setOrder: Dispatch<SetStateAction<string>>
-  categories: string[]
-  setCategories: Dispatch<SetStateAction<string[]>>
-  sizes: string[]
-  setSizes: Dispatch<SetStateAction<string[]>>
-  openFilterActions: boolean
-  setOpenFilterActions: Dispatch<SetStateAction<boolean>>
-  selectedFilterCount: number
-  updateSearchURL: () => void
+  state: StateType
+  updateParams: (params: ParamsType, action?: 'add' | 'remove') => void
 }
 
 const FilterContext = createContext<IFilterContext | undefined>(undefined)
 
 const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
-  const pathname = usePathname()
 
   const searchParams = useSearchParams()
   const queryParams = searchParams.get('q')
@@ -46,6 +50,7 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const categoryParams = searchParams.getAll('category')
   const sizeParams = searchParams.getAll('size')
 
+  // initialize state
   const initialQuery = queryParams
 
   const initialOrder: string =
@@ -67,24 +72,13 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [onSidebar, setOnSidebar] = useState<boolean>(true)
   const [onMobileFilterModal, setOnMobileFilterModal] = useState<boolean>(false)
-  const [searchQuery, setSearchQuery] = useState<string>(initialQuery || '')
-  const [order, setOrder] = useState<string>(initialOrder)
-  const [sort, setSort] = useState<string>(initialSort)
-  const [categories, setCategories] = useState<string[]>(
-    initialCategories || []
-  )
-  const [sizes, setSizes] = useState<string[]>(initialSizes || [])
-  const [openFilterActions, setOpenFilterActions] = useState<boolean>(false)
-  const [selectedFilterCount, setSelectedFilterCount] = useState<number>(0)
-
-  useEffect(() => {
-    const filterCount = categories.length + sizes.length
-
-    setSelectedFilterCount(filterCount)
-    setOpenFilterActions(filterCount > 0)
-
-    updateSearchURL()
-  }, [searchQuery, sort, order, categories, sizes, pathname])
+  const state: StateType = {
+    q: initialQuery,
+    category: initialCategories,
+    size: initialSizes,
+    order: initialOrder,
+    sort: initialSort
+  }
 
   useEffect(() => {
     if (onMobileFilterModal) {
@@ -97,48 +91,28 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [onMobileFilterModal])
 
-  const updateSearchURL = () => {
-    if (pathname === '/search') {
-      // Update URL Query Params
-      const params = new URLSearchParams(searchParams)
+  const updateParams = (params: ParamsType, action?: 'add' | 'remove') => {
+    const updatedParams = new URLSearchParams(searchParams)
 
-      // Update q params
-      if (searchQuery) {
-        params.set('q', searchQuery)
+    Object.entries(params).forEach(([key, value]) => {
+      if (value === null) {
+        updatedParams.delete(key)
+      } else if (['category', 'size'].includes(key) && action) {
+        const values = updatedParams.getAll(key)
+        if (action === 'add' && !values.includes(value)) {
+          updatedParams.append(key, value)
+        }
+        if (action === 'remove') {
+          const filteredValues = values.filter((val) => val !== value)
+          updatedParams.delete(key)
+          filteredValues.forEach((val) => updatedParams.append(key, val))
+        }
       } else {
-        params.set('q', '')
+        updatedParams.set(key, value)
       }
+    })
 
-      // Update category params
-      if (categories.length > 0) {
-        params.set('category', categories.join(','))
-      } else {
-        params.delete('category')
-      }
-
-      // Update size params
-      if (sizes.length > 0) {
-        params.set('size', sizes.join(','))
-      } else {
-        params.delete('size')
-      }
-
-      // Update sort params
-      if (sort) {
-        params.set('sort', sort)
-      } else {
-        params.delete('sort')
-      }
-
-      // Update order params
-      if (order) {
-        params.set('order', order)
-      } else {
-        params.delete('order')
-      }
-
-      router.push(`/search?${params.toString()}`)
-    }
+    router.push(`/search?${updatedParams.toString()}`, { scroll: true })
   }
 
   return (
@@ -148,20 +122,8 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
         setOnSidebar,
         onMobileFilterModal,
         setOnMobileFilterModal,
-        searchQuery,
-        setSearchQuery,
-        sort,
-        setSort,
-        order,
-        setOrder,
-        categories,
-        setCategories,
-        sizes,
-        setSizes,
-        openFilterActions,
-        setOpenFilterActions,
-        selectedFilterCount,
-        updateSearchURL
+        state,
+        updateParams
       }}
     >
       {children}

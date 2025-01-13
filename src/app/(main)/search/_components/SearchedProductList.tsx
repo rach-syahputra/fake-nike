@@ -1,32 +1,37 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import { fetchFilteredProducts } from '@/lib/api/services'
-import { IProductJson } from '@/lib/types/types'
-import { useFilteredProductsContext } from '@/context/FilteredProductsContext'
+import { IProductCard, IProductJson } from '@/lib/types/types'
 import { useFilterContext } from '@/context/FilterContext'
-import SearchProductCard from './SearchedProductCard'
-import Container from '@/components/layouts/Container'
-import SearchedProductCardSkeleton from './loading/SearchedProductCardSkeleton'
 import Button from '@/components/elements/Button'
+import Container from '@/components/layouts/Container'
 import Heading from '@/components/elements/Heading'
+import SearchedProductCardSkeleton from './loading/SearchedProductCardSkeleton'
+import SearchProductCard from './SearchedProductCard'
 
 export default function SearchedProductList() {
-  const { searchQuery, sort, order, categories, sizes } = useFilterContext()
-  const { products, setProducts } = useFilteredProductsContext()
+  const { state } = useFilterContext()
+
   const [page, setPage] = useState<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(true)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [products, setProducts] = useState<IProductCard[]>([])
 
   const getFilteredProducts = async () => {
     setIsLoading(true)
 
     try {
-      const res: IProductJson[] = await fetchFilteredProducts(searchQuery, {
-        categories: categories,
-        order: order,
-        sort: sort,
-        sizes: sizes,
+      const params: Record<string, string | string[]> = {}
+
+      if (state.category) params.categories = state.category
+      if (state.order) params.order = state.order
+      if (state.sort) params.sort = state.sort
+      if (state.size) params.sizes = state.size
+
+      const res: IProductJson[] = await fetchFilteredProducts(state.q || '', {
+        ...params,
         limit: 9,
         page: page
       })
@@ -58,7 +63,7 @@ export default function SearchedProductList() {
     } else {
       setPage(1)
     }
-  }, [searchQuery, sort, order, categories, sizes])
+  }, [state])
 
   return (
     <Container className='px-0 py-1 pb-6 md:px-0 lg:px-12'>

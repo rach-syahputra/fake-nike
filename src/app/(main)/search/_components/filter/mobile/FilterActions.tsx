@@ -1,48 +1,43 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+
 import { cn } from '@/lib/utils'
-import { useFilterContext } from '@/context/FilterContext'
+import { ParamsType, useFilterContext } from '@/context/FilterContext'
 import Button from '@/components/elements/Button'
 
 export default function FilterActions() {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const {
-    openFilterActions,
-    setOnMobileFilterModal,
-    selectedFilterCount,
-    setSort,
-    setOrder,
-    setCategories,
-    setSizes
-  } = useFilterContext()
+  const { setOnMobileFilterModal, state, updateParams } = useFilterContext()
+  const [selectedFilterCount, setSelectedFilterCount] = useState<number>(0)
 
   const handleClear = () => {
-    setSort('newest')
-    setOrder('asc')
-    setCategories([])
-    setSizes([])
+    const params: ParamsType = {
+      sort: null,
+      order: null,
+      category: null,
+      size: null
+    }
 
-    const params = new URLSearchParams(searchParams)
-    params.delete('sort')
-    params.delete('category')
-    params.delete('order')
-    params.delete('size')
-
-    router.push(`?${params.toString()}`)
+    updateParams(params)
+    setOnMobileFilterModal(false)
   }
 
   const handleApply = () => {
     setOnMobileFilterModal(false)
   }
 
+  useEffect(() => {
+    setSelectedFilterCount(
+      (state.category?.length || 0) + (state.size?.length || 0)
+    )
+  }, [state])
+
   return (
     <div
       className={cn(
         'absolute bottom-0 left-0 hidden w-full items-center justify-center gap-3 px-6 py-4',
         {
-          flex: openFilterActions
+          flex: selectedFilterCount > 0
         }
       )}
     >
