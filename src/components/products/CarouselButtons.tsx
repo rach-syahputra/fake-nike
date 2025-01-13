@@ -6,13 +6,14 @@ import {
   faChevronLeft,
   faChevronRight
 } from '@fortawesome/free-solid-svg-icons'
+
 import { cn } from '@/lib/utils'
 import Button from '../elements/Button'
 import Icon from '../elements/Icon'
 
 type CarouselButtonsProps = {
   link?: {
-    href: string
+    href?: string
     label: string
   }
   ref: RefObject<HTMLDivElement | null>
@@ -72,7 +73,7 @@ export default function CarouselButtons({ link, ref }: CarouselButtonsProps) {
     <div className='hidden items-center gap-3 md:flex'>
       {link && (
         <Button variant='secondary' className='px-0'>
-          <Link href={link.href} aria-label={`${link.label} page`}>
+          <Link href={link.href || ''} aria-label={`${link.label} page`}>
             {link.label}
           </Link>
         </Button>
