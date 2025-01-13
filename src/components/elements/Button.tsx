@@ -25,7 +25,7 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'h-10 w-fit text-nowrap rounded-full px-6 text-sm font-medium',
+        'h-10 w-fit text-nowrap rounded-full px-6 font-medium',
         {
           'bg-black text-white hover:bg-opacity-60': variant === 'default',
           'text-black hover:text-gray-500': variant === 'secondary',
