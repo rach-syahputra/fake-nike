@@ -82,7 +82,9 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (onMobileFilterModal) {
-      // hide overvlow y scroll
+      window.scrollTo({
+        top: 0
+      })
       document.documentElement.style.overflowY = 'hidden'
     }
 
