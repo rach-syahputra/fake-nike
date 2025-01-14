@@ -1,21 +1,32 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { SessionProvider } from 'next-auth/react'
 
 import { cn } from '@/lib/utils'
+import { NAVBAR_MENU } from '@/lib/constants/nav-links'
+import { useNavigation } from '@/context/NavigationContext'
 import { useCartContext } from '@/context/CartContext'
-import Container from '../layouts/Container'
-import MobileMenu from './MobileMenu'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuTrigger
+} from '@/components/ui/navigation-menu'
+import NavbarDropdownMenu from './NavbarDropdownMenu'
 import SearchInput from './SearchInput'
-import Auth from './Auth'
 import Cart from './Cart'
-import Categories from './Categories'
+import Auth from './Auth'
+import MobileMenu from './MobileMenu'
 import Logo from '../elements/Logo'
+import Container from '../layouts/Container'
 import AddedProductToCart from './AddedProductToCart'
 
 export default function Navbar() {
+  const { setSelectedNavbarMenu } = useNavigation()
   const { AddedProduct } = useCartContext()
+
   const [show, setShow] = useState<boolean>(true)
   const [lastScrollY, setLastScrollY] = useState<number>(0)
 
@@ -38,19 +49,33 @@ export default function Navbar() {
   }, [lastScrollY])
 
   return (
-    <nav
-      className={cn(
-        'invisible sticky top-0 z-20 flex h-[60px] w-full items-center justify-center bg-white',
-        {
-          visible: show
-        }
-      )}
+    <NavigationMenu
+      delayDuration={0}
+      skipDelayDuration={0}
+      className={cn('invisible', {
+        visible: show
+      })}
     >
       <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
         <Logo className='h-[20.57px] w-12 md:h-[27.43px] md:w-16' />
-
-        <Categories />
-
+        <ul className='hidden h-full w-full items-center justify-center gap-6 md:flex'>
+          {NAVBAR_MENU.map((menu, index) => (
+            <NavigationMenuItem key={index}>
+              <NavigationMenuTrigger
+                onMouseEnter={() =>
+                  setSelectedNavbarMenu(menu.label.toLowerCase())
+                }
+              >
+                <Link href={menu.href} aria-label={menu.label}>
+                  {menu.label}
+                </Link>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavbarDropdownMenu />
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ))}
+        </ul>
         <div className='flex w-full items-center justify-end gap-2'>
           <SearchInput />
           <Cart />
@@ -62,6 +87,6 @@ export default function Navbar() {
 
         {AddedProduct && <AddedProductToCart />}
       </Container>
-    </nav>
+    </NavigationMenu>
   )
 }

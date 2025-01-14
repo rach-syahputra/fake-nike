@@ -3,9 +3,9 @@ import { NavigationProvider } from '@/context/NavigationContext'
 import { FilterProvider } from '@/context/FilterContext'
 import { SearchProvider } from '@/context/SearchContext'
 import { CartProvider } from '@/context/CartContext'
-import Navbar from '@/components/navbar/Navbar'
 import SearchBar from '@/components/search/SearchBar'
 import LoadingSpinner from '@/components/elements/LoadingSpinner'
+import Navbar from '@/components/navbar/Navbar'
 
 export default function MainLayout({
   children

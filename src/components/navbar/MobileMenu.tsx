@@ -7,7 +7,7 @@ import {
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { navLinks } from '@/lib/constants/nav-links'
+import { NAVBAR_MENU } from '@/lib/constants/nav-links'
 import { useNavigation } from '@/context/NavigationContext'
 import ModalContainer from '../layouts/ModalContainer'
 import AuthMobile from './AuthMobile'
@@ -33,7 +33,7 @@ export default function MobileMenu() {
               className='h-6 w-6 place-self-end text-gray-500'
             />
             <ul className='flex flex-col'>
-              {navLinks.map((navLink, index) => (
+              {NAVBAR_MENU.map((navLink, index) => (
                 <li
                   key={index}
                   className='flex items-center justify-between gap-8'
