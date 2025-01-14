@@ -34,26 +34,28 @@ export default function TheLatestAndGreatest() {
   }, [])
 
   return (
-    <ListCarousel
-      title='The Latest & Greatest'
-      link={{ href: '/', label: 'Shop' }}
-    >
-      {products.length > 0 ? (
-        products.map((product, index) => (
-          <ProductCard
-            key={index}
-            {...product}
-            className='w-[70vw] lg:w-[30vw]'
-          />
-        ))
-      ) : (
-        <>
-          <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
-          <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
-          <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
-          <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
-        </>
-      )}
-    </ListCarousel>
+    <section>
+      <ListCarousel
+        title='The Latest & Greatest'
+        link={{ href: '/', label: 'Shop' }}
+      >
+        {products.length > 0 ? (
+          products.map((product, index) => (
+            <ProductCard
+              key={index}
+              {...product}
+              className='w-[70vw] lg:w-[30vw]'
+            />
+          ))
+        ) : (
+          <>
+            <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
+            <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
+            <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
+            <ProductCardSkeleton className='w-[70vw] lg:w-[30vw]' />
+          </>
+        )}
+      </ListCarousel>
+    </section>
   )
 }
