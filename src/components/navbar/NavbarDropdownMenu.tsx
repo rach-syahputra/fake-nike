@@ -25,7 +25,7 @@ function NavbarDropdownMenu({ className }: NavbarDropdownMenuProps) {
   return (
     <div
       className={cn(
-        'fixed left-0 top-[60px] z-30 flex w-full items-start justify-center gap-24 bg-white py-10',
+        'fixed left-0 top-[60px] z-20 flex w-full items-start justify-center gap-24 bg-white py-10',
 
         className
       )}

@@ -22,9 +22,10 @@ import MobileMenu from './MobileMenu'
 import Logo from '../elements/Logo'
 import Container from '../layouts/Container'
 import AddedProductToCart from './AddedProductToCart'
+import ModalContainer from '../layouts/ModalContainer'
 
 export default function Navbar() {
-  const { setSelectedNavbarMenu } = useNavigation()
+  const { selectedNavbarMenu, setSelectedNavbarMenu } = useNavigation()
   const { AddedProduct } = useCartContext()
 
   const [show, setShow] = useState<boolean>(true)
@@ -49,44 +50,51 @@ export default function Navbar() {
   }, [lastScrollY])
 
   return (
-    <NavigationMenu
-      delayDuration={0}
-      skipDelayDuration={0}
+    <ModalContainer
       className={cn('invisible', {
-        visible: show
+        visible: selectedNavbarMenu !== ''
       })}
     >
-      <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
-        <Logo className='h-[20.57px] w-12 md:h-[27.43px] md:w-16' />
-        <ul className='hidden h-full w-full items-center justify-center gap-6 md:flex'>
-          {NAVBAR_MENU.map((menu, index) => (
-            <NavigationMenuItem key={index}>
-              <NavigationMenuTrigger
-                onMouseEnter={() =>
-                  setSelectedNavbarMenu(menu.label.toLowerCase())
-                }
-              >
-                <Link href={menu.href} aria-label={menu.label}>
-                  {menu.label}
-                </Link>
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavbarDropdownMenu />
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          ))}
-        </ul>
-        <div className='flex w-full items-center justify-end gap-2'>
-          <SearchInput />
-          <Cart />
-          <SessionProvider>
-            <Auth />
-            <MobileMenu />
-          </SessionProvider>
-        </div>
+      <NavigationMenu
+        delayDuration={0}
+        skipDelayDuration={0}
+        className={cn('invisible', {
+          visible: show
+        })}
+      >
+        <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
+          <Logo className='h-[20.57px] w-12 md:h-[27.43px] md:w-16' />
+          <ul className='hidden h-full w-full items-center justify-center gap-6 md:flex'>
+            {NAVBAR_MENU.map((menu, index) => (
+              <NavigationMenuItem key={index}>
+                <NavigationMenuTrigger
+                  onMouseEnter={() =>
+                    setSelectedNavbarMenu(menu.label.toLowerCase())
+                  }
+                  onMouseLeave={() => setSelectedNavbarMenu('')}
+                >
+                  <Link href={menu.href} aria-label={menu.label}>
+                    {menu.label}
+                  </Link>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <NavbarDropdownMenu />
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            ))}
+          </ul>
+          <div className='flex w-full items-center justify-end gap-2'>
+            <SearchInput />
+            <Cart />
+            <SessionProvider>
+              <Auth />
+              <MobileMenu />
+            </SessionProvider>
+          </div>
 
-        {AddedProduct && <AddedProductToCart />}
-      </Container>
-    </NavigationMenu>
+          {AddedProduct && <AddedProductToCart />}
+        </Container>
+      </NavigationMenu>
+    </ModalContainer>
   )
 }
