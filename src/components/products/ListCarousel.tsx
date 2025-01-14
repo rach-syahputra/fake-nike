@@ -5,6 +5,7 @@ import React, { useRef } from 'react'
 import Container from '../layouts/Container'
 import Heading from '../elements/Heading'
 import CarouselButtons from './CarouselButtons'
+import { cn } from '@/lib/utils'
 
 type ListCarouselProps = {
   title: string
@@ -12,12 +13,14 @@ type ListCarouselProps = {
     href: string
     label: string
   }
+  className?: string
   children: React.ReactNode
 }
 
 export default function ListCarousel({
   title,
   link,
+  className,
   children
 }: ListCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null)
@@ -36,7 +39,9 @@ export default function ListCarousel({
         )}
       </Container>
       <div ref={scrollContainerRef} className='scrollbar overflow-x-scroll'>
-        <Container className='grid w-fit grid-flow-col gap-3 pb-6'>
+        <Container
+          className={cn('grid w-fit grid-flow-col gap-3 pb-6', className)}
+        >
           {children}
         </Container>
       </div>
