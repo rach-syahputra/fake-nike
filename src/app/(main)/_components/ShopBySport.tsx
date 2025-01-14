@@ -50,7 +50,7 @@ export default function ShopBySport() {
   ]
   return (
     <Container>
-      <ListCarousel title='Shop By Sport'>
+      <ListCarousel title='Shop By Sport' className='pb-8'>
         {sports.map((sport, index) => (
           <Link
             key={index}
