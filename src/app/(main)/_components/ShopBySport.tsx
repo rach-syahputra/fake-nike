@@ -65,10 +65,7 @@ export default function ShopBySport() {
               className='h-auto w-full bg-gray-200'
               alt='Sport image'
             />
-            <Button
-              variant='outline'
-              className='absolute bottom-4 left-8 hover:border-gray-300 hover:bg-gray-300'
-            >
+            <Button variant='white' className='absolute bottom-4 left-8'>
               {sport.label}
             </Button>
           </Link>
