@@ -28,7 +28,7 @@ export default function MainLayout({
                 <Navbar />
                 <SearchBar />
               </SearchProvider>
-              <main>{children}</main>
+              <main className='pb-8 pt-[60px]'>{children}</main>
             </CartProvider>
           </FilterProvider>
         </Suspense>

@@ -5,7 +5,7 @@ import TheLatestAndGreatest from './_components/TheLatestAndGreatest'
 
 export default function Home() {
   return (
-    <div className='flex flex-col gap-20 py-8'>
+    <div className='flex flex-col gap-20'>
       <HaveAHardYear />
       <Trending />
       <ShopBySport />
