@@ -6,7 +6,7 @@ import { SessionProvider } from 'next-auth/react'
 
 import { cn } from '@/lib/utils'
 import { NAVBAR_MENU } from '@/lib/constants/menus'
-import { useNavigation } from '@/context/NavigationContext'
+import { useNavigationContenxt } from '@/context/NavigationContext'
 import { useCartContext } from '@/context/CartContext'
 import {
   NavigationMenu,
@@ -30,7 +30,7 @@ export default function Navbar() {
     setSelectedNavbarMenu,
     showNavbar,
     setShowNavbar
-  } = useNavigation()
+  } = useNavigationContenxt()
   const { AddedProduct } = useCartContext()
 
   const [lastScrollY, setLastScrollY] = useState<number>(0)

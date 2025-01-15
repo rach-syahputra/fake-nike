@@ -8,12 +8,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NAVBAR_MENU } from '@/lib/constants/menus'
-import { useNavigation } from '@/context/NavigationContext'
+import { useNavigationContenxt } from '@/context/NavigationContext'
 import ModalContainer from '../layouts/ModalContainer'
 import AuthMobile from './AuthMobile'
 
 export default function MobileMenu() {
-  const { onMobileMenu, setOnMobileMenu } = useNavigation()
+  const { onMobileMenu, setOnMobileMenu } = useNavigationContenxt()
 
   return (
     <div className='flex h-8 w-8 items-center justify-center md:hidden'>

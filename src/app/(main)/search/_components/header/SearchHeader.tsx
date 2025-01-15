@@ -1,13 +1,13 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { useNavigation } from '@/context/NavigationContext'
+import { useNavigationContenxt } from '@/context/NavigationContext'
 import Container from '@/components/layouts/Container'
 import SearchHeaderOptions from './SearchHeaderOptions'
 import SearchResult from './SearchResult'
 
 export default function SearchHeader() {
-  const { showNavbar } = useNavigation()
+  const { showNavbar } = useNavigationContenxt()
 
   return (
     <Container

@@ -42,12 +42,14 @@ const NavigationProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const useNavigation = (): INavigationContext => {
+const useNavigationContenxt = (): INavigationContext => {
   const context = useContext(NavigationContext)
   if (context === undefined) {
-    throw new Error('useNavigation must be used within a NavigationProvider')
+    throw new Error(
+      'useNavigationContenxt must be used within a NavigationProvider'
+    )
   }
   return context
 }
 
-export { NavigationProvider, useNavigation }
+export { NavigationProvider, useNavigationContenxt }

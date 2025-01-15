@@ -1,13 +1,13 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { useNavigation } from '@/context/NavigationContext'
+import { useNavigationContenxt } from '@/context/NavigationContext'
 import { useFilterContext } from '@/context/FilterContext'
 import GenderFilter from './GenderFilter'
 import SizeFilter from './SizeFilter'
 
 export default function Sidebar() {
-  const { showNavbar } = useNavigation()
+  const { showNavbar } = useNavigationContenxt()
   const { onSidebar } = useFilterContext()
 
   return (

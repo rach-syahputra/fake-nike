@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { MENU, NavLink } from '@/lib/constants/menus'
 import { cn } from '@/lib/utils'
-import { useNavigation } from '@/context/NavigationContext'
+import { useNavigationContenxt } from '@/context/NavigationContext'
 
 type NavbarDropdownMenuProps = {
   className?: string
@@ -14,7 +14,7 @@ type MenuProps = {
 }
 
 function NavbarDropdownMenu({ className }: NavbarDropdownMenuProps) {
-  const { selectedNavbarMenu } = useNavigation()
+  const { selectedNavbarMenu } = useNavigationContenxt()
 
   return (
     <div
