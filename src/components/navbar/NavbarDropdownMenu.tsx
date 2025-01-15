@@ -1,14 +1,8 @@
 import Link from 'next/link'
 
-import {
-  MEN_CLOTHING_MENU,
-  MEN_SHOES_MENU,
-  NavLink,
-  WOMEN_CLOTHING_MENU,
-  WOMEN_SHOES_MENU
-} from '@/lib/constants/menus'
-import { useNavigation } from '@/context/NavigationContext'
+import { MENU, NavLink } from '@/lib/constants/menus'
 import { cn } from '@/lib/utils'
+import { useNavigation } from '@/context/NavigationContext'
 
 type NavbarDropdownMenuProps = {
   className?: string
@@ -64,8 +58,8 @@ function Menu({ title, menus }: MenuProps) {
 function MenDropdownMenu() {
   return (
     <>
-      <Menu title='Shoes' menus={MEN_SHOES_MENU} />
-      <Menu title='Clothing' menus={MEN_CLOTHING_MENU} />
+      <Menu title='Shoes' menus={MENU.men.shoes} />
+      <Menu title='Clothing' menus={MENU.men.clothing} />
     </>
   )
 }
@@ -73,8 +67,8 @@ function MenDropdownMenu() {
 function WomenDropdownMenu() {
   return (
     <>
-      <Menu title='Shoes' menus={WOMEN_SHOES_MENU} />
-      <Menu title='Clothing' menus={WOMEN_CLOTHING_MENU} />
+      <Menu title='Shoes' menus={MENU.women.shoes} />
+      <Menu title='Clothing' menus={MENU.women.clothing} />
     </>
   )
 }
