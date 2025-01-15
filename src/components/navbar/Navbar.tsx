@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { SessionProvider } from 'next-auth/react'
 
 import { cn } from '@/lib/utils'
-import { NAVBAR_MENU } from '@/lib/constants/nav-links'
+import { NAVBAR_MENU } from '@/lib/constants/menus'
 import { useNavigation } from '@/context/NavigationContext'
 import { useCartContext } from '@/context/CartContext'
 import {

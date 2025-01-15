@@ -6,7 +6,7 @@ import {
   NavLinks,
   WOMEN_CLOTHING_MENU,
   WOMEN_SHOES_MENU
-} from '@/lib/constants/nav-links'
+} from '@/lib/constants/menus'
 import { useNavigation } from '@/context/NavigationContext'
 import { cn } from '@/lib/utils'
 

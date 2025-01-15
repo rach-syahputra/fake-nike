@@ -7,7 +7,7 @@ import {
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NAVBAR_MENU } from '@/lib/constants/nav-links'
+import { NAVBAR_MENU } from '@/lib/constants/menus'
 import { useNavigation } from '@/context/NavigationContext'
 import ModalContainer from '../layouts/ModalContainer'
 import AuthMobile from './AuthMobile'
