@@ -25,17 +25,21 @@ import AddedProductToCart from './AddedProductToCart'
 import ModalContainer from '../layouts/ModalContainer'
 
 export default function Navbar() {
-  const { selectedNavbarMenu, setSelectedNavbarMenu } = useNavigation()
+  const {
+    selectedNavbarMenu,
+    setSelectedNavbarMenu,
+    showNavbar,
+    setShowNavbar
+  } = useNavigation()
   const { AddedProduct } = useCartContext()
 
-  const [show, setShow] = useState<boolean>(true)
   const [lastScrollY, setLastScrollY] = useState<number>(0)
 
   const controlNavbar = () => {
     if (window.scrollY > lastScrollY) {
-      setShow(false)
+      setShowNavbar(false)
     } else {
-      setShow(true)
+      setShowNavbar(true)
     }
 
     setLastScrollY(window.scrollY)
@@ -59,7 +63,7 @@ export default function Navbar() {
         delayDuration={0}
         skipDelayDuration={0}
         className={cn('invisible', {
-          visible: show
+          visible: showNavbar
         })}
       >
         <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
