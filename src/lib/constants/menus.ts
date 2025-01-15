@@ -8,11 +8,11 @@ export type CategoryMenuType = 'shoes' | 'clothing' | 'shopBySport'
 
 export const NAVBAR_MENU: NavLink[] = [
   {
-    href: '/search?q=&category=men',
+    href: '/men',
     label: 'Men'
   },
   {
-    href: '/search?q=&category=women',
+    href: '/women',
     label: 'Women'
   }
 ]
