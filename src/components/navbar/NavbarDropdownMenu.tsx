@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {
   MEN_CLOTHING_MENU,
   MEN_SHOES_MENU,
-  NavLinks,
+  NavLink,
   WOMEN_CLOTHING_MENU,
   WOMEN_SHOES_MENU
 } from '@/lib/constants/menus'
@@ -16,7 +16,7 @@ type NavbarDropdownMenuProps = {
 
 type MenuProps = {
   title: string
-  menus: NavLinks[]
+  menus: NavLink[]
 }
 
 function NavbarDropdownMenu({ className }: NavbarDropdownMenuProps) {

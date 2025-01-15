@@ -1,9 +1,9 @@
-export type NavLinks = {
+export type NavLink = {
   href: string
   label: string
 }
 
-export const NAVBAR_MENU: NavLinks[] = [
+export const NAVBAR_MENU: NavLink[] = [
   {
     href: '/search?q=&category=men',
     label: 'Men'
@@ -14,7 +14,7 @@ export const NAVBAR_MENU: NavLinks[] = [
   }
 ]
 
-export const MEN_SHOES_MENU: NavLinks[] = [
+export const MEN_SHOES_MENU: NavLink[] = [
   {
     href: '#',
     label: 'All Shoes'
@@ -57,7 +57,7 @@ export const MEN_SHOES_MENU: NavLinks[] = [
   }
 ]
 
-export const WOMEN_SHOES_MENU: NavLinks[] = [
+export const WOMEN_SHOES_MENU: NavLink[] = [
   {
     href: '#',
     label: 'All Shoes'
@@ -96,7 +96,7 @@ export const WOMEN_SHOES_MENU: NavLinks[] = [
   }
 ]
 
-export const MEN_CLOTHING_MENU: NavLinks[] = [
+export const MEN_CLOTHING_MENU: NavLink[] = [
   {
     href: '#',
     label: 'All Clothing'
@@ -136,7 +136,7 @@ export const MEN_CLOTHING_MENU: NavLinks[] = [
   }
 ]
 
-export const WOMEN_CLOTHING_MENU: NavLinks[] = [
+export const WOMEN_CLOTHING_MENU: NavLink[] = [
   {
     href: '#',
     label: 'All Clothing'
