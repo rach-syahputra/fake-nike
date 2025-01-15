@@ -60,6 +60,7 @@ function MenDropdownMenu() {
     <>
       <Menu title='Shoes' menus={MENU.men.shoes} />
       <Menu title='Clothing' menus={MENU.men.clothing} />
+      <Menu title='Shop By Sport' menus={MENU.men.shopBySport} />
     </>
   )
 }
@@ -69,6 +70,7 @@ function WomenDropdownMenu() {
     <>
       <Menu title='Shoes' menus={MENU.women.shoes} />
       <Menu title='Clothing' menus={MENU.women.clothing} />
+      <Menu title='Shop By Sport' menus={MENU.women.shopBySport} />
     </>
   )
 }
