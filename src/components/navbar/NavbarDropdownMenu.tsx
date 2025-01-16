@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
-import { MENU, NavLink } from '@/lib/constants/menus'
+import { MENU } from '@/lib/constants/menus'
 import { cn } from '@/lib/utils'
+import { NavLink } from '@/lib/types/menus'
 import { useNavigationContenxt } from '@/context/NavigationContext'
 
 type NavbarDropdownMenuProps = {

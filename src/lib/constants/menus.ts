@@ -1,10 +1,4 @@
-export type NavLink = {
-  href: string
-  label: string
-}
-
-export type CategoryType = 'men' | 'women'
-export type CategoryMenuType = 'shoes' | 'clothing' | 'shopBySport'
+import { CategoryMenuType, CategoryType, NavLink } from '../types/menus'
 
 export const NAVBAR_MENU: NavLink[] = [
   {
