@@ -25,12 +25,8 @@ import AddedProductToCart from './AddedProductToCart'
 import ModalContainer from '../layouts/ModalContainer'
 
 export default function Navbar() {
-  const {
-    selectedNavbarMenu,
-    setSelectedNavbarMenu,
-    showNavbar,
-    setShowNavbar
-  } = useNavigationContenxt()
+  const { showNavbar, setShowNavbar, showNavbarMenu, setShowNavbarMenu } =
+    useNavigationContenxt()
   const { AddedProduct } = useCartContext()
 
   const [lastScrollY, setLastScrollY] = useState<number>(0)
@@ -56,7 +52,7 @@ export default function Navbar() {
   return (
     <ModalContainer
       className={cn('invisible', {
-        visible: selectedNavbarMenu !== ''
+        visible: showNavbarMenu
       })}
     >
       <NavigationMenu
@@ -65,24 +61,20 @@ export default function Navbar() {
         className={cn('invisible', {
           visible: showNavbar
         })}
+        onValueChange={(value) => setShowNavbarMenu(Boolean(value))}
       >
         <Container className='flex items-center justify-between gap-4 md:grid md:grid-cols-3'>
           <Logo className='h-[20.57px] w-12 md:h-[27.43px] md:w-16' />
           <ul className='hidden h-full w-full items-center justify-center gap-6 md:flex'>
             {NAVBAR_MENU.map((menu, index) => (
               <NavigationMenuItem key={index}>
-                <NavigationMenuTrigger
-                  onMouseEnter={() =>
-                    setSelectedNavbarMenu(menu.label.toLowerCase())
-                  }
-                  onMouseLeave={() => setSelectedNavbarMenu('')}
-                >
+                <NavigationMenuTrigger>
                   <Link href={menu.href} aria-label={menu.label}>
                     {menu.label}
                   </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <NavbarDropdownMenu />
+                  <NavbarDropdownMenu category={menu.label} />
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ))}

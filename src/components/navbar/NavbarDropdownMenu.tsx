@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { MENU } from '@/lib/constants/menus'
 import { cn } from '@/lib/utils'
 import { NavLink } from '@/lib/types/menus'
-import { useNavigationContenxt } from '@/context/NavigationContext'
 
 type NavbarDropdownMenuProps = {
+  category: string
   className?: string
 }
 
@@ -14,9 +14,7 @@ type MenuProps = {
   menus: NavLink[]
 }
 
-function NavbarDropdownMenu({ className }: NavbarDropdownMenuProps) {
-  const { selectedNavbarMenu } = useNavigationContenxt()
-
+function NavbarDropdownMenu({ category, className }: NavbarDropdownMenuProps) {
   return (
     <div
       className={cn(
@@ -25,9 +23,9 @@ function NavbarDropdownMenu({ className }: NavbarDropdownMenuProps) {
         className
       )}
     >
-      {selectedNavbarMenu === 'men' ? (
+      {category.toLowerCase() === 'men' ? (
         <MenDropdownMenu />
-      ) : selectedNavbarMenu === 'women' ? (
+      ) : category.toLowerCase() === 'women' ? (
         <WomenDropdownMenu />
       ) : (
         ''

@@ -11,10 +11,10 @@ import {
 interface INavigationContext {
   onMobileMenu: boolean
   setOnMobileMenu: Dispatch<SetStateAction<boolean>>
-  selectedNavbarMenu: string
-  setSelectedNavbarMenu: Dispatch<SetStateAction<string>>
   showNavbar: boolean
   setShowNavbar: Dispatch<SetStateAction<boolean>>
+  showNavbarMenu: boolean
+  setShowNavbarMenu: Dispatch<SetStateAction<boolean>>
 }
 
 const NavigationContext = createContext<INavigationContext | undefined>(
@@ -24,17 +24,17 @@ const NavigationContext = createContext<INavigationContext | undefined>(
 const NavigationProvider = ({ children }: { children: React.ReactNode }) => {
   const [onMobileMenu, setOnMobileMenu] = useState<boolean>(false)
   const [showNavbar, setShowNavbar] = useState<boolean>(true)
-  const [selectedNavbarMenu, setSelectedNavbarMenu] = useState<string>('')
+  const [showNavbarMenu, setShowNavbarMenu] = useState<boolean>(false)
 
   return (
     <NavigationContext.Provider
       value={{
         onMobileMenu,
         setOnMobileMenu,
-        selectedNavbarMenu,
-        setSelectedNavbarMenu,
         showNavbar,
-        setShowNavbar
+        setShowNavbar,
+        showNavbarMenu,
+        setShowNavbarMenu
       }}
     >
       {children}
