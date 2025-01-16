@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 
 import { fetchFilteredProducts } from '@/lib/api/services'
-import { IProductCard, IProductJson } from '@/lib/types/types'
+import { IProductJson } from '@/lib/types/types'
 import { useFilterContext } from '@/context/FilterContext'
+import { useFilteredProductsContext } from '@/context/FilteredProductsContext'
 import Button from '@/components/elements/Button'
 import Container from '@/components/layouts/Container'
 import Heading from '@/components/elements/Heading'
@@ -13,11 +14,11 @@ import SearchProductCard from './SearchedProductCard'
 
 export default function SearchedProductList() {
   const { state } = useFilterContext()
+  const { products, setProducts } = useFilteredProductsContext()
 
   const [page, setPage] = useState<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(true)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [products, setProducts] = useState<IProductCard[]>([])
 
   const getFilteredProducts = async () => {
     setIsLoading(true)
