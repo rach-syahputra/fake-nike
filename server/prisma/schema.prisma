@@ -40,10 +40,11 @@ model Size {
 }
 
 model ProductStyle {
-  id        Int      @id @default(autoincrement())
-  slug      String
-  productId Int      @map("product_id")
-  createdAt DateTime @default(now()) @map("created_at")
+  id                Int      @id @default(autoincrement())
+  slug              String
+  productId         Int      @map("product_id")
+  displayedOnSearch Boolean  @default(true) @map("displayed_on_search")
+  createdAt         DateTime @default(now()) @map("created_at")
 
   ProductImage ProductImage[]
   product      Product        @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
