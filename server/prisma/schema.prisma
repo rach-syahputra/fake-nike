@@ -42,7 +42,7 @@ model Size {
 
 model ProductStyle {
   id                Int      @id @default(autoincrement())
-  slug              String
+  slug              String   @unique
   productId         Int      @map("product_id")
   displayedOnSearch Boolean  @default(true) @map("displayed_on_search")
   createdAt         DateTime @default(now()) @map("created_at")
