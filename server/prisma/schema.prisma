@@ -19,6 +19,7 @@ model Category {
 model Product {
   id          Int      @id @default(autoincrement())
   slug        String   @unique
+  title       String
   description String
   categoryId  Int      @map("category_id")
   price       Int
