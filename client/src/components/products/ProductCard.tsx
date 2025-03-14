@@ -4,20 +4,20 @@ import { capitalizeFirstLetter, cn, formatToRupiah } from '@/lib/utils'
 import Heading from '../elements/Heading'
 
 type ProductCardProps = {
-  name: string
-  id: string
+  id: number
+  title: string
   category: string
   price: number
-  imageUrl: string
+  image: string
   className?: string
 }
 
 export default function ProductCard({
-  name,
+  title,
   id,
   category,
   price,
-  imageUrl,
+  image,
   className
 }: ProductCardProps) {
   return (
@@ -26,7 +26,7 @@ export default function ProductCard({
       className={cn('flex flex-col gap-2', className)}
     >
       <Image
-        src={imageUrl}
+        src={image}
         alt='Product image'
         width={500}
         height={500}
@@ -34,7 +34,7 @@ export default function ProductCard({
         className='aspect-square h-auto w-full bg-gray-200'
       />
       <div className='flex flex-col'>
-        <Heading level={2}>{name}</Heading>
+        <Heading level={2}>{title}</Heading>
         <p className='font-[family-name:var(--font-helvetica-now-text)] text-sm text-gray-500 lg:text-base'>
           {capitalizeFirstLetter(category)}
         </p>

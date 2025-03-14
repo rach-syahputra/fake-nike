@@ -7,23 +7,28 @@ import { IProductCard, IProductJson } from '@/lib/types/types'
 import ListCarousel from '@/components/products/ListCarousel'
 import ProductCard from '@/components/products/ProductCard'
 import ProductCardSkeleton from '@/components/products/ProductCardSkeleton'
+import { fetchTheLatestAndGreatest } from '@/lib/apis/products'
+import { ITheLatestAndGreatest } from '@/lib/types/products'
 
 export default function TheLatestAndGreatest() {
-  const [products, setProducts] = useState<IProductCard[]>([])
+  const [products, setProducts] = useState<ITheLatestAndGreatest[]>([])
 
   const getProducts = async () => {
     try {
-      const data: IProductJson[] = await fetchGreatestProducts('desc', 10)
+      // const data: IProductJson[] = await fetchGreatestProducts('desc', 10)
 
-      setProducts(
-        data.map((product) => ({
-          name: product.name,
-          id: product.id,
-          category: product.category,
-          price: product.price,
-          imageUrl: product.imageUrls[0]
-        }))
-      )
+      // setProducts(
+      //   data.map((product) => ({
+      //     name: product.name,
+      //     id: product.id,
+      //     category: product.category,
+      //     price: product.price,
+      //     imageUrl: product.imageUrls[0]
+      //   }))
+      // )
+      const response = await fetchTheLatestAndGreatest()
+
+      setProducts(response.data)
     } catch (error) {
       console.error(error)
     }
