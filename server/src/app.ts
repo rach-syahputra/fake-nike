@@ -1,7 +1,14 @@
-import express, { Application, NextFunction, Request, Response } from 'express'
+import express, {
+  Application,
+  NextFunction,
+  Request,
+  Response,
+  Router
+} from 'express'
 import cors from 'cors'
 
 import { PORT } from './config'
+import ProductsRoute from './features/products/routes'
 
 class App {
   private app: Application
@@ -9,10 +16,16 @@ class App {
   constructor() {
     this.app = express()
     this.configure()
+    this.routes()
   }
 
   private configure() {
+    this.app.use(cors())
     this.app.use(express.json())
+  }
+
+  private routes() {
+    this.app.use('/api', ProductsRoute)
   }
 
   start() {
