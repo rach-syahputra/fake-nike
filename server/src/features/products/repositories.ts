@@ -134,6 +134,67 @@ class ProductsRepository {
       createdAt: product.createdAt
     }))
   }
+
+  async getDetailProduct(productStyleSlug: string) {
+    const product = await prisma.productStyle.findUnique({
+      select: {
+        id: true,
+        createdAt: true,
+        product: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            price: true,
+            category: {
+              select: {
+                id: true,
+                label: true
+              }
+            }
+          }
+        },
+        ProductImage: {
+          select: {
+            url: true
+          },
+          orderBy: {
+            position: 'asc'
+          }
+        },
+        ProductSize: {
+          select: {
+            size: {
+              select: {
+                id: true,
+                label: true
+              }
+            }
+          }
+        }
+      },
+      where: {
+        slug: productStyleSlug
+      }
+    })
+
+    return {
+      id: product?.id,
+      title: product?.product.title,
+      description: product?.product.description,
+      category: {
+        id: product?.product.category.id,
+        label: product?.product.category.label
+      },
+      images: product?.ProductImage,
+      sizes: product?.ProductSize.map((size) => ({
+        id: size.size.id,
+        label: size.size.label
+      })),
+      price: product?.product.price,
+      createdAt: product?.createdAt
+    }
+  }
 }
 
 export default new ProductsRepository()

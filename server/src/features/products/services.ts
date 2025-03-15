@@ -23,6 +23,10 @@ class ProductsService {
       sizes
     })
   }
+
+  async getProductDetail(productStyleSlug: string) {
+    return await ProductsRepository.getDetailProduct(productStyleSlug)
+  }
 }
 
 export default new ProductsService()

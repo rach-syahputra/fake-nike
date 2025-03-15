@@ -50,6 +50,21 @@ class ProductsController {
       console.log(error)
     }
   }
+
+  async getProductDetail(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { productStyleSlug } = req.params
+      const data = await ProductsService.getProductDetail(productStyleSlug)
+
+      res.status(200).send({
+        success: true,
+        message: 'Product detail retrieved successfully',
+        data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export default new ProductsController()

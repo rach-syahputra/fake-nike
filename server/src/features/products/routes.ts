@@ -5,8 +5,9 @@ import ProductsController from './controllers'
 const router = express.Router()
 
 router.get('/products', ProductsController.getProducts)
+router.get('/products/:productStyleSlug', ProductsController.getProductDetail)
 router.get(
-  '/products/latest-and-greatest',
+  '/products/featured/latest-and-greatest',
   ProductsController.getLatestAndGreatest
 )
 
