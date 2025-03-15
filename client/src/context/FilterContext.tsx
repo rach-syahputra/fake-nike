@@ -83,8 +83,16 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
         params.delete(key) // Remove param
       } else if (Array.isArray(value)) {
         params.set(key, value.join(',')) // Update array param
+
+        if (!params.get(key)?.length) {
+          params.delete(key)
+        }
       } else {
         params.set(key, value) // Update single param
+
+        if (!params.get(key) && key !== 'q') {
+          params.delete(key)
+        }
       }
     })
 
