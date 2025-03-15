@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { signInSchema, signUpSchema } from '../validations/schema'
+import { IProductCard } from './products'
 
 export interface IProductJson {
   name: string
@@ -21,17 +22,9 @@ export interface IProduct {
   price: number
 }
 
-export interface IProductCard {
-  name: string
-  id: string
-  category: string
-  price: number
-  imageUrl: string
-}
-
 export interface ITopSuggestions {
-  name: string
-  id: string
+  id: number
+  title: string
 }
 
 export interface User {

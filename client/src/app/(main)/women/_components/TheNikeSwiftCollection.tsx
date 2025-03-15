@@ -1,5 +1,6 @@
 'use client'
 
+import { CATEGORIES_FOR_WOMEN } from '@/lib/constants/filter'
 import { useFilterContext } from '@/context/FilterContext'
 import {
   CTASection,
@@ -16,7 +17,7 @@ export default function TheNikeSwiftCollection() {
   const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
-    updateParams({ q: '', category: 'women' })
+    updateParams({ q: '', categories: [...CATEGORIES_FOR_WOMEN] })
   }
 
   return (

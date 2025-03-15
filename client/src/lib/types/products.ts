@@ -1,6 +1,9 @@
 import { Json } from './json'
 
-export interface ITheLatestAndGreatest {
+export type OrderType = 'asc' | 'desc'
+export type SortByType = 'date' | 'price'
+
+export interface IProductCard {
   id: number
   slug: string
   title: string
@@ -10,6 +13,14 @@ export interface ITheLatestAndGreatest {
   createdAt: string
 }
 
-export interface ITheLatestAndGreatestJson extends Json {
-  data: ITheLatestAndGreatest[]
+export interface IProductCardJson extends Json {
+  data: IProductCard[]
+}
+
+export interface ProductFilter {
+  order?: OrderType
+  sortBy?: SortByType
+  categories?: number[]
+  sizes?: number[]
+  limit?: number
 }

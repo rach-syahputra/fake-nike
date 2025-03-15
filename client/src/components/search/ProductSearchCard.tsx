@@ -2,25 +2,22 @@
 
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+
 import { capitalizeFirstLetter, cn, formatToRupiah } from '@/lib/utils'
+import { IProductCard } from '@/lib/types/products'
 import { useSearchContext } from '@/context/SearchContext'
 import Heading from '../elements/Heading'
 
-type ProductSearchCardProps = {
-  name: string
-  id: string
-  category: string
-  price: number
-  imageUrl: string
+interface ProductSearchCardProps extends IProductCard {
   className?: string
 }
 
 export default function ProductSearchCard({
-  name,
   id,
+  title,
   category,
   price,
-  imageUrl,
+  image,
   className
 }: ProductSearchCardProps) {
   const router = useRouter()
@@ -33,12 +30,12 @@ export default function ProductSearchCard({
 
   return (
     <button
-      onClick={() => handleProductSearchCardClick(id)}
+      onClick={() => handleProductSearchCardClick(id.toString())}
       className={cn('flex flex-col gap-2', className)}
     >
       <Image
-        src={imageUrl}
-        alt='Product image'
+        src={image}
+        alt={title}
         width={500}
         height={500}
         style={{ objectFit: 'cover' }}
@@ -46,7 +43,7 @@ export default function ProductSearchCard({
       />
       <div className='flex flex-col'>
         <Heading level={2} className='text-left'>
-          {name}
+          {title}
         </Heading>
         <p className='text-left font-[family-name:var(--font-helvetica-now-text)] text-sm text-gray-500 lg:text-base'>
           {capitalizeFirstLetter(category)}

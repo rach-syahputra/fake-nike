@@ -1,28 +1,58 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useFilterContext } from '@/context/FilterContext'
-import { useSearchParams } from 'next/navigation'
 
+import {
+  CATEGORIES_FOR_MEN,
+  CATEGORIES_FOR_WOMEN
+} from '@/lib/constants/filter'
+import { useFilterContext } from '@/context/FilterContext'
 import MobileFilterCard from './MobileFilterCard'
 
 export default function GenderFilter() {
-  const searchParams = useSearchParams()
-  const categoryParams = searchParams.getAll('category')
-
-  const { updateParams } = useFilterContext()
+  const { query, updateParams } = useFilterContext()
   const [selectedCount, setSelectedCount] = useState<number>(0)
-
-  useEffect(() => {
-    if (categoryParams) setSelectedCount(categoryParams.length)
-    else setSelectedCount(0)
-  }, [categoryParams])
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, name } = event.target
 
-    updateParams({ category: name }, checked ? 'add' : 'remove')
+    let newCategories = Array.isArray(query.categories) ? query.categories : []
+
+    if (name === 'men' && checked) {
+      newCategories = [...new Set([...newCategories, ...CATEGORIES_FOR_MEN])]
+    } else if (name === 'women' && checked) {
+      newCategories = [...new Set([...newCategories, ...CATEGORIES_FOR_WOMEN])]
+    } else if (name === 'men') {
+      newCategories = newCategories.filter(
+        (category) => !CATEGORIES_FOR_MEN.includes(category)
+      )
+    } else if (name === 'women') {
+      newCategories = newCategories.filter(
+        (category) => !CATEGORIES_FOR_WOMEN.includes(category)
+      )
+    } else {
+      newCategories = []
+    }
+
+    updateParams({ categories: newCategories })
   }
+
+  useEffect(() => {
+    const men = CATEGORIES_FOR_MEN.every((category) =>
+      query.categories?.includes(category)
+    )
+    const women = CATEGORIES_FOR_WOMEN.every((category) =>
+      query.categories?.includes(category)
+    )
+
+    if (men && women) {
+      setSelectedCount(2)
+    } else if (men || women) {
+      setSelectedCount(1)
+    } else {
+      setSelectedCount(0)
+    }
+  }, [query.categories])
 
   return (
     <MobileFilterCard title='Gender' selectedCount={selectedCount}>
@@ -34,7 +64,13 @@ export default function GenderFilter() {
           <input
             type='checkbox'
             name='men'
-            checked={categoryParams ? categoryParams?.includes('men') : false}
+            checked={
+              query.categories && query.categories.length > 0
+                ? CATEGORIES_FOR_MEN.every((category) =>
+                    query.categories?.includes(category)
+                  )
+                : false
+            }
             onChange={handleCheckboxChange}
             className='h-5 w-5 border-gray-800 accent-black'
           />
@@ -47,7 +83,13 @@ export default function GenderFilter() {
           <input
             type='checkbox'
             name='women'
-            checked={categoryParams ? categoryParams?.includes('women') : false}
+            checked={
+              query.categories && query.categories.length > 0
+                ? CATEGORIES_FOR_WOMEN.every((category) =>
+                    query.categories?.includes(category)
+                  )
+                : false
+            }
             onChange={handleCheckboxChange}
             className='h-5 w-5 border-gray-800 accent-black'
           />

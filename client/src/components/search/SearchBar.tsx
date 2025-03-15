@@ -16,7 +16,7 @@ import Logo from '../elements/Logo'
 
 export default function SearchBar() {
   const { onSearch, setOnSearch } = useSearchContext()
-  const { updateParams, state } = useFilterContext()
+  const { updateParams, query } = useFilterContext()
 
   const [searchBarQuery, setSearchBarQuery] = useState<string>('')
 
@@ -34,8 +34,8 @@ export default function SearchBar() {
   }
 
   useEffect(() => {
-    setSearchBarQuery(state.q || '')
-  }, [state.q])
+    setSearchBarQuery(query.q || '')
+  }, [query.q])
 
   if (onSearch)
     return (

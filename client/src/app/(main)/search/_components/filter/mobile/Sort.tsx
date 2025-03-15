@@ -1,46 +1,63 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
 
-import { sortOptions } from '@/lib/constants/products'
-import { capitalizeFirstLetter } from '@/lib/utils'
-import { ParamsType, useFilterContext } from '@/context/FilterContext'
+import { SORT_OPTIONS } from '@/lib/constants/filter'
+import { QueryType, useFilterContext } from '@/context/FilterContext'
+import { IActiveSort } from '@/lib/types/filters'
 
 export default function Sort() {
-  const searchParams = useSearchParams()
-  const sortParams = searchParams.get('sort')
-  const orderParams = searchParams.get('order')
-
-  const { updateParams } = useFilterContext()
-  const [activeSort, setActiveSort] = useState<string>('Newest')
+  const { query, updateParams } = useFilterContext()
+  const [activeSort, setActiveSort] = useState<IActiveSort>({
+    id: 2,
+    label: 'Newest'
+  })
 
   useEffect(() => {
-    if (sortParams) {
-      setActiveSort(
-        sortParams === 'price' && orderParams === 'desc'
-          ? 'Price: High-Low'
-          : sortParams === 'price' && orderParams === 'asc'
-            ? 'Price: Low-High'
-            : capitalizeFirstLetter(sortParams as string)
-      )
+    if (query.order === 'asc' && query.sortBy === 'price') {
+      setActiveSort({
+        id: 4,
+        label: 'Price: Low-High'
+      })
+    } else if (query.order === 'desc' && query.sortBy === 'price') {
+      setActiveSort({
+        id: 3,
+        label: 'Price: High-Low'
+      })
+    } else if (query.order === 'asc') {
+      setActiveSort({
+        id: 1,
+        label: 'Oldest'
+      })
+    } else {
+      setActiveSort({
+        id: 2,
+        label: 'Newest'
+      })
     }
-  }, [sortParams, orderParams])
+  }, [query.order, query.sortBy])
 
-  const handleSortChange = (sortOption: string) => {
-    const newParams: ParamsType = {
-      order: null,
-      sort: null
+  const handleSortChange = (sortOption: number) => {
+    const newParams: QueryType = {
+      sortBy: null,
+      order: null
     }
-    // update order params
-    if (sortOption.includes('high-low')) newParams.order = 'desc'
-    if (sortOption.includes('low-high')) newParams.order = 'asc'
 
-    // update sort params
-    if (sortOption.includes('price')) newParams.sort = 'price'
-    else newParams.sort = sortOption
+    if (sortOption === 1) {
+      newParams.order = 'asc'
+      newParams.sortBy = 'date'
+    } else if (sortOption === 2) {
+      newParams.order = 'desc'
+      newParams.sortBy = 'date'
+    } else if (sortOption === 3) {
+      newParams.order = 'desc'
+      newParams.sortBy = 'price'
+    } else if (sortOption === 4) {
+      newParams.order = 'asc'
+      newParams.sortBy = 'price'
+    }
 
-    updateParams(newParams, 'add')
+    updateParams(newParams)
   }
 
   return (
@@ -49,19 +66,19 @@ export default function Sort() {
         Sort By
       </span>
       <ul className='flex flex-col gap-1'>
-        {sortOptions.map((sortOption, index) => (
+        {SORT_OPTIONS.map((sortOption, index) => (
           <li
             key={index}
             className='flex items-center gap-2 py-2 font-[family-name:var(--font-helvetica-now-text)] font-semibold'
           >
             <input
               type='radio'
-              checked={activeSort.toLowerCase() === sortOption.toLowerCase()}
-              onChange={() => handleSortChange(sortOption.toLowerCase())}
-              id={sortOption}
+              checked={activeSort.id === sortOption.id}
+              onChange={() => handleSortChange(sortOption.id)}
+              id={sortOption.id.toString()}
               className='h-5 w-5 font-[family-name:var(--font-helvetica-now-text)] accent-black'
             />
-            <label htmlFor={sortOption}>{sortOption}</label>
+            <label htmlFor={sortOption.id.toString()}>{sortOption.label}</label>
           </li>
         ))}
       </ul>

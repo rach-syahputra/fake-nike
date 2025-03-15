@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import { fetchFilteredProducts } from '@/lib/api/services'
-import { IProductJson } from '@/lib/types/types'
+import { fetchGetProducts } from '@/lib/apis/products'
 import { useFilterContext } from '@/context/FilterContext'
 import { useFilteredProductsContext } from '@/context/FilteredProductsContext'
 import Button from '@/components/elements/Button'
@@ -13,7 +12,7 @@ import SearchedProductCardSkeleton from './loading/SearchedProductCardSkeleton'
 import SearchProductCard from './SearchedProductCard'
 
 export default function SearchedProductList() {
-  const { state } = useFilterContext()
+  const { query } = useFilterContext()
   const { products, setProducts } = useFilteredProductsContext()
 
   const [page, setPage] = useState<number>(1)
@@ -24,27 +23,18 @@ export default function SearchedProductList() {
     setIsLoading(true)
 
     try {
-      const params: Record<string, string | string[]> = {}
+      const apiQuery: Record<string, string | number[]> = {}
 
-      if (state.category) params.categories = state.category
-      if (state.order) params.order = state.order
-      if (state.sort) params.sort = state.sort
-      if (state.size) params.sizes = state.size
+      if (query.order) apiQuery.order = query.order
+      if (query.sortBy) apiQuery.sortBy = query.sortBy
+      if (query.categories) apiQuery.categories = query.categories
+      if (query.sizes) apiQuery.sizes = query.sizes
 
-      const res: IProductJson[] = await fetchFilteredProducts(state.q || '', {
-        ...params,
-        limit: 9,
-        page: page
+      const response = await fetchGetProducts(query.q || '', {
+        ...apiQuery
       })
 
-      const data = res.map((item) => ({
-        ...item,
-        imageUrl: item.imageUrls[0]
-      }))
-
-      if (data.length < 9) setHasMore(false)
-
-      setProducts((prevState) => (page === 1 ? data : [...prevState, ...data]))
+      setProducts(response.data)
     } catch (error) {
       console.error(error)
     } finally {
@@ -64,7 +54,7 @@ export default function SearchedProductList() {
     } else {
       setPage(1)
     }
-  }, [state])
+  }, [query])
 
   return (
     <Container className='px-0 py-1 pb-6 md:px-0 lg:px-12'>

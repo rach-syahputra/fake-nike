@@ -17,7 +17,10 @@ export default function MadEnergyPack() {
   const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
-    updateParams({ q: '', category: 'football' })
+    updateParams({
+      q: '',
+      categories: [5]
+    })
   }
 
   return (

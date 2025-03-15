@@ -7,7 +7,8 @@ import {
   useContext,
   useState
 } from 'react'
-import { IProductCard } from '@/lib/types/types'
+
+import { IProductCard } from '@/lib/types/products'
 
 interface IFilteredProductsContext {
   products: IProductCard[]

@@ -1,14 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { capitalizeFirstLetter, cn, formatToRupiah } from '@/lib/utils'
+import { IProductCard } from '@/lib/types/products'
 import Heading from '../elements/Heading'
 
-type ProductCardProps = {
-  id: number
-  title: string
-  category: string
-  price: number
-  image: string
+interface ProductCardProps extends IProductCard {
   className?: string
 }
 
@@ -27,7 +24,7 @@ export default function ProductCard({
     >
       <Image
         src={image}
-        alt='Product image'
+        alt={title}
         width={500}
         height={500}
         style={{ objectFit: 'cover' }}

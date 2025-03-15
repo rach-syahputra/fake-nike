@@ -15,7 +15,9 @@ export default function HaveAHardYear() {
   const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
-    updateParams({ q: 'kobe' })
+    updateParams({
+      q: 'kobe'
+    })
   }
 
   return (

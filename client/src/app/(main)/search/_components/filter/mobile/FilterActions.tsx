@@ -3,22 +3,15 @@
 import { useEffect, useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { ParamsType, useFilterContext } from '@/context/FilterContext'
+import { useFilterContext } from '@/context/FilterContext'
 import Button from '@/components/elements/Button'
 
 export default function FilterActions() {
-  const { setOnMobileFilterModal, state, updateParams } = useFilterContext()
+  const { setOnMobileFilterModal, query, updateParams } = useFilterContext()
   const [selectedFilterCount, setSelectedFilterCount] = useState<number>(0)
 
   const handleClear = () => {
-    const params: ParamsType = {
-      sort: null,
-      order: null,
-      category: null,
-      size: null
-    }
-
-    updateParams(params)
+    updateParams({ order: null, categories: null, sizes: null, sortBy: null })
     setOnMobileFilterModal(false)
   }
 
@@ -28,9 +21,9 @@ export default function FilterActions() {
 
   useEffect(() => {
     setSelectedFilterCount(
-      (state.category?.length || 0) + (state.size?.length || 0)
+      (query.categories?.length || 0) + (query.sizes?.length || 0)
     )
-  }, [state])
+  }, [query])
 
   return (
     <div

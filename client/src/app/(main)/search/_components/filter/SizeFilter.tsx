@@ -1,46 +1,53 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
 
-import { sizes as sizeData } from '@/lib/constants/products'
 import { cn } from '@/lib/utils'
+import { SIZES } from '@/lib/constants/filter'
 import { useFilterContext } from '@/context/FilterContext'
 import FilterCard from './FilterCard'
 
 export default function SizeFilter() {
-  const searchParams = useSearchParams()
-  const sizeParams = searchParams.getAll('size')
-
-  const { updateParams } = useFilterContext()
+  const { query, updateParams } = useFilterContext()
   const [selectedCount, setSelectedCount] = useState<number>(0)
 
-  const handleOnSelect = (size: string) => {
-    const selected = sizeParams?.includes(size)
+  const handleOnSelect = (size: number) => {
+    const selected = query.sizes?.includes(size)
 
-    updateParams({ size: size }, selected ? 'remove' : 'add')
+    let newSizes = Array.isArray(query.sizes) ? query.sizes : []
+
+    if (selected) {
+      newSizes = [...new Set([...newSizes, size])]
+    } else {
+      newSizes = newSizes.filter(
+        (size) => !SIZES.map((size) => size.id).includes(size)
+      )
+    }
+
+    updateParams({
+      sizes: newSizes
+    })
   }
 
   useEffect(() => {
-    if (sizeParams) setSelectedCount(sizeParams.length)
-    else setSelectedCount(0)
-  }, [sizeParams])
+    setSelectedCount(query.sizes?.length || 0)
+  }, [query.sizes])
 
   return (
     <FilterCard title='Size' selectedCount={selectedCount}>
       <div className='grid grid-cols-3 gap-x-3 gap-y-2'>
-        {sizeData.map((size, index) => (
+        {SIZES.map((size, index) => (
           <div
             key={index}
-            onClick={() => handleOnSelect(size.toString())}
+            onClick={() => handleOnSelect(size.id)}
             className={cn(
               'flex min-w-14 flex-1 cursor-pointer select-none items-center justify-center rounded-lg border border-gray-300 py-1 font-[family-name:var(--font-helvetica-now-text)]',
               {
-                'border-black': sizeParams?.includes(size.toString())
+                'border-black': query.sizes?.includes(size.id)
               }
             )}
           >
-            {size}
+            {size.label}
           </div>
         ))}
       </div>

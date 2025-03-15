@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import { fetchFilteredProducts } from '@/lib/api/services'
-import { IProductJson } from '@/lib/types/types'
+
+import { fetchGetProducts } from '@/lib/apis/products'
 import SearchHeader from './_components/header/SearchHeader'
 import SearchedProductList from './_components/SearchedProductList'
 import Sidebar from './_components/filter/Sidebar'
@@ -13,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const query = (await searchParams).q || ''
 
-  const products: IProductJson[] = await fetchFilteredProducts(query, {
+  const response = await fetchGetProducts(query, {
     limit: 5
   })
 
@@ -24,9 +24,9 @@ export async function generateMetadata({
     openGraph: {
       title: `Search Results for ${query}`,
       description: `Discover products matching "${query}" on our store.`,
-      images: products.map((product) => ({
-        url: product.imageUrls[0],
-        alt: product.name
+      images: response.data.map((product) => ({
+        url: product.image,
+        alt: product.title
       }))
     }
   }

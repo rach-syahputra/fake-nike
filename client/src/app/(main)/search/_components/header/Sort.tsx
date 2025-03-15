@@ -1,49 +1,67 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
-import { sortOptions } from '@/lib/constants/products'
-import { capitalizeFirstLetter, cn } from '@/lib/utils'
-import { ParamsType, useFilterContext } from '@/context/FilterContext'
+import { cn } from '@/lib/utils'
+import { SORT_OPTIONS } from '@/lib/constants/filter'
+import { QueryType, useFilterContext } from '@/context/FilterContext'
+import { IActiveSort } from '@/lib/types/filters'
 import Icon from '@/components/elements/Icon'
 
 export default function Sort() {
-  const searchParams = useSearchParams()
-  const sortParams = searchParams.get('sort')
-  const orderParams = searchParams.get('order')
-
-  const { updateParams } = useFilterContext()
+  const { query, updateParams } = useFilterContext()
   const [openSort, setOpenSort] = useState<boolean>(false)
-  const [activeSort, setActiveSort] = useState<string>('Newest')
+  const [activeSort, setActiveSort] = useState<IActiveSort>({
+    id: 1,
+    label: 'Newest'
+  })
 
   useEffect(() => {
-    if (sortParams) {
-      setActiveSort(
-        sortParams === 'price' && orderParams === 'desc'
-          ? 'Price: High-Low'
-          : sortParams === 'price' && orderParams === 'asc'
-            ? 'Price: Low-High'
-            : capitalizeFirstLetter(sortParams as string)
-      )
+    if (query.order === 'asc' && query.sortBy === 'price') {
+      setActiveSort({
+        id: 4,
+        label: 'Price: Low-High'
+      })
+    } else if (query.order === 'desc' && query.sortBy === 'price') {
+      setActiveSort({
+        id: 3,
+        label: 'Price: High-Low'
+      })
+    } else if (query.order === 'asc') {
+      setActiveSort({
+        id: 1,
+        label: 'Oldest'
+      })
+    } else {
+      setActiveSort({
+        id: 2,
+        label: 'Newest'
+      })
     }
-  }, [sortParams, orderParams])
+  }, [query.order, query.sortBy])
 
-  const handleSortChange = (sortOption: string) => {
-    const newParams: ParamsType = {
-      order: null,
-      sort: null
+  const handleSortChange = (sortOption: number) => {
+    const newParams: QueryType = {
+      sortBy: null,
+      order: null
     }
-    // update order params
-    if (sortOption.includes('high-low')) newParams.order = 'desc'
-    if (sortOption.includes('low-high')) newParams.order = 'asc'
 
-    // update sort params
-    if (sortOption.includes('price')) newParams.sort = 'price'
-    else newParams.sort = sortOption
+    if (sortOption === 1) {
+      newParams.order = 'asc'
+      newParams.sortBy = 'date'
+    } else if (sortOption === 2) {
+      newParams.order = 'desc'
+      newParams.sortBy = 'date'
+    } else if (sortOption === 3) {
+      newParams.order = 'desc'
+      newParams.sortBy = 'price'
+    } else if (sortOption === 4) {
+      newParams.order = 'asc'
+      newParams.sortBy = 'price'
+    }
 
-    updateParams(newParams, 'add')
+    updateParams(newParams)
   }
 
   return (
@@ -52,7 +70,7 @@ export default function Sort() {
         onClick={() => setOpenSort(!openSort)}
         className='hidden h-[34px] items-center justify-center gap-1.5 px-4 font-[family-name:var(--font-helvetica-now-text)] text-base lg:flex'
       >
-        Sort By: <span className='text-gray-500'>{activeSort}</span>
+        Sort By: <span className='text-gray-500'>{activeSort.label}</span>
         <Icon
           icon={faChevronUp}
           className={cn('h-4 w-4 transition-all duration-300 ease-in-out', {
@@ -68,13 +86,13 @@ export default function Sort() {
           }
         )}
       >
-        {sortOptions.map((sortOption, index) => (
+        {SORT_OPTIONS.map((sortOption, index) => (
           <li key={index}>
             <button
-              onClick={() => handleSortChange(sortOption.toLowerCase())}
+              onClick={() => handleSortChange(sortOption.id)}
               className='cursor-pointer select-none py-0.5 font-[family-name:var(--font-helvetica-now-text)] font-semibold hover:text-gray-500'
             >
-              {sortOption}
+              {sortOption.label}
             </button>
           </li>
         ))}
