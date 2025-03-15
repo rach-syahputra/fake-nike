@@ -12,16 +12,14 @@ export default function SizeFilter() {
   const [selectedCount, setSelectedCount] = useState<number>(0)
 
   const handleOnSelect = (size: number) => {
-    const selected = query.sizes?.includes(size)
+    const isSelected = query.sizes?.includes(size)
 
     let newSizes = Array.isArray(query.sizes) ? query.sizes : []
 
-    if (selected) {
-      newSizes = [...new Set([...newSizes, size])]
+    if (isSelected) {
+      newSizes = newSizes.filter((newSize) => newSize !== size)
     } else {
-      newSizes = newSizes.filter(
-        (size) => !SIZES.map((size) => size.id).includes(size)
-      )
+      newSizes = [...new Set([...newSizes, size])]
     }
 
     updateParams({
