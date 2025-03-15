@@ -1,16 +1,20 @@
-import { capitalizeFirstLetter, cn, formatToRupiah } from '@/lib/utils'
-import { IProduct } from '@/lib/types/types'
+import { cn, formatToRupiah } from '@/lib/utils'
+import { IProductDetail } from '@/lib/types/products'
 import Heading from '@/components/elements/Heading'
 import Size from './Size'
 import ProductActions from './ProductActions'
 
-type ProductDetailProps = {
-  product: IProduct
+interface ProductDetailProps extends IProductDetail {
   className?: string
 }
 
 export default function ProductDetail({
-  product,
+  id,
+  title,
+  description,
+  category,
+  sizes,
+  price,
   className
 }: ProductDetailProps) {
   return (
@@ -23,21 +27,21 @@ export default function ProductDetail({
       <div className='flex flex-col gap-3'>
         <div className='flex flex-col'>
           <Heading level={1} className='text-xl'>
-            {product.name}
+            {title}
           </Heading>
           <p className='font-[family-name:var(--font-helvetica-now-text)] text-gray-500'>
-            {capitalizeFirstLetter(product.category)}
+            {category.label}
           </p>
         </div>
-        <p className='font-semibold'>{formatToRupiah(product.price)}</p>
+        <p className='font-semibold'>{formatToRupiah(price)}</p>
       </div>
 
-      <Size sizes={product.sizes} />
+      <Size sizes={sizes} />
 
-      <ProductActions productId={product.id} />
+      <ProductActions productId={id.toString()} />
 
       <p className='pt-5 font-[family-name:var(--font-helvetica-now-text)]'>
-        {product.description}
+        {description}
       </p>
     </div>
   )

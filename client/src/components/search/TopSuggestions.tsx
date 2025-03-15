@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { ITopSuggestions } from '@/lib/types/types'
+import { ITopSuggestions } from '@/lib/types/products'
 import { fetchGetProducts } from '@/lib/apis/products'
 import { useSearchContext } from '@/context/SearchContext'
 
@@ -23,14 +23,14 @@ export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
 
     setTopSuggestions(
       response.data.map((item) => ({
-        id: item.id,
+        slug: item.slug,
         title: item.title
       }))
     )
   }
 
-  const handleTopSuggestionClick = (id: string) => {
-    router.push(`/shoes/${id}`)
+  const handleTopSuggestionClick = (slug: string) => {
+    router.push(`/n/${slug}`)
     setOnSearch(false)
   }
 
@@ -47,9 +47,7 @@ export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
         {topSuggestions.map((topSuggestion, index) => (
           <li key={index} className='rounded-lg py-2'>
             <button
-              onClick={() =>
-                handleTopSuggestionClick(topSuggestion.id.toString())
-              }
+              onClick={() => handleTopSuggestionClick(topSuggestion.slug)}
               className='line-clamp-2 py-2 font-[family-name:var(--font-helvetica-now-text-medium)] text-lg hover:text-gray-500'
             >
               {topSuggestion.title.toLocaleLowerCase()}

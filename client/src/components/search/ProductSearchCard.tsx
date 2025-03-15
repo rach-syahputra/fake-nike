@@ -13,8 +13,8 @@ interface ProductSearchCardProps extends IProductCard {
 }
 
 export default function ProductSearchCard({
-  id,
   title,
+  slug,
   category,
   price,
   image,
@@ -23,14 +23,14 @@ export default function ProductSearchCard({
   const router = useRouter()
   const { setOnSearch } = useSearchContext()
 
-  const handleProductSearchCardClick = (id: string) => {
-    router.push(`/shoes/${id}`)
+  const handleProductSearchCardClick = (slug: string) => {
+    router.push(`/n/${slug}`)
     setOnSearch(false)
   }
 
   return (
     <button
-      onClick={() => handleProductSearchCardClick(id.toString())}
+      onClick={() => handleProductSearchCardClick(slug)}
       className={cn('flex flex-col gap-2', className)}
     >
       <Image

@@ -1,9 +1,15 @@
 import { BASE_URL } from '../constants/api'
-import { IProductCardJson, ProductFilter } from '../types/products'
+import {
+  IProductCardJson,
+  IProductDetailJson,
+  ProductFilter
+} from '../types/products'
 
 export const fetchTheLatestAndGreatest =
   async (): Promise<IProductCardJson> => {
-    const response = await fetch(`${BASE_URL}/products/latest-and-greatest`)
+    const response = await fetch(
+      `${BASE_URL}/products/featured/latest-and-greatest`
+    )
 
     return await response.json()
   }
@@ -12,8 +18,6 @@ export const fetchGetProducts = async (
   query: string,
   filter?: ProductFilter
 ): Promise<IProductCardJson> => {
-  console.log(query, filter)
-
   const params = new URLSearchParams()
 
   params.append('q', query)
@@ -29,6 +33,14 @@ export const fetchGetProducts = async (
   if (filter?.limit) params.append('limit', filter.limit.toString())
 
   const response = await fetch(`${BASE_URL}/products?${params.toString()}`)
+
+  return await response.json()
+}
+
+export const fetchGetProductDetail = async (
+  slug: string
+): Promise<IProductDetailJson> => {
+  const response = await fetch(`${BASE_URL}/products/${slug}`)
 
   return await response.json()
 }

@@ -11,17 +11,14 @@ interface ProductCardProps extends IProductCard {
 
 export default function ProductCard({
   title,
-  id,
+  slug,
   category,
   price,
   image,
   className
 }: ProductCardProps) {
   return (
-    <Link
-      href={`/shoes/${id}`}
-      className={cn('flex flex-col gap-2', className)}
-    >
+    <Link href={`/n/${slug}`} className={cn('flex flex-col gap-2', className)}>
       <Image
         src={image}
         alt={title}

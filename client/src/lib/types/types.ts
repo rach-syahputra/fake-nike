@@ -22,11 +22,6 @@ export interface IProduct {
   price: number
 }
 
-export interface ITopSuggestions {
-  id: number
-  title: string
-}
-
 export interface User {
   username: string
   email: string

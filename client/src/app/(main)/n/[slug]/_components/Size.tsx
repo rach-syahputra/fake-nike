@@ -1,11 +1,12 @@
 'use client'
 
-import Heading from '@/components/elements/Heading'
-import { useCartContext } from '@/context/CartContext'
 import { cn } from '@/lib/utils'
+import { ISize } from '@/lib/types/products'
+import { useCartContext } from '@/context/CartContext'
+import Heading from '@/components/elements/Heading'
 
 type SizeProps = {
-  sizes: number[]
+  sizes: ISize[]
 }
 
 export default function Size({ sizes }: SizeProps) {
@@ -34,15 +35,15 @@ export default function Size({ sizes }: SizeProps) {
         {sizes.map((size, index) => (
           <div
             key={index}
-            onClick={() => handleSelectSize(size.toString())}
+            onClick={() => handleSelectSize(size.label)}
             className={cn(
               'flex h-11 cursor-pointer select-none items-center justify-center rounded-md border',
               {
-                'border-black': selectedSize === size.toString()
+                'border-black': selectedSize === size.label
               }
             )}
           >
-            {size}
+            {size.label}
           </div>
         ))}
       </ul>
