@@ -66,7 +66,7 @@ class ProductsRepository {
             }
           }
         : {
-            createdAt: order || 'asc'
+            createdAt: order || 'desc'
           }
 
     const categoryConfig =
