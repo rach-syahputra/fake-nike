@@ -51,6 +51,7 @@ class ProductsRepository {
   async getProducts({
     q,
     limit,
+    cursor,
     order,
     sortBy,
     categories,
@@ -86,53 +87,78 @@ class ProductsRepository {
       }
     }))
 
-    const products = await prisma.productStyle.findMany({
-      include: {
-        product: {
-          select: {
-            price: true,
-            title: true,
-            category: {
-              select: {
-                label: true
+    const cursorConfig = cursor ? { id: cursor } : undefined
+
+    const [products, totalProducts] = await prisma.$transaction([
+      prisma.productStyle.findMany({
+        include: {
+          product: {
+            select: {
+              price: true,
+              title: true,
+              category: {
+                select: {
+                  label: true
+                }
               }
             }
+          },
+          ProductImage: {
+            select: {
+              url: true
+            },
+            orderBy: {
+              position: 'asc'
+            },
+            take: 1
           }
         },
-        ProductImage: {
-          select: {
-            url: true
+        orderBy: orderByConfig,
+        where: {
+          displayedOnSearch: true,
+          product: {
+            title: {
+              contains: q,
+              mode: 'insensitive'
+            },
+            category: categoryConfig
           },
-          orderBy: {
-            position: 'asc'
-          },
-          take: 1
-        }
-      },
-      orderBy: orderByConfig,
-      where: {
-        displayedOnSearch: true,
-        product: {
-          title: {
-            contains: q,
-            mode: 'insensitive'
-          },
-          category: categoryConfig
+          AND: sizeConfig
         },
-        AND: sizeConfig
-      },
-      take: limit
-    })
+        take: limit,
+        cursor: cursorConfig,
+        skip: cursor ? 1 : 0
+      }),
+      prisma.productStyle.count({
+        where: {
+          displayedOnSearch: true,
+          product: {
+            title: {
+              contains: q,
+              mode: 'insensitive'
+            },
+            category: categoryConfig
+          },
+          AND: sizeConfig
+        }
+      })
+    ])
 
-    return products.map((product) => ({
-      id: product.id,
-      slug: product.slug,
-      title: product.product.title,
-      category: product.product.category.label,
-      image: product.ProductImage[0].url,
-      price: product.product.price,
-      createdAt: product.createdAt
-    }))
+    return {
+      products: products.map((product) => ({
+        id: product.id,
+        slug: product.slug,
+        title: product.product.title,
+        category: product.product.category.label,
+        image: product.ProductImage[0].url,
+        price: product.product.price,
+        createdAt: product.createdAt
+      })),
+      pagination: {
+        total: totalProducts || 0,
+        cursor: products.length > 0 ? products[products.length - 1].id : null
+      }
+    }
   }
 
   async getDetailProduct(productStyleSlug: string) {

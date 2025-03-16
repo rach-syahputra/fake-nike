@@ -9,6 +9,7 @@ class ProductsService {
   async getProducts({
     q,
     limit,
+    cursor,
     order,
     sortBy,
     categories,
@@ -17,6 +18,8 @@ class ProductsService {
     return await ProductsRepository.getProducts({
       q,
       limit,
+      cursor,
+
       order,
       sortBy,
       categories,

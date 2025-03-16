@@ -20,11 +20,12 @@ class ProductsController {
 
   async getProducts(req: Request, res: Response, next: NextFunction) {
     try {
-      const { q, limit, order, sortBy, categories, sizes } = req.query
+      const { q, limit, cursor, order, sortBy, categories, sizes } = req.query
 
       const data = await ProductsService.getProducts({
         q: q?.toString() || '',
         limit: Number(limit),
+        cursor: Number(cursor),
         order: order as OrderType,
         sortBy: sortBy as SortByType,
         categories: categories
