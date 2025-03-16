@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+
 import { SignUpFormFields } from '@/lib/types/types'
-import { fetchAddUserByEmailAndPassword } from '@/lib/api/services'
 import { signUpSchema } from '@/lib/validations/schema'
+import { fetchRegister } from '@/lib/apis/users'
 import Input from '@/components/elements/Input'
 import Button from '@/components/elements/Button'
 import FormErrorMessage from '@/components/elements/FormErrorMessage'
@@ -18,6 +19,7 @@ export default function SignUpForm() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting }
   } = useForm<SignUpFormFields>({
     resolver: zodResolver(signUpSchema)
@@ -25,15 +27,17 @@ export default function SignUpForm() {
 
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
     try {
-      await fetchAddUserByEmailAndPassword({
-        name: data.name,
-        email: data.email,
-        password: data.password
-      })
+      const response = await fetchRegister(data)
+
+      if (response?.error) {
+        setError('root', {
+          message: response.error.message
+        })
+      } else {
+        router.push('/sign-in')
+      }
     } catch (error) {
       console.error(error)
-    } finally {
-      router.push('/sign-in')
     }
   }
 

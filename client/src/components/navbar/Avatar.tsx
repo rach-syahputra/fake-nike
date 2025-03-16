@@ -17,16 +17,16 @@ export default function Avatar({ image, className }: AvatarProps) {
     <div
       onClick={() => setOpenAuthMenu(!openAuthMenu)}
       className={cn(
-        'relative flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-400',
+        'relative flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200',
         className
       )}
     >
       <Image
-        src={image || ''}
+        src={image || '/logo.svg'}
         alt='User image'
         width={20}
         height={20}
-        className='h-8 w-8 rounded-full'
+        className='w-full rounded-full object-cover'
       />
       {openAuthMenu && <UserMenu className='hidden md:block' />}
     </div>

@@ -1,8 +1,11 @@
-import NextAuth from 'next-auth'
+import NextAuth, { Session } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
-import { fetchUserByEmailAndPassword } from './lib/api/services'
-import { User } from './lib/types/types'
+import jwt from 'jsonwebtoken'
+
+import { fetchLogin } from './lib/apis/users'
+import { IUserToken } from './lib/types/users'
+import { JWT } from 'next-auth/jwt'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
@@ -15,14 +18,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
-        const user: User[] = await fetchUserByEmailAndPassword({
+        const user = await fetchLogin({
           email: credentials.email as string,
           password: credentials.password as string
         })
 
-        if (!user.length) return null
+        if (!user.success) return null
 
-        return user[0]
+        return {
+          accessToken: user.data.accessToken
+        }
       }
     }),
     Google
@@ -30,21 +35,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id
-        token.name = user.name
-        token.email = user.email
-        token.image = user.image
+        token.accessToken = user.accessToken
       }
 
       return token
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (token) {
-        session.user.id = token.id as string
-        session.user.email = token.email as string
-        session.user.image = token.image as string
-        session.user.name = token.name as string
+        session.user.accessToken = token.accessToken
+
+        const decoded = jwt.decode(token.accessToken) as IUserToken
+
+        session.user.id = decoded.id
+        session.user.name = decoded.name
+        session.user.email = decoded.email
       }
 
       return session
