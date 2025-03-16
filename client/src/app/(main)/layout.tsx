@@ -6,6 +6,7 @@ import { CartProvider } from '@/context/CartContext'
 import SearchBar from '@/components/search/SearchBar'
 import LoadingSpinner from '@/components/elements/LoadingSpinner'
 import Navbar from '@/components/navbar/Navbar'
+import Footer from '@/components/layouts/Footer'
 
 export default function MainLayout({
   children
@@ -29,6 +30,7 @@ export default function MainLayout({
                 <SearchBar />
               </SearchProvider>
               <main className='pb-8 pt-[60px]'>{children}</main>
+              <Footer />
             </CartProvider>
           </FilterProvider>
         </Suspense>
