@@ -42,7 +42,10 @@ export default async function ShoeDetailPage({
           images={productImages}
           className='lg:col-span-6 xl:col-start-2'
         />
-        <ProductDetail {...product} className='lg:col-span-4 xl:col-start-8' />
+        <ProductDetail
+          product={product}
+          className='lg:col-span-4 xl:col-start-8'
+        />
       </div>
     </Container>
   )

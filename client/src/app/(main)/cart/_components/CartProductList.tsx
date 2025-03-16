@@ -1,11 +1,17 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { useCartContext } from '@/context/CartContext'
 import CartProductItem from './CartProductItem'
 import CartProductItemSkeleton from './loading/CartProductItemSkeleton'
 
 export default function CartProductList() {
-  const { cartProducts, isLoading } = useCartContext()
+  const { isLoading, cart, cartProducts, getCartProducts } = useCartContext()
+
+  useEffect(() => {
+    getCartProducts()
+  }, [cart])
 
   return (
     <div className='flex flex-col gap-5'>

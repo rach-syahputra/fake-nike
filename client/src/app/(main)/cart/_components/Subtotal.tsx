@@ -15,7 +15,7 @@ export default function Subtotal() {
   const getSubtotalPrice = () => {
     setSubtotal(
       cartProducts?.reduce(
-        (total, product) => total + product.price * product.count,
+        (acc, product) => acc + product.price * product.count,
         0
       ) || 0
     )

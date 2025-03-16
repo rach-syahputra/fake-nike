@@ -1,12 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { fetchProduct } from '@/lib/api/services'
-import { IAddedProductCard, IProductJson } from '@/lib/types/types'
-import { capitalizeFirstLetter, formatToRupiah } from '@/lib/utils'
+
+import { formatToRupiah } from '@/lib/utils'
 import { useCartContext } from '@/context/CartContext'
 import Icon from '../elements/Icon'
 import Button from '../elements/Button'
@@ -14,28 +12,10 @@ import CloseAddedProductButton from './CloseAddedProductButton'
 
 export default function AddedProductToCart() {
   const { AddedProduct, cart } = useCartContext()
-  const [product, setProduct] = useState<IAddedProductCard | null>(null)
 
-  useEffect(() => {
-    getProduct()
-  }, [AddedProduct])
-
-  const getProduct = async () => {
-    const data: IProductJson[] = await fetchProduct(AddedProduct?.id || '')
-
-    setProduct({
-      id: data[0].id,
-      category: data[0].category,
-      name: data[0].name,
-      price: data[0].price,
-      imageUrl: data[0].imageUrls[0],
-      size: AddedProduct?.size || ''
-    })
-  }
-
-  if (AddedProduct && product) {
+  if (AddedProduct) {
     return (
-      <div className='absolute right-8 top-14 flex w-fit flex-col items-start justify-center gap-6 rounded-lg bg-white p-6'>
+      <div className='absolute right-0 top-14 flex w-full flex-col items-start justify-center gap-6 rounded-lg bg-white p-6 shadow-md md:right-8 md:w-[400px]'>
         <div className='flex w-full items-start justify-between'>
           <div className='flex items-center gap-3'>
             <div className='flex h-6 w-6 items-center justify-center rounded-full bg-green-700'>
@@ -48,22 +28,20 @@ export default function AddedProductToCart() {
 
         <div className='flex items-start gap-3'>
           <Image
-            src={product.imageUrl}
-            alt='Product image'
+            src={AddedProduct.images[0].url}
+            alt={AddedProduct.title}
             width={100}
             height={100}
             className='aspect-square w-24 rounded-md'
           />
           <div className='flex flex-col'>
             <p className='font-[family-name:var(--font-helvetica-now-text)] font-semibold'>
-              {product.name}
+              {AddedProduct.title}
             </p>
-            <p className='text-gray-500'>
-              {capitalizeFirstLetter(product.category)}
-            </p>
-            <p className='text-gray-500'>Size {product.size}</p>
+            <p className='text-gray-500'>{AddedProduct.category.label}</p>
+            <p className='text-gray-500'>Size {AddedProduct.size.label}</p>
             <p className='font-[family-name:var(--font-helvetica-now-text)] font-semibold'>
-              {formatToRupiah(product.price)}
+              {formatToRupiah(AddedProduct.price)}
             </p>
           </div>
         </div>

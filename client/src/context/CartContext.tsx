@@ -8,44 +8,45 @@ import {
   useEffect,
   useState
 } from 'react'
-import { getLocalStorage, setLocalStorage } from '@/hooks/local-storage'
+
 import { cartKey } from '@/lib/constants/cart'
 import {
-  IAddedProduct,
   ICart,
   ICartContextErrors,
   ICartProductCard,
-  IProductJson
-} from '@/lib/types/types'
-import { fetchCartProduct } from '@/lib/api/services'
+  IUpdateCart,
+  IUpdateCartCount
+} from '@/lib/types/carts'
+import { ISize } from '@/lib/types/products'
+import { fetchGetCartProducts } from '@/lib/apis/products'
+import { getLocalStorage, setLocalStorage } from '@/hooks/local-storage'
 
 interface ICartContext {
   cart: ICart[]
-  addToCart: ({ id, size }: { id: string; size: number }) => void
-  selectedSize: string
-  setSelectedSize: Dispatch<SetStateAction<string>>
+  addToCart: ({ id, size }: IUpdateCart) => void
+  selectedSize: ISize | null
+  setSelectedSize: Dispatch<SetStateAction<ISize | null>>
   errors: ICartContextErrors | null
   setErrors: Dispatch<SetStateAction<ICartContextErrors | null>>
-  AddedProduct: IAddedProduct | null
-  setAddedProduct: Dispatch<SetStateAction<IAddedProduct | null>>
-  cartProducts: ICartProductCard[] | undefined
-  setCartProducts: Dispatch<SetStateAction<ICartProductCard[] | undefined>>
+  AddedProduct: IUpdateCart | null
+  setAddedProduct: Dispatch<SetStateAction<IUpdateCart | null>>
+  cartProducts: ICartProductCard[]
+  setCartProducts: Dispatch<SetStateAction<ICartProductCard[]>>
   isLoading: boolean
   setIsLoading: Dispatch<SetStateAction<boolean>>
-  increaseCount: ({ id, size }: { id: string; size: number }) => void
-  decreaseCount: ({ id, size }: { id: string; size: number }) => void
+  increaseCount: ({ id, size }: IUpdateCartCount) => void
+  decreaseCount: ({ id, size }: IUpdateCartCount) => void
+  getCartProducts: () => void
 }
 
 const CartContext = createContext<ICartContext | undefined>(undefined)
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<ICart[]>([])
-  const [cartProducts, setCartProducts] = useState<
-    ICartProductCard[] | undefined
-  >(undefined)
+  const [cartProducts, setCartProducts] = useState<ICartProductCard[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [selectedSize, setSelectedSize] = useState<string>('')
-  const [AddedProduct, setAddedProduct] = useState<IAddedProduct | null>(null)
+  const [selectedSize, setSelectedSize] = useState<ISize | null>(null)
+  const [AddedProduct, setAddedProduct] = useState<IUpdateCart | null>(null)
   const [errors, setErrors] = useState<ICartContextErrors | null>(null)
 
   useEffect(() => {
@@ -55,21 +56,16 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
       setCart(cartFromLocalStorage ? cartFromLocalStorage : [])
     }
 
-    setSelectedSize('')
+    setSelectedSize(null)
   }, [])
 
-  useEffect(() => {
-    setLocalStorage(cartKey, cart)
-    updateCartProducts()
-  }, [cart])
-
-  const addToCart = ({ id, size }: { id: string; size: number }) => {
-    if (size) {
+  const addToCart = (product: IUpdateCart) => {
+    if (product.size) {
       setErrors({ size: '' })
 
       setCart((prevState) => {
         const existingIndex = prevState.findIndex(
-          (item) => item.id === id && item.size === size
+          (item) => item.id === product.id && item.size.id === product.size.id
         )
 
         if (existingIndex !== -1) {
@@ -79,10 +75,10 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
           return updatedCart
         }
 
-        return [...prevState, { id, size, count: 1 }]
+        return [...prevState, { id: product.id, size: product.size, count: 1 }]
       })
 
-      setAddedProduct({ id: id, size: size.toString() })
+      setAddedProduct(product)
 
       setTimeout(() => {
         setAddedProduct(null)
@@ -92,35 +88,51 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  const updateCartProducts = async () => {
-    setIsLoading(true)
+  const getCartProducts = async () => {
+    try {
+      setIsLoading(true)
 
-    const cartProductIds = cart?.map((data) => data.id)
+      const cartProductIds = cart.map((item) => item.id)
 
-    const data: IProductJson[] = await fetchCartProduct(cartProductIds)
+      if (cartProductIds.length > 0) {
+        const response = await fetchGetCartProducts(cartProductIds)
+        const data = response.data
 
-    const mergedData: ICartProductCard[] | undefined = cart?.map((cart) => {
-      const product = data.find((item) => item.id === cart.id)
+        const cartData: ICartProductCard[] = cart
+          .map((cart) => {
+            const product = data.find((item) => item.id === cart.id)
 
-      return {
-        size: cart.size,
-        count: cart.count,
-        name: product?.name || '',
-        id: product?.id || '',
-        category: product?.category || '',
-        price: product?.price || 0,
-        imageUrl: product?.imageUrls[0] || ''
+            return product
+              ? {
+                  id: product?.id,
+                  slug: product?.slug,
+                  title: product?.title,
+                  category: product?.category,
+                  createdAt: product?.createdAt,
+                  image: product?.image,
+                  price: product?.price,
+                  size: cart.size,
+                  count: cart.count
+                }
+              : null
+          })
+          .filter((item) => item !== null)
+
+        setCartProducts(cartData)
+      } else {
+        setCartProducts([])
       }
-    })
-
-    setCartProducts(mergedData)
-    setIsLoading(false)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const increaseCount = ({ id, size }: { id: string; size: number }) => {
+  const increaseCount = ({ id, size }: IUpdateCartCount) => {
     setCart((prevState) => {
       const existingIndex = prevState.findIndex(
-        (item) => item.id === id && item.size === size
+        (item) => item.id === id && item.size.id === size.id
       )
 
       if (existingIndex !== -1) {
@@ -134,10 +146,10 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const decreaseCount = ({ id, size }: { id: string; size: number }) => {
+  const decreaseCount = ({ id, size }: IUpdateCartCount) => {
     setCart((prevState) => {
       const existingIndex = prevState.findIndex(
-        (item) => item.id === id && item.size === size
+        (item) => item.id === id && item.size.id === size.id
       )
 
       if (existingIndex !== -1) {
@@ -156,6 +168,11 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
+  useEffect(() => {
+    setLocalStorage(cartKey, cart)
+    getCartProducts()
+  }, [cart])
+
   return (
     <CartContext.Provider
       value={{
@@ -172,7 +189,8 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         isLoading,
         setIsLoading,
         increaseCount,
-        decreaseCount
+        decreaseCount,
+        getCartProducts
       }}
     >
       {children}

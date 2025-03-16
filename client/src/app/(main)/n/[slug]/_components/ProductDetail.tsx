@@ -4,17 +4,13 @@ import Heading from '@/components/elements/Heading'
 import Size from './Size'
 import ProductActions from './ProductActions'
 
-interface ProductDetailProps extends IProductDetail {
+type ProductDetailProps = {
+  product: IProductDetail
   className?: string
 }
 
 export default function ProductDetail({
-  id,
-  title,
-  description,
-  category,
-  sizes,
-  price,
+  product,
   className
 }: ProductDetailProps) {
   return (
@@ -27,21 +23,21 @@ export default function ProductDetail({
       <div className='flex flex-col gap-3'>
         <div className='flex flex-col'>
           <Heading level={1} className='text-xl'>
-            {title}
+            {product.title}
           </Heading>
           <p className='font-[family-name:var(--font-helvetica-now-text)] text-gray-500'>
-            {category.label}
+            {product.category.label}
           </p>
         </div>
-        <p className='font-semibold'>{formatToRupiah(price)}</p>
+        <p className='font-semibold'>{formatToRupiah(product.price)}</p>
       </div>
 
-      <Size sizes={sizes} />
+      <Size sizes={product.sizes} />
 
-      <ProductActions productId={id.toString()} />
+      <ProductActions product={product} />
 
       <p className='pt-5 font-[family-name:var(--font-helvetica-now-text)]'>
-        {description}
+        {product.description}
       </p>
     </div>
   )

@@ -10,5 +10,6 @@ router.get(
   '/products/featured/latest-and-greatest',
   ProductsController.getLatestAndGreatest
 )
+router.get('/cart-products', ProductsController.getCartProducts)
 
 export default router

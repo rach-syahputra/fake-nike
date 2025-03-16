@@ -44,3 +44,15 @@ export const fetchGetProductDetail = async (
 
   return await response.json()
 }
+
+export const fetchGetCartProducts = async (
+  productStyleIds: number[]
+): Promise<IProductCardJson> => {
+  const params = new URLSearchParams()
+
+  if (productStyleIds.length) params.append('ids', productStyleIds.join(','))
+
+  const response = await fetch(`${BASE_URL}/cart-products?${params.toString()}`)
+
+  return await response.json()
+}

@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { cn } from '@/lib/utils'
 import { ISize } from '@/lib/types/products'
 import { useCartContext } from '@/context/CartContext'
@@ -12,9 +14,13 @@ type SizeProps = {
 export default function Size({ sizes }: SizeProps) {
   const { selectedSize, setSelectedSize, errors, setErrors } = useCartContext()
 
-  const handleSelectSize = (size: string) => {
+  useEffect(() => {
+    setSelectedSize(null)
+  }, [])
+
+  const handleSelectSize = (size: ISize) => {
     setErrors({ size: '' })
-    setSelectedSize(selectedSize === size ? '' : size)
+    setSelectedSize(selectedSize?.id === size.id ? null : size)
   }
 
   return (
@@ -35,11 +41,11 @@ export default function Size({ sizes }: SizeProps) {
         {sizes.map((size, index) => (
           <div
             key={index}
-            onClick={() => handleSelectSize(size.label)}
+            onClick={() => handleSelectSize(size)}
             className={cn(
               'flex h-11 cursor-pointer select-none items-center justify-center rounded-md border',
               {
-                'border-black': selectedSize === size.label
+                'border-black': selectedSize?.id === size.id
               }
             )}
           >
