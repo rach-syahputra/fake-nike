@@ -10,17 +10,16 @@ import {
   CTASectionDescription,
   CTASectionHeader,
   CTASectionMedia,
-  CTASectionTag,
   CTASectionTitle
 } from '@/components/sections/CTASection'
 
-export default function MadEnergyPack() {
+export default function RunningHero() {
   const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
     updateParams({
-      q: '',
-      categories: [5]
+      q: 'vomero',
+      categories: [3, 4]
     })
   }
 
@@ -28,19 +27,18 @@ export default function MadEnergyPack() {
     <CTASection>
       <CTASectionMedia>
         <Image
-          src='/men/men-mad-energy-pack.jpg'
-          alt='Mad energy pack image'
+          src='/running/running-banner.png'
+          alt='Running banner'
           width={2880}
           height={1000}
-          className='h-auto w-full'
+          className='h-[600px] w-full object-cover'
         />
       </CTASectionMedia>
       <CTASectionContent>
         <CTASectionHeader>
-          <CTASectionTag>Nike Football</CTASectionTag>
-          <CTASectionTitle>MAD ENERGY PACK</CTASectionTitle>
+          <CTASectionTitle>VOMERO 18</CTASectionTitle>
           <CTASectionDescription>
-            The Energy to Reach New Levels
+            Max cushioning for the ultimate ride.
           </CTASectionDescription>
         </CTASectionHeader>
         <CTASectionButton onClick={() => handleCTAClick()}>
