@@ -8,6 +8,7 @@ import express, {
 import cors from 'cors'
 
 import { PORT } from './config'
+import UsersRoute from './features/users/routes'
 import ProductsRoute from './features/products/routes'
 
 class App {
@@ -25,6 +26,7 @@ class App {
   }
 
   private routes() {
+    this.app.use('/api', UsersRoute)
     this.app.use('/api', ProductsRoute)
   }
 
