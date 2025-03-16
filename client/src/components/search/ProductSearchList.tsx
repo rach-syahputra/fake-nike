@@ -24,7 +24,7 @@ export default function ProductSearchList({
       limit: 3
     })
 
-    setProducts(response.data)
+    setProducts(response.data.products)
   }
 
   return (

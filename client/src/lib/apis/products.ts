@@ -31,6 +31,7 @@ export const fetchGetProducts = async (
     params.append('sizes', filter.sizes.join(','))
   }
   if (filter?.limit) params.append('limit', filter.limit.toString())
+  if (filter?.cursor) params.append('cursor', filter.cursor.toString())
 
   const response = await fetch(`${BASE_URL}/products?${params.toString()}`)
 

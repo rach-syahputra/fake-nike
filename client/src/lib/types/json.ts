@@ -5,3 +5,8 @@ export interface Json {
     message: string
   }
 }
+
+export interface Pagination {
+  total: number
+  cursor: number
+}

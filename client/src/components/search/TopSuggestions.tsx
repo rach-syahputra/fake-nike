@@ -22,9 +22,9 @@ export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
     })
 
     setTopSuggestions(
-      response.data.map((item) => ({
-        slug: item.slug,
-        title: item.title
+      response.data.products.map((product) => ({
+        slug: product.slug,
+        title: product.title
       }))
     )
   }
@@ -39,16 +39,16 @@ export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
   }, [searchBarQuery])
 
   return (
-    <div className='col-span-2 flex h-full flex-col items-start gap-4 place-self-start px-3'>
+    <div className='col-span-2 flex h-full flex-col items-start gap-4 place-self-start px-0'>
       <p className='font-[family-name:var(--font-helvetica-now-text)] text-sm text-gray-500'>
         Top Suggestions
       </p>
       <ul className='flex h-full flex-col'>
         {topSuggestions.map((topSuggestion, index) => (
-          <li key={index} className='rounded-lg py-2'>
+          <li key={index} className='rounded-lg'>
             <button
               onClick={() => handleTopSuggestionClick(topSuggestion.slug)}
-              className='line-clamp-2 py-2 font-[family-name:var(--font-helvetica-now-text-medium)] text-lg hover:text-gray-500'
+              className='line-clamp-2 py-1 text-left font-[family-name:var(--font-helvetica-now-text-medium)] hover:text-gray-500'
             >
               {topSuggestion.title.toLocaleLowerCase()}
             </button>

@@ -17,6 +17,8 @@ export async function generateMetadata({
     limit: 5
   })
 
+  const products = response.data.products
+
   return {
     title: 'Nike Shoes. Nike ID',
     description:
@@ -24,10 +26,12 @@ export async function generateMetadata({
     openGraph: {
       title: `Search Results for ${query}`,
       description: `Discover products matching "${query}" on our store.`,
-      images: response.data.map((product) => ({
-        url: product.image,
-        alt: product.title
-      }))
+      images: products
+        ? products.map((product) => ({
+            url: product.image,
+            alt: product.title
+          }))
+        : undefined
     }
   }
 }

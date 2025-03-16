@@ -1,4 +1,4 @@
-import { Json } from './json'
+import { Json, Pagination } from './json'
 
 export type OrderType = 'asc' | 'desc'
 export type SortByType = 'date' | 'price'
@@ -36,7 +36,10 @@ export interface IProductDetail {
 }
 
 export interface IProductCardJson extends Json {
-  data: IProductCard[]
+  data: {
+    products: IProductCard[]
+    pagination: Pagination
+  }
 }
 
 export interface ProductFilter {
@@ -45,6 +48,7 @@ export interface ProductFilter {
   categories?: number[]
   sizes?: number[]
   limit?: number
+  cursor?: number
 }
 
 export interface IProductDetailJson extends Json {

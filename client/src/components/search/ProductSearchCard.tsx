@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
-import { capitalizeFirstLetter, cn, formatToRupiah } from '@/lib/utils'
+import { cn, formatToRupiah } from '@/lib/utils'
 import { IProductCard } from '@/lib/types/products'
 import { useSearchContext } from '@/context/SearchContext'
 import Heading from '../elements/Heading'
@@ -46,10 +46,12 @@ export default function ProductSearchCard({
           {title}
         </Heading>
         <p className='text-left font-[family-name:var(--font-helvetica-now-text)] text-sm text-gray-500 lg:text-base'>
-          {capitalizeFirstLetter(category)}
+          {category}
         </p>
       </div>
-      <p className='text-sm lg:text-base'>{formatToRupiah(price, ',')}</p>
+      <p className='text-left text-sm lg:text-base'>
+        {formatToRupiah(price, ',')}
+      </p>
     </button>
   )
 }

@@ -39,8 +39,8 @@ export default function SearchBar() {
 
   if (onSearch)
     return (
-      <ModalContainer>
-        <div className='sticky top-0 flex w-full flex-col items-center justify-center border bg-white pb-20 pt-2'>
+      <ModalContainer className='z-50'>
+        <div className='top-0flex sticky w-full flex-col items-center justify-center border bg-white pb-20 pt-2'>
           <Container className='flex flex-col gap-6'>
             <div className='flex w-full items-center justify-between lg:grid lg:grid-cols-10'>
               <Logo className='col-span-2 hidden lg:block' />
