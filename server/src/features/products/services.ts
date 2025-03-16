@@ -27,6 +27,10 @@ class ProductsService {
   async getProductDetail(productStyleSlug: string) {
     return await ProductsRepository.getDetailProduct(productStyleSlug)
   }
+
+  async getCartProducts(productStyleIds: number[]) {
+    return await ProductsRepository.getCartProducts(productStyleIds)
+  }
 }
 
 export default new ProductsService()

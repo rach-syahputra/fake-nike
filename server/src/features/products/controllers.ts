@@ -65,6 +65,31 @@ class ProductsController {
       console.log(error)
     }
   }
+
+  async getCartProducts(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { ids } = req.query
+
+      if (!ids) throw new Error('Product style id(s) is required')
+
+      const data = await ProductsService.getCartProducts(
+        ids
+          ? ids
+              .toString()
+              .split(',')
+              .map((id) => Number(id))
+          : []
+      )
+
+      res.status(200).send({
+        success: true,
+        message: 'Cart products retrieved successfully',
+        data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export default new ProductsController()
