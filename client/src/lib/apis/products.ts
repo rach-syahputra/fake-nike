@@ -1,4 +1,4 @@
-import { BASE_URL } from '../constants/api'
+import { API_BASE_URL } from '../constants/api'
 import {
   IProductCardJson,
   IProductDetailJson,
@@ -8,7 +8,7 @@ import {
 export const fetchTheLatestAndGreatest =
   async (): Promise<IProductCardJson> => {
     const response = await fetch(
-      `${BASE_URL}/products/featured/latest-and-greatest`
+      `${API_BASE_URL}/products/featured/latest-and-greatest`
     )
 
     return await response.json()
@@ -33,7 +33,7 @@ export const fetchGetProducts = async (
   if (filter?.limit) params.append('limit', filter.limit.toString())
   if (filter?.cursor) params.append('cursor', filter.cursor.toString())
 
-  const response = await fetch(`${BASE_URL}/products?${params.toString()}`)
+  const response = await fetch(`${API_BASE_URL}/products?${params.toString()}`)
 
   return await response.json()
 }
@@ -41,7 +41,7 @@ export const fetchGetProducts = async (
 export const fetchGetProductDetail = async (
   slug: string
 ): Promise<IProductDetailJson> => {
-  const response = await fetch(`${BASE_URL}/products/${slug}`)
+  const response = await fetch(`${API_BASE_URL}/products/${slug}`)
 
   return await response.json()
 }
@@ -53,7 +53,9 @@ export const fetchGetCartProducts = async (
 
   if (productStyleIds.length) params.append('ids', productStyleIds.join(','))
 
-  const response = await fetch(`${BASE_URL}/cart-products?${params.toString()}`)
+  const response = await fetch(
+    `${API_BASE_URL}/cart-products?${params.toString()}`
+  )
 
   return await response.json()
 }
