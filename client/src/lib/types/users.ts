@@ -29,7 +29,8 @@ export interface ILoginJson extends Json {
 }
 
 export interface IUserToken {
-  id: number
+  id: number | string
   name: string
   email: string
+  image: string | null
 }

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+
 import { cn } from '@/lib/utils'
 import Button from '../elements/Button'
 import Avatar from './Avatar'
@@ -14,7 +15,10 @@ export default function Auth({ className }: UserProps) {
   const { data: session } = useSession()
 
   return session?.user ? (
-    <Avatar image={session.user.image || ''} className='max-md:hidden' />
+    <Avatar
+      image={session.user.image || '/logo.svg'}
+      className='max-md:hidden'
+    />
   ) : (
     <Button variant='secondary' className='hidden w-fit px-0 md:block'>
       <Link
