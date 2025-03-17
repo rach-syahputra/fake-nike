@@ -7,7 +7,7 @@ import express, {
 } from 'express'
 import cors from 'cors'
 
-import { PORT } from './config'
+import { corsOptions, PORT } from './config'
 import UsersRoute from './features/users/routes'
 import ProductsRoute from './features/products/routes'
 
@@ -21,7 +21,7 @@ class App {
   }
 
   private configure() {
-    this.app.use(cors())
+    this.app.use(cors(corsOptions))
     this.app.use(express.json())
   }
 
