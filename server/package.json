@@ -2,11 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "description": "- postgresql",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
+    "start": "node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.ts",
     "format": "prettier --write .",
+    "postinstall": "prisma generate",
     "prisma:migrate": "dotenv -e .env.local -- npx prisma migrate dev",
     "prisma:pull": "dotenv -e .env.local -- npx prisma db pull"
   },
