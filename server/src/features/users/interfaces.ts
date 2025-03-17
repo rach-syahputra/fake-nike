@@ -1,6 +1,7 @@
 export interface RegisterRequest {
   name: string
   email: string
+  image?: string
   password: string
 }
 

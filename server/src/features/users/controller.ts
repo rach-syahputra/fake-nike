@@ -5,11 +5,12 @@ import UserService from './services'
 class UserController {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
-      const { name, email, password } = req.body
+      const { name, email, image, password } = req.body
 
       const data = await UserService.register({
         name,
         email,
+        image,
         password
       })
 

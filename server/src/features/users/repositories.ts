@@ -2,11 +2,12 @@ import { prisma } from '../../utils/prisma'
 import { RegisterRequest } from './interfaces'
 
 class UserRepository {
-  async register({ name, email, password }: RegisterRequest) {
+  async register({ name, email, image, password }: RegisterRequest) {
     const user = await prisma.user.create({
       data: {
         name,
         email,
+        image,
         password
       }
     })
