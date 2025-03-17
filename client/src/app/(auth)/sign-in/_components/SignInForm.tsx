@@ -23,12 +23,17 @@ export default function SignInForm() {
     resolver: zodResolver(signInSchema)
   })
 
-  const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormFields> = async ({
+    email,
+    password
+  }) => {
     try {
-      const res = await handleCredentialsSignin(data)
+      const response = await handleCredentialsSignin({ email, password })
 
-      if (res?.error) {
-        setError('root', { message: res.error.message })
+      console.log(response)
+
+      if (response?.error) {
+        setError('root', { message: response.error.message })
       }
     } catch (error) {
       console.error(error)

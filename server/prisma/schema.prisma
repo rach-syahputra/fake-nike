@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  image     String?
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  label     String
+  createdAt DateTime  @default(now()) @map("created_at")
+  Product   Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  description String
+  categoryId  Int      @map("category_id")
+  price       Int
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  category     Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ProductStyle ProductStyle[]
+
+  @@map("products")
+}
+
+model Size {
+  id          Int           @id @default(autoincrement())
+  label       String
+  createdAt   DateTime      @default(now()) @map("created_at")
+  ProductSize ProductSize[]
+
+  @@map("sizes")
+}
+
+model ProductStyle {
+  id                Int      @id @default(autoincrement())
+  slug              String   @unique
+  productId         Int      @map("product_id")
+  displayedOnSearch Boolean  @default(true) @map("displayed_on_search")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  ProductImage ProductImage[]
+  product      Product        @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ProductSize  ProductSize[]
+
+  @@map("product_styles")
+}
+
+model ProductImage {
+  id             Int      @id @default(autoincrement())
+  productStyleId Int      @map("product_style_id")
+  url            String
+  position       Int
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  productStyle ProductStyle @relation(fields: [productStyleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("product_images")
+}
+
+model ProductSize {
+  productStyleId Int      @map("product_style_id")
+  sizeId         Int      @map("size_id")
+  stock          Int
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  productStyle ProductStyle @relation(fields: [productStyleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  size         Size         @relation(fields: [sizeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([productStyleId, sizeId])
+  @@map("product_sizes")
+}

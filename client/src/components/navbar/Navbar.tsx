@@ -14,15 +14,15 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger
 } from '@/components/ui/navigation-menu'
-import NavbarDropdownMenu from './NavbarDropdownMenu'
-import SearchInput from './SearchInput'
-import Cart from './Cart'
-import Auth from './Auth'
 import MobileMenu from './MobileMenu'
 import Logo from '../elements/Logo'
 import Container from '../layouts/Container'
 import AddedProductToCart from './AddedProductToCart'
 import ModalContainer from '../layouts/ModalContainer'
+import NavbarDropdownMenu from './NavbarDropdownMenu'
+import SearchInput from './SearchInput'
+import Cart from './Cart'
+import Auth from './Auth'
 
 export default function Navbar() {
   const { showNavbar, setShowNavbar, showNavbarMenu, setShowNavbarMenu } =
@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <ModalContainer
-      className={cn('invisible', {
+      className={cn('invisible z-40', {
         visible: showNavbarMenu
       })}
     >

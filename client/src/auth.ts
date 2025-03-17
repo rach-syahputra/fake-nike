@@ -1,8 +1,11 @@
-import NextAuth from 'next-auth'
+import NextAuth, { Session } from 'next-auth'
+import { JWT } from 'next-auth/jwt'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
-import { fetchUserByEmailAndPassword } from './lib/api/services'
-import { User } from './lib/types/types'
+import jwt from 'jsonwebtoken'
+
+import { fetchLogin } from './lib/apis/users'
+import { IUserToken } from './lib/types/users'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
@@ -15,36 +18,52 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
-        const user: User[] = await fetchUserByEmailAndPassword({
+        const user = await fetchLogin({
           email: credentials.email as string,
           password: credentials.password as string
         })
 
-        if (!user.length) return null
+        if (!user.success) return null
 
-        return user[0]
+        const decoded = jwt.decode(user.data.accessToken) as IUserToken
+
+        return {
+          user: {
+            accessToken: user.data.accessToken,
+            id: decoded.id as number,
+            email: decoded.email,
+            name: decoded.name,
+            image: decoded.image
+          }
+        }
       }
     }),
     Google
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
-        token.name = user.name
-        token.email = user.email
-        token.image = user.image
+    async jwt({ token, user, account, profile }) {
+      if (account && account.provider === 'google') {
+        token.user = {
+          id: account?.userId as string,
+          email: profile?.email as string,
+          name: profile?.name as string,
+          image: profile?.picture || null,
+          accessToken: account?.access_token as string,
+          provider: account?.provider || ''
+        }
+      } else if (user) {
+        token.user = {
+          ...user.user,
+          provider: account?.provider || ''
+        }
       }
 
       return token
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (token) {
-        session.user.id = token.id as string
-        session.user.email = token.email as string
-        session.user.image = token.image as string
-        session.user.name = token.name as string
+        session.user = token.user
       }
 
       return session

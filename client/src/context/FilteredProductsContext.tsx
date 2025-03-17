@@ -7,11 +7,14 @@ import {
   useContext,
   useState
 } from 'react'
-import { IProductCard } from '@/lib/types/types'
+
+import { IProductCard } from '@/lib/types/products'
 
 interface IFilteredProductsContext {
   products: IProductCard[]
   setProducts: Dispatch<SetStateAction<IProductCard[]>>
+  totalProducts: number
+  setTotalProducts: Dispatch<SetStateAction<number>>
 }
 
 const FilteredProductsContext = createContext<
@@ -24,9 +27,12 @@ const FilteredProductsProvider = ({
   children: React.ReactNode
 }) => {
   const [products, setProducts] = useState<IProductCard[]>([])
+  const [totalProducts, setTotalProducts] = useState<number>(0)
 
   return (
-    <FilteredProductsContext.Provider value={{ products, setProducts }}>
+    <FilteredProductsContext.Provider
+      value={{ products, setProducts, totalProducts, setTotalProducts }}
+    >
       {children}
     </FilteredProductsContext.Provider>
   )

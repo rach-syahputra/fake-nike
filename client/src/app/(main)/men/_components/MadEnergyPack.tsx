@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import { useFilterContext } from '@/context/FilterContext'
 import {
   CTASection,
@@ -11,13 +13,15 @@ import {
   CTASectionTag,
   CTASectionTitle
 } from '@/components/sections/CTASection'
-import Image from 'next/image'
 
 export default function MadEnergyPack() {
   const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
-    updateParams({ q: '', category: 'football' })
+    updateParams({
+      q: '',
+      categories: [5]
+    })
   }
 
   return (

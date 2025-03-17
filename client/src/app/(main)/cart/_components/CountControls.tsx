@@ -1,13 +1,15 @@
 'use client'
 
-import Icon from '@/components/elements/Icon'
-import { useCartContext } from '@/context/CartContext'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
+import { ISize } from '@/lib/types/products'
+import { useCartContext } from '@/context/CartContext'
+import Icon from '@/components/elements/Icon'
+
 type CountControlsType = {
-  id: string
-  size: number
+  id: number
+  size: ISize
   count: number
 }
 

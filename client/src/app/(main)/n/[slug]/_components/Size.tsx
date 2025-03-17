@@ -1,19 +1,26 @@
 'use client'
 
-import Heading from '@/components/elements/Heading'
-import { useCartContext } from '@/context/CartContext'
+import { useEffect } from 'react'
+
 import { cn } from '@/lib/utils'
+import { ISize } from '@/lib/types/products'
+import { useCartContext } from '@/context/CartContext'
+import Heading from '@/components/elements/Heading'
 
 type SizeProps = {
-  sizes: number[]
+  sizes: ISize[]
 }
 
 export default function Size({ sizes }: SizeProps) {
   const { selectedSize, setSelectedSize, errors, setErrors } = useCartContext()
 
-  const handleSelectSize = (size: string) => {
+  useEffect(() => {
+    setSelectedSize(null)
+  }, [])
+
+  const handleSelectSize = (size: ISize) => {
     setErrors({ size: '' })
-    setSelectedSize(selectedSize === size ? '' : size)
+    setSelectedSize(selectedSize?.id === size.id ? null : size)
   }
 
   return (
@@ -34,15 +41,15 @@ export default function Size({ sizes }: SizeProps) {
         {sizes.map((size, index) => (
           <div
             key={index}
-            onClick={() => handleSelectSize(size.toString())}
+            onClick={() => handleSelectSize(size)}
             className={cn(
               'flex h-11 cursor-pointer select-none items-center justify-center rounded-md border',
               {
-                'border-black': selectedSize === size.toString()
+                'border-black': selectedSize?.id === size.id
               }
             )}
           >
-            {size}
+            {size.label}
           </div>
         ))}
       </ul>

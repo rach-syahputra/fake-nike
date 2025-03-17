@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { IProductCard, IProductJson } from '@/lib/types/types'
-import { fetchFilteredProducts } from '@/lib/api/services'
+
+import { fetchGetProducts } from '@/lib/apis/products'
+import { IProductCard } from '@/lib/types/products'
 import ProductSearchCard from './ProductSearchCard'
 
 type ProductSearchListType = {
@@ -19,19 +20,11 @@ export default function ProductSearchList({
   }, [searchBarQuery])
 
   const getProducts = async () => {
-    const data: IProductJson[] = await fetchFilteredProducts(searchBarQuery, {
+    const response = await fetchGetProducts(searchBarQuery, {
       limit: 3
     })
 
-    setProducts(
-      data.map((product) => ({
-        name: product.name,
-        id: product.id,
-        category: product.category,
-        price: product.price,
-        imageUrl: product.imageUrls[0]
-      }))
-    )
+    setProducts(response.data.products)
   }
 
   return (

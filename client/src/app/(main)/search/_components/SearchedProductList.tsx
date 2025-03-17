@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
-import { fetchFilteredProducts } from '@/lib/api/services'
-import { IProductJson } from '@/lib/types/types'
+import { fetchGetProducts } from '@/lib/apis/products'
+import { useIsMobile } from '@/hooks/use-mobile'
 import { useFilterContext } from '@/context/FilterContext'
 import { useFilteredProductsContext } from '@/context/FilteredProductsContext'
 import Button from '@/components/elements/Button'
@@ -13,38 +13,71 @@ import SearchedProductCardSkeleton from './loading/SearchedProductCardSkeleton'
 import SearchProductCard from './SearchedProductCard'
 
 export default function SearchedProductList() {
-  const { state } = useFilterContext()
-  const { products, setProducts } = useFilteredProductsContext()
+  const { query } = useFilterContext()
+  const { products, setProducts, totalProducts, setTotalProducts } =
+    useFilteredProductsContext()
+  const isMobile = useIsMobile()
 
-  const [page, setPage] = useState<number>(1)
-  const [hasMore, setHasMore] = useState<boolean>(true)
+  const [hasMore, setHasMore] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  const getFilteredProducts = async () => {
+  const getProducts = async () => {
     setIsLoading(true)
 
     try {
-      const params: Record<string, string | string[]> = {}
+      const apiQuery: Record<string, string | number | number[]> = {}
+      const limit = isMobile ? 12 : 15
 
-      if (state.category) params.categories = state.category
-      if (state.order) params.order = state.order
-      if (state.sort) params.sort = state.sort
-      if (state.size) params.sizes = state.size
+      if (query.order) apiQuery.order = query.order
+      if (query.sortBy) apiQuery.sortBy = query.sortBy
+      if (query.categories) apiQuery.categories = query.categories
+      if (query.sizes) apiQuery.sizes = query.sizes
+      apiQuery.limit = limit
 
-      const res: IProductJson[] = await fetchFilteredProducts(state.q || '', {
-        ...params,
-        limit: 9,
-        page: page
+      const response = await fetchGetProducts(query.q || '', {
+        ...apiQuery
       })
 
-      const data = res.map((item) => ({
-        ...item,
-        imageUrl: item.imageUrls[0]
-      }))
+      if (response.success) {
+        const newProducts = response.data.products
+        const totalProducts = response.data.pagination.total
 
-      if (data.length < 9) setHasMore(false)
+        setProducts(newProducts)
+        setTotalProducts(totalProducts)
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
-      setProducts((prevState) => (page === 1 ? data : [...prevState, ...data]))
+  const loadMoreProducts = async () => {
+    setIsLoading(true)
+
+    try {
+      const apiQuery: Record<string, string | number | number[]> = {}
+      const limit = isMobile ? 12 : 15
+
+      if (query.order) apiQuery.order = query.order
+      if (query.sortBy) apiQuery.sortBy = query.sortBy
+      if (query.categories) apiQuery.categories = query.categories
+      if (query.sizes) apiQuery.sizes = query.sizes
+      if (products.length > 0)
+        apiQuery.cursor = products[products.length - 1].id
+      apiQuery.limit = limit
+
+      const response = await fetchGetProducts(query.q || '', {
+        ...apiQuery
+      })
+
+      if (response.success) {
+        const newProducts = response.data.products
+        const totalProducts = response.data.pagination.total
+
+        setProducts((prev) => [...prev, ...newProducts])
+        setTotalProducts(totalProducts)
+      }
     } catch (error) {
       console.error(error)
     } finally {
@@ -53,47 +86,43 @@ export default function SearchedProductList() {
   }
 
   useEffect(() => {
-    getFilteredProducts()
-  }, [page])
+    getProducts()
+  }, [query])
 
   useEffect(() => {
-    setHasMore(true)
-
-    if (page === 1) {
-      getFilteredProducts()
-    } else {
-      setPage(1)
-    }
-  }, [state])
+    setHasMore(products.length >= totalProducts ? false : true)
+  }, [products])
 
   return (
     <Container className='px-0 py-1 pb-6 md:px-0 lg:px-12'>
       <div className='grid grid-cols-2 gap-1.5 overflow-auto pb-8 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-6'>
-        {isLoading ? (
+        {products &&
+          products.length > 0 &&
+          products.map((product, index) => (
+            <SearchProductCard key={index} {...product} />
+          ))}
+
+        {isLoading && (
           <>
             <SearchedProductCardSkeleton />
             <SearchedProductCardSkeleton />
             <SearchedProductCardSkeleton />
             <SearchedProductCardSkeleton />
           </>
-        ) : products && products?.length === 0 ? (
-          <div className='col-span-3 flex w-full items-center justify-center'>
+        )}
+
+        {!isLoading && products.length === 0 && (
+          <div className='col-span-3 flex w-full items-center justify-center pt-16'>
             <Heading level={1}>
               Sorry, we couldn&rsquo;t find the products you&rsquo;re looking
               for
             </Heading>
           </div>
-        ) : (
-          products.map((product, index) => (
-            <SearchProductCard key={index} {...product} />
-          ))
         )}
       </div>
       {hasMore && (
         <div className='flex items-center justify-center'>
-          <Button onClick={() => setPage((prev) => prev + 1)} className=''>
-            Load more
-          </Button>
+          <Button onClick={loadMoreProducts}>Load more</Button>
         </div>
       )}
     </Container>

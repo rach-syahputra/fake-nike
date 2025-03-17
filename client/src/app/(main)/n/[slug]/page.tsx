@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import { IProductJson } from '@/lib/types/types'
-import { fetchProduct } from '@/lib/api/services'
+
+import { fetchGetProductDetail } from '@/lib/apis/products'
 import Container from '@/components/layouts/Container'
 import ProductDetail from './_components/ProductDetail'
 import ImageContainer from './_components/ImageContainer'
@@ -13,12 +13,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const slug = (await params).slug
 
-  const product: IProductJson = (await fetchProduct(slug))[0]
+  const response = await fetchGetProductDetail(slug)
+  const product = response.data
 
   return {
-    title: product ? `${product.name}. Nike ID` : 'Nike. Just Do It. Nike ID',
+    title: product ? `${product.title}. Nike ID` : 'Nike. Just Do It. Nike ID',
     description:
-      product?.description ||
+      product.description ||
       "Inspiring the world's athletes, Nike delivers innovative products, experiences and services"
   }
 }
@@ -29,14 +30,16 @@ export default async function ShoeDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const slug = (await params).slug
-  const product: IProductJson = (await fetchProduct(slug))[0]
+  const response = await fetchGetProductDetail(slug)
+  const product = response.data
+  const productImages = product?.images?.map((image) => image.url)
 
   return (
     <Container className='px-0 md:px-0 lg:px-12'>
       <div className='relative mx-auto grid min-h-screen items-start overflow-visible lg:grid-cols-12 lg:py-8 xl:max-w-[1350px]'>
-        <ImageCarouselContainer images={product.imageUrls} />
+        <ImageCarouselContainer images={productImages} />
         <ImageContainer
-          images={product.imageUrls}
+          images={productImages}
           className='lg:col-span-6 xl:col-start-2'
         />
         <ProductDetail

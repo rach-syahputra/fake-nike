@@ -15,7 +15,7 @@ export default function Total() {
   const getTotalPrice = () => {
     setTotal(
       cartProducts?.reduce(
-        (total, product) => total + product.price * product.count,
+        (acc, product) => acc + product.price * product.count,
         0
       ) || 0
     )

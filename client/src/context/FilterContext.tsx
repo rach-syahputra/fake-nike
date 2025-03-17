@@ -10,23 +10,22 @@ import {
 } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import { categoryData, sizeData, sortData } from '@/lib/constants/filter'
-import { orderOptions } from '@/lib/constants/products'
+import { OrderType, SortByType } from '@/lib/types/products'
 
-export type ParamsType = {
-  q?: string | null
-  category?: string | null
-  order?: string | null
-  sort?: string | null
-  size?: string | null
-}
+type UpdateParamsType = Partial<{
+  q: string | null
+  order: OrderType | null
+  sortBy: SortByType | null
+  categories: number[] | null
+  sizes: number[] | null
+}>
 
-type StateType = {
+export type QueryType = {
   q?: string | null
-  category?: string[] | null
-  order?: string | null
-  sort?: string | null
-  size?: string[] | null
+  order?: OrderType | null
+  sortBy?: SortByType | null
+  categories?: number[] | null
+  sizes?: number[] | null
 }
 
 interface IFilterContext {
@@ -34,8 +33,8 @@ interface IFilterContext {
   setOnSidebar: Dispatch<SetStateAction<boolean>>
   onMobileFilterModal: boolean
   setOnMobileFilterModal: Dispatch<SetStateAction<boolean>>
-  state: StateType
-  updateParams: (params: ParamsType, action?: 'add' | 'remove') => void
+  query: QueryType
+  updateParams: (newParams: UpdateParamsType) => void
 }
 
 const FilterContext = createContext<IFilterContext | undefined>(undefined)
@@ -45,39 +44,22 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
 
   const searchParams = useSearchParams()
   const queryParams = searchParams.get('q')
-  const sortParams = searchParams.get('sort')
-  const orderParams = searchParams.get('order')
-  const categoryParams = searchParams.getAll('category')
-  const sizeParams = searchParams.getAll('size')
-
-  // initialize state
-  const initialQuery = queryParams || ''
-
-  const initialOrder: string =
-    orderOptions.filter(
-      (orderOption) => orderOption.toLowerCase() === orderParams
-    )[0] || 'asc'
-
-  const initialSort: string = sortData.includes(sortParams || '')
-    ? sortParams || 'newest'
-    : 'newest'
-
-  const initialCategories: string[] = categoryParams.filter((category) =>
-    categoryData.includes(category)
-  )
-
-  const initialSizes: string[] = sizeParams.filter((size) =>
-    sizeData.includes(size)
-  )
+  const sortByParams = searchParams.get('sortBy') as SortByType
+  const orderParams = searchParams.get('order') as OrderType
+  const categoriesParams = searchParams.get('categories')
+  const sizesParams = searchParams.get('sizes')
 
   const [onSidebar, setOnSidebar] = useState<boolean>(true)
   const [onMobileFilterModal, setOnMobileFilterModal] = useState<boolean>(false)
-  const state: StateType = {
-    q: initialQuery,
-    category: initialCategories,
-    size: initialSizes,
-    order: initialOrder,
-    sort: initialSort
+
+  const query: QueryType = {
+    q: queryParams,
+    order: orderParams,
+    sortBy: sortByParams,
+    categories: categoriesParams
+      ? categoriesParams?.toString().split(',').map(Number)
+      : [],
+    sizes: sizesParams ? sizesParams?.toString().split(',').map(Number) : []
   }
 
   useEffect(() => {
@@ -93,30 +75,28 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [onMobileFilterModal])
 
-  const updateParams = (params: ParamsType, action?: 'add' | 'remove') => {
-    const updatedParams = new URLSearchParams(searchParams)
+  const updateParams = (newParams: UpdateParamsType) => {
+    const params = new URLSearchParams(searchParams)
 
-    Object.entries(params).forEach(([key, value]) => {
+    Object.entries(newParams).forEach(([key, value]) => {
       if (value === null) {
-        updatedParams.delete(key)
-      } else if (['category', 'size'].includes(key) && action) {
-        const values = updatedParams.getAll(key)
-        if (action === 'add' && !values.includes(value)) {
-          updatedParams.append(key, value)
-        }
-        if (action === 'remove') {
-          const filteredValues = values.filter((val) => val !== value)
-          updatedParams.delete(key)
-          filteredValues.forEach((val) => updatedParams.append(key, val))
+        params.delete(key) // Remove param
+      } else if (Array.isArray(value)) {
+        params.set(key, value.join(',')) // Update array param
+
+        if (!params.get(key)?.length) {
+          params.delete(key)
         }
       } else {
-        updatedParams.set(key, value)
+        params.set(key, value) // Update single param
+
+        if (!params.get(key) && key !== 'q') {
+          params.delete(key)
+        }
       }
     })
 
-    router.push(`/search?${updatedParams.toString().toLowerCase()}`, {
-      scroll: true
-    })
+    router.push(`/search?${params.toString()}`)
   }
 
   return (
@@ -126,7 +106,7 @@ const FilterProvider = ({ children }: { children: React.ReactNode }) => {
         setOnSidebar,
         onMobileFilterModal,
         setOnMobileFilterModal,
-        state,
+        query,
         updateParams
       }}
     >

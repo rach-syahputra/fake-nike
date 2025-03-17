@@ -1,11 +1,11 @@
-import { capitalizeFirstLetter, cn, formatToRupiah } from '@/lib/utils'
-import { IProduct } from '@/lib/types/types'
+import { cn, formatToRupiah } from '@/lib/utils'
+import { IProductDetail } from '@/lib/types/products'
 import Heading from '@/components/elements/Heading'
 import Size from './Size'
 import ProductActions from './ProductActions'
 
 type ProductDetailProps = {
-  product: IProduct
+  product: IProductDetail
   className?: string
 }
 
@@ -23,10 +23,10 @@ export default function ProductDetail({
       <div className='flex flex-col gap-3'>
         <div className='flex flex-col'>
           <Heading level={1} className='text-xl'>
-            {product.name}
+            {product.title}
           </Heading>
           <p className='font-[family-name:var(--font-helvetica-now-text)] text-gray-500'>
-            {capitalizeFirstLetter(product.category)}
+            {product.category.label}
           </p>
         </div>
         <p className='font-semibold'>{formatToRupiah(product.price)}</p>
@@ -34,7 +34,7 @@ export default function ProductDetail({
 
       <Size sizes={product.sizes} />
 
-      <ProductActions productId={product.id} />
+      <ProductActions product={product} />
 
       <p className='pt-5 font-[family-name:var(--font-helvetica-now-text)]'>
         {product.description}

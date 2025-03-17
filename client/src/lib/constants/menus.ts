@@ -15,241 +15,145 @@ export const MENU: Record<CategoryType, Record<CategoryMenuType, NavLink[]>> = {
   men: {
     shoes: [
       {
-        href: '#',
+        href: '/search?q=',
         label: 'All Shoes'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=1',
         label: 'Lifestyle'
       },
       {
-        href: '#',
+        href: '/search?q=jordan&categories=1,3,5,6,7,9,10',
         label: 'Jordan'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=3',
         label: 'Running'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=5',
         label: 'Football'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=6',
         label: 'Basketball'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=7',
         label: 'Gym and Training'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=9',
         label: 'Skateboarding'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=10',
         label: 'Sandals and Slides'
-      },
-      {
-        href: '#',
-        label: 'Nike By You'
       }
     ],
     clothing: [
       {
-        href: '#',
+        href: '/search?q=&categories=12,14,16',
         label: 'All Clothing'
       },
       {
-        href: '#',
-        label: 'Performance Essentials'
-      },
-      {
-        href: '#',
+        href: '/search?q=&categories=12',
         label: 'Tops and T-Shirts'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=14',
         label: 'Shorts'
-      },
-      {
-        href: '#',
-        label: 'Pants and Leggings'
       },
 
       {
-        href: '#',
+        href: '/search?q=&categories=16',
         label: 'Hoodies and Sweatshirts'
-      },
-      {
-        href: '#',
-        label: 'Jackets and Gilets'
-      },
-      {
-        href: '#',
-        label: 'Jerseys and Kits'
-      },
-      {
-        href: '#',
-        label: 'Jordan'
       }
     ],
     shopBySport: [
       {
-        href: '#',
+        href: '/running',
         label: 'Running'
       },
       {
-        href: '#',
+        href: '/basketball',
         label: 'Basketball'
       },
       {
-        href: '#',
+        href: 'football',
         label: 'Football'
-      },
-      {
-        href: '#',
-        label: 'Golf'
-      },
-      {
-        href: '#',
-        label: 'Tennis'
-      },
-      {
-        href: '#',
-        label: 'Gym and Training'
-      },
-      {
-        href: '#',
-        label: 'Yoga'
-      },
-      {
-        href: '#',
-        label: 'Skateboarding'
       }
     ]
   },
   women: {
     shoes: [
       {
-        href: '#',
+        href: '/search?q=&categories=2,4,5,6,8,9,11',
         label: 'All Shoes'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=2',
         label: 'Lifestyle'
       },
       {
-        href: '#',
+        href: '/search?q=jordan&categories=2,4,5,6,8,9,11',
         label: 'Jordan'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=4',
         label: 'Running'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=8',
         label: 'Gym and Training'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=5',
         label: 'Football'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=6',
         label: 'Basketball'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=11',
         label: 'Sandals and Slides'
-      },
-      {
-        href: '#',
-        label: 'Nike By You'
       }
     ],
     clothing: [
       {
-        href: '#',
+        href: '/search?q=&categories=11,13,15,17,18',
         label: 'All Clothing'
       },
       {
-        href: '#',
-        label: 'Performance Essentials'
-      },
-      {
-        href: '#',
+        href: '/search?q=&categories=13',
         label: 'Tops and T-Shirts'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=18',
         label: 'Sports Bras'
       },
       {
-        href: '#',
-        label: 'Pants and Leggings'
-      },
-      {
-        href: '#',
+        href: '/search?q=&categories=15',
         label: 'Shorts'
       },
       {
-        href: '#',
+        href: '/search?q=&categories=17',
         label: 'Hoodies and Sweatshirts'
-      },
-      {
-        href: '#',
-        label: 'Jackets and Gilets'
-      },
-      {
-        href: '#',
-        label: 'Skirts and Dresses'
-      },
-      {
-        href: '#',
-        label: 'Modest Wear'
-      },
-      {
-        href: '#',
-        label: 'Nike Maternity'
-      },
-      {
-        href: '#',
-        label: 'Plus Size'
       }
     ],
     shopBySport: [
       {
-        href: '#',
-        label: 'Yoga'
-      },
-      {
-        href: '#',
+        href: '/running',
         label: 'Running'
       },
       {
-        href: '#',
-        label: 'Gym and Training'
-      },
-      {
-        href: '#',
+        href: '/basketball',
         label: 'Basketball'
       },
       {
-        href: '#',
-        label: 'Tennis'
-      },
-      {
-        href: '#',
-        label: 'Golf'
-      },
-      {
-        href: '#',
+        href: '/football',
         label: 'Football'
-      },
-      {
-        href: '#',
-        label: 'Skateboarding'
       }
     ]
   }

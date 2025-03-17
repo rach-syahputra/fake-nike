@@ -3,13 +3,12 @@
 import { AuthError } from 'next-auth'
 import { signIn, signOut } from '@/auth'
 
+import { ILoginRequest } from '@/lib/types/users'
+
 export const handleCredentialsSignin = async ({
   email,
   password
-}: {
-  email: string
-  password: string
-}) => {
+}: ILoginRequest) => {
   try {
     await signIn('credentials', { email, password, redirectTo: '/' })
   } catch (error) {
