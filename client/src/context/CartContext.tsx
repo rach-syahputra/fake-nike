@@ -100,7 +100,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
         const cartData: ICartProductCard[] = cart
           .map((cart) => {
-            const product = data.find((item) => item.id === cart.id)
+            const product = data.products.find((item) => item.id === cart.id)
 
             return product
               ? {

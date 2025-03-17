@@ -15,7 +15,7 @@ export default function TheLatestAndGreatest() {
     try {
       const response = await fetchTheLatestAndGreatest()
 
-      setProducts(response.data)
+      setProducts(response.data.products)
     } catch (error) {
       console.error(error)
     }
