@@ -1,4 +1,4 @@
-import { BASE_URL } from '../constants/api'
+import { API_BASE_URL } from '../constants/api'
 import {
   ILoginJson,
   ILoginRequest,
@@ -11,7 +11,7 @@ export const fetchRegister = async ({
   email,
   password
 }: IRegisterRequest): Promise<IRegisterJson> => {
-  const response = await fetch(`${BASE_URL}/auth/new`, {
+  const response = await fetch(`${API_BASE_URL}/auth/new`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -30,7 +30,7 @@ export const fetchLogin = async ({
   email,
   password
 }: ILoginRequest): Promise<ILoginJson> => {
-  const response = await fetch(`${BASE_URL}/auth`, {
+  const response = await fetch(`${API_BASE_URL}/auth`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
