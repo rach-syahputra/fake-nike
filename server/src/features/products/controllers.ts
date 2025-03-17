@@ -14,7 +14,7 @@ class ProductsController {
         data
       })
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -48,7 +48,7 @@ class ProductsController {
         data
       })
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -63,7 +63,7 @@ class ProductsController {
         data
       })
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -88,7 +88,7 @@ class ProductsController {
         data
       })
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 }

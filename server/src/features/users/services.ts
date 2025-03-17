@@ -4,6 +4,7 @@ import { generateHashedPassword } from '../../utils/bcrypt'
 import { generateAccessToken } from '../../utils/jwt'
 import { LoginRequest, RegisterRequest } from './interfaces'
 import UserRepository from './repositories'
+import { ResponseError } from '../../utils/error'
 
 class UserService {
   async register({ name, email, image, password }: RegisterRequest) {
@@ -29,7 +30,7 @@ class UserService {
 
     const isPasswordMatch = await bcrypt.compare(password, user?.password || '')
 
-    if (!isPasswordMatch) throw new Error('Invalid credentials')
+    if (!isPasswordMatch) throw new ResponseError(400, 'Invalid credentials')
 
     const accessToken = await generateAccessToken({
       id: user?.id!,

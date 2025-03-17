@@ -204,21 +204,23 @@ class ProductsRepository {
       }
     })
 
-    return {
-      id: product?.id,
-      title: product?.product.title,
-      description: product?.product.description,
-      category: {
-        id: product?.product.category.id,
-        label: product?.product.category.label
-      },
-      images: product?.ProductImage,
-      sizes: product?.ProductSize.map((size) => ({
-        id: size.size.id,
-        label: size.size.label
-      })),
-      price: product?.product.price,
-      createdAt: product?.createdAt
+    if (product) {
+      return {
+        id: product?.id,
+        title: product?.product.title,
+        description: product?.product.description,
+        category: {
+          id: product?.product.category.id,
+          label: product?.product.category.label
+        },
+        images: product?.ProductImage,
+        sizes: product?.ProductSize.map((size) => ({
+          id: size.size.id,
+          label: size.size.label
+        })),
+        price: product?.product.price,
+        createdAt: product?.createdAt
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+import { ResponseError } from '../../utils/error'
 import { GetProductsRequest } from './interfaces'
 import ProductsRepository from './repositories'
 
@@ -19,7 +20,6 @@ class ProductsService {
       q,
       limit,
       cursor,
-
       order,
       sortBy,
       categories,
@@ -28,7 +28,11 @@ class ProductsService {
   }
 
   async getProductDetail(productStyleSlug: string) {
-    return await ProductsRepository.getDetailProduct(productStyleSlug)
+    const product = await ProductsRepository.getDetailProduct(productStyleSlug)
+
+    if (!product) throw new ResponseError(404, 'Product not found')
+
+    return product
   }
 
   async getCartProducts(productStyleIds: number[]) {
