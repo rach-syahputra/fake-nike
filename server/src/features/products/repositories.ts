@@ -257,15 +257,17 @@ class ProductsRepository {
       }
     })
 
-    return products.map((product) => ({
-      id: product.id,
-      slug: product.slug,
-      title: product.product.title,
-      category: product.product.category.label,
-      image: product.ProductImage[0].url,
-      price: product.product.price,
-      createdAt: product.createdAt
-    }))
+    return {
+      products: products.map((product) => ({
+        id: product.id,
+        slug: product.slug,
+        title: product.product.title,
+        category: product.product.category.label,
+        image: product.ProductImage[0].url,
+        price: product.product.price,
+        createdAt: product.createdAt
+      }))
+    }
   }
 }
 
