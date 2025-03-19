@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import { useFilterContext } from '@/context/FilterContext'
 import {
   CTASection,
@@ -8,37 +10,36 @@ import {
   CTASectionDescription,
   CTASectionHeader,
   CTASectionMedia,
+  CTASectionTag,
   CTASectionTitle
 } from '@/components/sections/CTASection'
 
-export default function HaveAHardYear() {
+export default function Hero() {
   const { updateParams } = useFilterContext()
 
   const handleCTAClick = () => {
     updateParams({
-      q: 'kobe'
+      q: 'air max dn8'
     })
   }
 
   return (
     <CTASection>
       <CTASectionMedia>
-        <video
-          preload='auto'
-          autoPlay
-          loop
-          muted
-          className='aspect-[3_/_4] h-auto w-full object-cover lg:aspect-auto'
-        >
-          <source src='/video/Nike Just Do It  - Landing Page.mov' />
-          Your browser does not support the video tag.
-        </video>
+        <Image
+          src='/home/hero.png'
+          alt='Hero banner'
+          width={720}
+          height={1280}
+          className='h-[600px] w-full object-cover'
+        />
       </CTASectionMedia>
       <CTASectionContent>
         <CTASectionHeader>
-          <CTASectionTitle>HAVE A HARD YEAR</CTASectionTitle>
+          <CTASectionTag>Just In</CTASectionTag>
+          <CTASectionTitle>AIR MAX DN8</CTASectionTitle>
           <CTASectionDescription>
-            This isn&rsquo;t the Year of Snake. This is the Year of the Mamba
+            Exploration 1 of 8: Kobbie Mainoo by Gabriel Moses
           </CTASectionDescription>
         </CTASectionHeader>
         <CTASectionButton onClick={() => handleCTAClick()}>
