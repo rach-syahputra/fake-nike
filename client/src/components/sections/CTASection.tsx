@@ -1,9 +1,14 @@
 'use client'
 
+import { createContext, useContext } from 'react'
+
+import { cn } from '@/lib/utils'
 import Button from '@/components/elements/Button'
 import Container from '@/components/layouts/Container'
 
 type CTASectionProps = {
+  className?: string
+  parallax?: boolean
   children: React.ReactNode
 }
 
@@ -12,6 +17,7 @@ type CTASectionMediaProps = {
 }
 
 type CTASectionContentProps = {
+  className?: string
   children: React.ReactNode
 }
 
@@ -36,17 +42,63 @@ type CTASectionButtonProps = {
   children: React.ReactNode
 }
 
-function CTASection({ children }: CTASectionProps) {
-  return <Container className='flex flex-col gap-8'>{children}</Container>
+interface ICTASectionContext {
+  parallax?: boolean
+}
+
+const CTASectionContext = createContext<ICTASectionContext | undefined>(
+  undefined
+)
+
+const useCTASectionContext = (): ICTASectionContext => {
+  const context = useContext(CTASectionContext)
+  if (context === undefined) {
+    throw new Error(
+      'useCTASectionContext must be used within a CTASectionProvider'
+    )
+  }
+  return context
+}
+
+function CTASection({ parallax, className, children }: CTASectionProps) {
+  return (
+    <CTASectionContext.Provider
+      value={{
+        parallax
+      }}
+    >
+      <Container
+        className={cn(
+          'flex select-none flex-col gap-8',
+          {
+            relative: parallax
+          },
+          className
+        )}
+      >
+        {children}
+      </Container>
+    </CTASectionContext.Provider>
+  )
 }
 
 function CTASectionMedia({ children }: CTASectionMediaProps) {
   return <>{children}</>
 }
 
-function CTASectionContent({ children }: CTASectionContentProps) {
+function CTASectionContent({ className, children }: CTASectionContentProps) {
+  const { parallax } = useCTASectionContext()
+
   return (
-    <div className='flex flex-col items-center justify-center gap-6'>
+    <div
+      className={cn(
+        'flex flex-col items-center justify-center gap-6',
+        {
+          'absolute bottom-24 w-full text-white': parallax
+        },
+        className
+      )}
+    >
       {children}
     </div>
   )
@@ -81,8 +133,14 @@ function CTASectionDescription({ children }: CTASectionDescriptionProps) {
 }
 
 function CTASectionButton({ onClick, children }: CTASectionButtonProps) {
+  const { parallax } = useCTASectionContext()
+
   return (
-    <Button onClick={onClick} className='px-4'>
+    <Button
+      onClick={onClick}
+      variant={`${parallax ? 'white' : 'default'}`}
+      className='px-4'
+    >
       {children}
     </Button>
   )
