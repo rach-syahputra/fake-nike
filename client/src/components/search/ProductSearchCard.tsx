@@ -24,7 +24,7 @@ export default function ProductSearchCard({
   const { setOnSearch } = useSearchContext()
 
   const handleProductSearchCardClick = (slug: string) => {
-    router.push(`/n/${slug}`)
+    router.push(`/n/${slug}/${productStyle.slug}`)
     setOnSearch(false)
   }
 
