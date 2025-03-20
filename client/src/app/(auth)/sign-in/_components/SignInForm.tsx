@@ -30,8 +30,6 @@ export default function SignInForm() {
     try {
       const response = await handleCredentialsSignin({ email, password })
 
-      console.log(response)
-
       if (response?.error) {
         setError('root', { message: response.error.message })
       }

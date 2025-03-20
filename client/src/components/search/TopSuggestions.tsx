@@ -23,14 +23,18 @@ export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
 
     setTopSuggestions(
       response.data.products.map((product) => ({
-        slug: product.slug,
+        productSlug: product.slug,
+        productStyleSlug: product.productStyle.slug,
         title: product.title
       }))
     )
   }
 
-  const handleTopSuggestionClick = (slug: string) => {
-    router.push(`/n/${slug}`)
+  const handleTopSuggestionClick = (
+    productSlug: string,
+    productStyleSlug: string
+  ) => {
+    router.push(`/n/${productSlug}/${productStyleSlug}`)
     setOnSearch(false)
   }
 
@@ -47,7 +51,12 @@ export default function TopSuggestions({ searchBarQuery }: TopSuggestionsType) {
         {topSuggestions.map((topSuggestion, index) => (
           <li key={index} className='rounded-lg'>
             <button
-              onClick={() => handleTopSuggestionClick(topSuggestion.slug)}
+              onClick={() =>
+                handleTopSuggestionClick(
+                  topSuggestion.productSlug,
+                  topSuggestion.productStyleSlug
+                )
+              }
               className='line-clamp-2 py-1 text-left font-[family-name:var(--font-helvetica-now-text-medium)] hover:text-gray-500'
             >
               {topSuggestion.title.toLocaleLowerCase()}

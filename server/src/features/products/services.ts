@@ -1,5 +1,9 @@
 import { ResponseError } from '../../utils/error'
-import { GetProductsRequest } from './interfaces'
+import {
+  CheckProductStyleOwnershipRequest,
+  GetProductDetailRequest,
+  GetProductsRequest
+} from './interfaces'
 import ProductsRepository from './repositories'
 
 class ProductsService {
@@ -27,16 +31,49 @@ class ProductsService {
     })
   }
 
-  async getProductDetail(productStyleSlug: string) {
-    const product = await ProductsRepository.getDetailProduct(productStyleSlug)
+  async getProductDetail({
+    productSlug,
+    productStyleSlug
+  }: GetProductDetailRequest) {
+    await this.checkProductStyleOwnership({ productSlug, productStyleSlug })
+
+    const product = await ProductsRepository.getProductDetail({
+      productSlug,
+      productStyleSlug
+    })
 
     if (!product) throw new ResponseError(404, 'Product not found')
 
     return product
   }
 
-  async getCartProducts(productStyleIds: number[]) {
-    return await ProductsRepository.getCartProducts(productStyleIds)
+  async getCartProducts(productStyleSlugs: string[]) {
+    return await ProductsRepository.getCartProducts(productStyleSlugs)
+  }
+
+  async getProductStylePreviews(productSlug: string) {
+    return await ProductsRepository.getProductStylePreviews(productSlug)
+  }
+
+  async checkProductStyleOwnership({
+    productSlug,
+    productStyleSlug
+  }: CheckProductStyleOwnershipRequest) {
+    const product = await ProductsRepository.checkProductStyleOwnership({
+      productSlug,
+      productStyleSlug
+    })
+
+    if (!product) {
+      throw new ResponseError(404, 'Product style not found')
+    }
+
+    if (product?.slug !== productSlug) {
+      throw new ResponseError(
+        400,
+        "Product style doesn't belong to the product"
+      )
+    }
   }
 }
 

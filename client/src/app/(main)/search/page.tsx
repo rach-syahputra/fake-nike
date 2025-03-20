@@ -28,7 +28,7 @@ export async function generateMetadata({
       description: `Discover products matching "${query}" on our store.`,
       images: products
         ? products.map((product) => ({
-            url: product.image,
+            url: product.productStyle.image,
             alt: product.title
           }))
         : undefined

@@ -6,15 +6,24 @@ import ProductDetail from './_components/ProductDetail'
 import ImageContainer from './_components/ImageContainer'
 import ImageCarouselContainer from './_components/mobile/ImageCarouselContainer'
 
+interface ProductDetailParams {
+  productSlug: string
+  productStyleSlug: string
+}
+
 export async function generateMetadata({
   params
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<ProductDetailParams>
 }): Promise<Metadata> {
-  const slug = (await params).slug
+  const productSlug = (await params).productSlug
+  const productStyleSlug = (await params).productStyleSlug
 
-  const response = await fetchGetProductDetail(slug)
-  const product = response.data
+  const response = await fetchGetProductDetail({
+    productSlug,
+    productStyleSlug
+  })
+  const product = response.data.product
 
   return {
     title: product ? `${product.title}. Nike ID` : 'Nike. Just Do It. Nike ID',
@@ -24,28 +33,31 @@ export async function generateMetadata({
   }
 }
 
-export default async function ShoeDetailPage({
+export default async function ProductDetailPage({
   params
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<ProductDetailParams>
 }) {
-  const slug = (await params).slug
-  const response = await fetchGetProductDetail(slug)
-  const product = response.data
-  const productImages = product?.images?.map((image) => image.url)
+  const productSlug = (await params).productSlug
+  const productStyleSlug = (await params).productStyleSlug
+  const response = await fetchGetProductDetail({
+    productSlug,
+    productStyleSlug
+  })
+  const product = response.data.product
+  const productStyleImages = product?.productStyle?.images.map(
+    (image) => image.url
+  )
 
   return (
     <Container className='px-0 md:px-0 lg:px-12'>
       <div className='relative mx-auto grid min-h-screen items-start overflow-visible lg:grid-cols-12 lg:py-8 xl:max-w-[1350px]'>
-        <ImageCarouselContainer images={productImages} />
+        <ImageCarouselContainer images={productStyleImages} />
         <ImageContainer
-          images={productImages}
+          images={productStyleImages}
           className='lg:col-span-6 xl:col-start-2'
         />
-        <ProductDetail
-          product={product}
-          className='lg:col-span-4 xl:col-start-8'
-        />
+        <ProductDetail {...product} className='lg:col-span-4 xl:col-start-8' />
       </div>
     </Container>
   )
