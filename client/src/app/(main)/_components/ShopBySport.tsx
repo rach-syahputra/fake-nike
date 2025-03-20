@@ -49,7 +49,7 @@ export default function ShopBySport() {
     }
   ]
   return (
-    <Container>
+    <Container className='px-4'>
       <ListCarousel title='Shop By Sport' className='pb-8'>
         {sports.map((sport, index) => (
           <Link
