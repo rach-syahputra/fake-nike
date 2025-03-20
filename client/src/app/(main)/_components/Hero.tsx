@@ -65,7 +65,7 @@ export default function Hero() {
               className='bg-gray-200 px-0 md:px-0 lg:px-0 xl:px-0'
             >
               <CTASectionMedia>
-                <div className='grid h-[700px] grid-cols-2'>
+                <div className='grid sm:h-auto sm:max-h-[700px] sm:grid-cols-2'>
                   {banner.assets.map((asset, index) =>
                     asset.format === 'image' ? (
                       <Image
@@ -74,7 +74,7 @@ export default function Hero() {
                         alt='Hero banner'
                         width={720}
                         height={1280}
-                        className='aspect-square h-auto w-full object-cover'
+                        className='aspect-[4_/_3] w-full object-cover'
                       />
                     ) : (
                       <video
@@ -83,7 +83,7 @@ export default function Hero() {
                         autoPlay
                         loop
                         muted
-                        className='aspect-square h-auto w-full object-cover'
+                        className='aspect-[4_/_3] w-full object-cover'
                       >
                         <source src={asset.url} />
                         Your browser does not support the video tag.
