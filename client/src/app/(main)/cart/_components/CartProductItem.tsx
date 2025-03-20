@@ -8,8 +8,7 @@ import Heading from '@/components/elements/Heading'
 import CountControls from './CountControls'
 
 export default function CartProductItem({
-  image,
-  id,
+  productStyle,
   size,
   count,
   title,
@@ -20,14 +19,18 @@ export default function CartProductItem({
     <div className='flex gap-3 border-b pb-10'>
       <div className='flex flex-col gap-3'>
         <Image
-          src={image || ''}
+          src={productStyle.image || ''}
           alt={title || 'Product image'}
           width={200}
           height={200}
           className='aspect-square w-[154px] bg-gray-200 sm:w-[164px]'
         />
 
-        <CountControls id={id} size={size} count={count || 0} />
+        <CountControls
+          slug={productStyle.slug}
+          size={size}
+          count={count || 0}
+        />
       </div>
       <div className='flex flex-1 flex-col'>
         <div className='flex flex-col items-start justify-between sm:flex-row'>

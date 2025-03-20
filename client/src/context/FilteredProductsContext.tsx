@@ -31,7 +31,12 @@ const FilteredProductsProvider = ({
 
   return (
     <FilteredProductsContext.Provider
-      value={{ products, setProducts, totalProducts, setTotalProducts }}
+      value={{
+        products,
+        setProducts,
+        totalProducts,
+        setTotalProducts
+      }}
     >
       {children}
     </FilteredProductsContext.Provider>

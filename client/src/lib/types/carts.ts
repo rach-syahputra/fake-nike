@@ -1,7 +1,7 @@
 import { IProductCard, IProductDetail, ISize } from './products'
 
 export interface ICart {
-  id: number
+  slug: string
   size: ISize
   count: number
 }
@@ -20,6 +20,6 @@ export interface IUpdateCart extends IProductDetail {
 }
 
 export interface IUpdateCartCount {
-  id: number
+  slug: string
   size: ISize
 }

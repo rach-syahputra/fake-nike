@@ -1,12 +1,17 @@
 import { prisma } from '../../utils/prisma'
-import { GetProductsRequest } from './interfaces'
+import {
+  CheckProductStyleOwnershipRequest,
+  GetProductDetailRequest,
+  GetProductsRequest
+} from './interfaces'
 
 class ProductsRepository {
   async getLatestAndGreatest() {
-    const products = await prisma.productStyle.findMany({
+    const productStyles = await prisma.productStyle.findMany({
       include: {
         product: {
           select: {
+            slug: true,
             price: true,
             title: true,
             category: {
@@ -38,14 +43,17 @@ class ProductsRepository {
     })
 
     return {
-      products: products.map((product) => ({
-        id: product.id,
-        slug: product.slug,
+      products: productStyles.map((product) => ({
+        slug: product.product.slug,
         title: product.product.title,
         category: product.product.category.label,
-        image: product.ProductImage[0].url,
         price: product.product.price,
-        createdAt: product.createdAt
+        productStyle: {
+          id: product.id,
+          slug: product.slug,
+          image: product.ProductImage[0].url,
+          createdAt: product.createdAt
+        }
       }))
     }
   }
@@ -91,11 +99,12 @@ class ProductsRepository {
 
     const cursorConfig = cursor ? { id: cursor } : undefined
 
-    const [products, totalProducts] = await prisma.$transaction([
+    const [productStyles, totalProducts] = await prisma.$transaction([
       prisma.productStyle.findMany({
         include: {
           product: {
             select: {
+              slug: true,
               price: true,
               title: true,
               category: {
@@ -147,99 +156,193 @@ class ProductsRepository {
     ])
 
     return {
-      products: products.map((product) => ({
-        id: product.id,
-        slug: product.slug,
+      products: productStyles.map((product) => ({
+        slug: product.product.slug,
         title: product.product.title,
         category: product.product.category.label,
-        image: product.ProductImage[0].url,
         price: product.product.price,
-        createdAt: product.createdAt
+        productStyle: {
+          id: product.id,
+          slug: product.slug,
+          image: product.ProductImage[0].url,
+          createdAt: product.createdAt
+        }
       })),
       pagination: {
         total: totalProducts || 0,
-        cursor: products.length > 0 ? products[products.length - 1].id : null
+        cursor:
+          productStyles.length > 0
+            ? productStyles[productStyles.length - 1].id
+            : null
       }
     }
   }
 
-  async getDetailProduct(productStyleSlug: string) {
-    const product = await prisma.productStyle.findUnique({
-      select: {
-        id: true,
-        createdAt: true,
-        product: {
-          select: {
-            id: true,
-            title: true,
-            description: true,
-            price: true,
-            category: {
-              select: {
-                id: true,
-                label: true
-              }
-            }
+  async getProductDetail({
+    productSlug,
+    productStyleSlug
+  }: GetProductDetailRequest) {
+    const [productStylePreviews, productStyle] = await prisma.$transaction([
+      prisma.productStyle.findMany({
+        where: {
+          product: {
+            slug: productSlug
           }
         },
-        ProductImage: {
-          select: {
-            url: true
-          },
-          orderBy: {
-            position: 'asc'
-          }
-        },
-        ProductSize: {
-          select: {
-            size: {
-              select: {
-                id: true,
-                label: true
-              }
-            }
+        select: {
+          slug: true,
+          ProductImage: {
+            select: {
+              url: true
+            },
+            orderBy: {
+              position: 'asc'
+            },
+            take: 1
           }
         }
-      },
-      where: {
-        slug: productStyleSlug
-      }
-    })
-
-    if (product) {
-      return {
-        id: product?.id,
-        title: product?.product.title,
-        description: product?.product.description,
-        category: {
-          id: product?.product.category.id,
-          label: product?.product.category.label
-        },
-        images: product?.ProductImage,
-        sizes: product?.ProductSize.map((size) => ({
-          id: size.size.id,
-          label: size.size.label
-        })),
-        price: product?.product.price,
-        createdAt: product?.createdAt
-      }
-    }
-  }
-
-  async getCartProducts(productStyleIds: number[]) {
-    const products = await prisma.productStyle.findMany({
-      include: {
-        product: {
-          select: {
-            price: true,
-            title: true,
-            category: {
-              select: {
-                label: true
+      }),
+      prisma.productStyle.findUnique({
+        select: {
+          slug: true,
+          createdAt: true,
+          product: {
+            select: {
+              id: true,
+              title: true,
+              description: true,
+              price: true,
+              category: {
+                select: {
+                  id: true,
+                  label: true
+                }
+              }
+            }
+          },
+          ProductImage: {
+            select: {
+              url: true
+            },
+            orderBy: {
+              position: 'asc'
+            }
+          },
+          ProductSize: {
+            select: {
+              size: {
+                select: {
+                  id: true,
+                  label: true
+                }
               }
             }
           }
         },
+        where: {
+          slug: productStyleSlug
+        }
+      })
+    ])
+
+    if (productStylePreviews && productStyle) {
+      return {
+        product: {
+          slug: productSlug,
+          title: productStyle.product.title,
+          description: productStyle.product.description,
+          category: {
+            id: productStyle.product.category.id,
+            label: productStyle.product.category.label
+          },
+          price: productStyle.product.price,
+          productStyle: {
+            slug: productStyle.slug,
+            images: productStyle.ProductImage,
+            sizes: productStyle.ProductSize.map((size) => ({
+              id: size.size.id,
+              label: size.size.label
+            })),
+
+            createdAt: productStyle.createdAt
+          },
+          productStylePreviews: productStylePreviews.map((product) => ({
+            slug: product.slug,
+            image: product.ProductImage[0].url
+          }))
+        }
+      }
+    }
+  }
+
+  async getCartProducts(productStyleSlugs: string[]) {
+    const [totalProducts, productStyles] = await prisma.$transaction([
+      prisma.productStyle.count({
+        where: {
+          slug: {
+            in: productStyleSlugs
+          }
+        }
+      }),
+      prisma.productStyle.findMany({
+        include: {
+          product: {
+            select: {
+              slug: true,
+              price: true,
+              title: true,
+              category: {
+                select: {
+                  label: true
+                }
+              }
+            }
+          },
+          ProductImage: {
+            select: {
+              url: true
+            },
+            orderBy: {
+              position: 'asc'
+            },
+            take: 1
+          }
+        },
+        where: {
+          slug: {
+            in: productStyleSlugs
+          }
+        }
+      })
+    ])
+
+    return {
+      products: productStyles.map((product) => ({
+        slug: product.product.slug,
+        title: product.product.title,
+        category: product.product.category.label,
+        price: product.product.price,
+        productStyle: {
+          id: product.id,
+          slug: product.slug,
+          image: product.ProductImage[0].url,
+          createdAt: product.createdAt
+        }
+      })),
+      pagination: {
+        total: totalProducts || 0,
+        cursor:
+          productStyles.length > 0
+            ? productStyles[productStyles.length - 1].id
+            : null
+      }
+    }
+  }
+
+  async getProductStylePreviews(productSlug: string) {
+    const products = await prisma.productStyle.findMany({
+      select: {
+        slug: true,
         ProductImage: {
           select: {
             url: true
@@ -251,23 +354,37 @@ class ProductsRepository {
         }
       },
       where: {
-        id: {
-          in: productStyleIds
+        product: {
+          slug: productSlug
         }
       }
     })
 
     return {
       products: products.map((product) => ({
-        id: product.id,
         slug: product.slug,
-        title: product.product.title,
-        category: product.product.category.label,
-        image: product.ProductImage[0].url,
-        price: product.product.price,
-        createdAt: product.createdAt
+        image: product.ProductImage[0].url
       }))
     }
+  }
+
+  async checkProductStyleOwnership({
+    productStyleSlug
+  }: CheckProductStyleOwnershipRequest) {
+    const product = await prisma.productStyle.findUnique({
+      select: {
+        product: {
+          select: {
+            slug: true
+          }
+        }
+      },
+      where: {
+        slug: productStyleSlug
+      }
+    })
+
+    return product?.product
   }
 }
 

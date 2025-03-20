@@ -28,7 +28,7 @@ export default function AddedProductToCart() {
 
         <div className='flex items-start gap-3'>
           <Image
-            src={AddedProduct.images[0].url}
+            src={AddedProduct.productStyle.images[0].url}
             alt={AddedProduct.title}
             width={100}
             height={100}

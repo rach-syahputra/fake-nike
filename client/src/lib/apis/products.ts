@@ -38,20 +38,27 @@ export const fetchGetProducts = async (
   return await response.json()
 }
 
-export const fetchGetProductDetail = async (
-  slug: string
-): Promise<IProductDetailJson> => {
-  const response = await fetch(`${API_BASE_URL}/products/${slug}`)
+export const fetchGetProductDetail = async ({
+  productSlug,
+  productStyleSlug
+}: {
+  productSlug: string
+  productStyleSlug: string
+}): Promise<IProductDetailJson> => {
+  const response = await fetch(
+    `${API_BASE_URL}/products/${productSlug}/product-styles/${productStyleSlug}`
+  )
 
   return await response.json()
 }
 
 export const fetchGetCartProducts = async (
-  productStyleIds: number[]
+  productStyleSlugs: string[]
 ): Promise<IProductCardJson> => {
   const params = new URLSearchParams()
 
-  if (productStyleIds.length) params.append('ids', productStyleIds.join(','))
+  if (productStyleSlugs.length)
+    params.append('slugs', productStyleSlugs.join(','))
 
   const response = await fetch(
     `${API_BASE_URL}/cart-products?${params.toString()}`

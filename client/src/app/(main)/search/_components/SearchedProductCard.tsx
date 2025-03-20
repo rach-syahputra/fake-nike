@@ -10,17 +10,20 @@ interface SearchedProductCardProps extends IProductCard {
 }
 
 export default function SearchProductCard({
-  title,
   slug,
+  title,
   category,
   price,
-  image,
+  productStyle,
   className
 }: SearchedProductCardProps) {
   return (
-    <Link href={`/n/${slug}`} className={cn('flex flex-col gap-2', className)}>
+    <Link
+      href={`/n/${slug}/${productStyle.slug}`}
+      className={cn('flex flex-col gap-2', className)}
+    >
       <Image
-        src={image}
+        src={productStyle.image}
         alt={title}
         width={500}
         height={500}

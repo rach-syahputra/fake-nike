@@ -17,7 +17,7 @@ export default function ProductSearchCard({
   slug,
   category,
   price,
-  image,
+  productStyle,
   className
 }: ProductSearchCardProps) {
   const router = useRouter()
@@ -34,7 +34,7 @@ export default function ProductSearchCard({
       className={cn('flex flex-col gap-2', className)}
     >
       <Image
-        src={image}
+        src={productStyle.image}
         alt={title}
         width={500}
         height={500}

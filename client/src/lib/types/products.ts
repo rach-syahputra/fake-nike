@@ -2,10 +2,12 @@ import { Json, Pagination } from './json'
 
 export type OrderType = 'asc' | 'desc'
 export type SortByType = 'date' | 'price'
+
 export interface ISize {
   id: number
   label: string
 }
+
 export interface ICategory {
   id: number
   label: string
@@ -15,24 +17,36 @@ export interface IImage {
 }
 
 export interface IProductCard {
-  id: number
   slug: string
   title: string
   category: string
-  image: string
   price: number
-  createdAt: string
+  productStyle: {
+    id: number
+    slug: string
+    image: string
+    createdAt: string
+  }
+}
+
+export interface IProductStylePreview {
+  slug: string
+  image: string
 }
 
 export interface IProductDetail {
-  id: number
+  slug: string
   title: string
+  price: number
   description: string
   category: ICategory
-  images: IImage[]
-  sizes: ISize[]
-  price: number
-  createdAt: string
+  productStyle: {
+    slug: string
+    createdAt: string
+    images: IImage[]
+    sizes: ISize[]
+  }
+  productStylePreviews: IProductStylePreview[]
 }
 
 export interface IProductCardJson extends Json {
@@ -52,10 +66,13 @@ export interface ProductFilter {
 }
 
 export interface IProductDetailJson extends Json {
-  data: IProductDetail
+  data: {
+    product: IProductDetail
+  }
 }
 
 export interface ITopSuggestions {
-  slug: string
+  productSlug: string
+  productStyleSlug: string
   title: string
 }

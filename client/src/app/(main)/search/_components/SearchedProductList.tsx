@@ -63,8 +63,8 @@ export default function SearchedProductList() {
       if (query.sortBy) apiQuery.sortBy = query.sortBy
       if (query.categories) apiQuery.categories = query.categories
       if (query.sizes) apiQuery.sizes = query.sizes
-      if (products.length > 0)
-        apiQuery.cursor = products[products.length - 1].id
+      if (products && products.length > 0)
+        apiQuery.cursor = products[products.length - 1].productStyle.id
       apiQuery.limit = limit
 
       const response = await fetchGetProducts(query.q || '', {
@@ -76,6 +76,7 @@ export default function SearchedProductList() {
         const totalProducts = response.data.pagination.total
 
         setProducts((prev) => [...prev, ...newProducts])
+
         setTotalProducts(totalProducts)
       }
     } catch (error) {

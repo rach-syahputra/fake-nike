@@ -41,7 +41,5 @@ export const fetchLogin = async ({
     })
   })
 
-  console.log('aaa')
-
   return await response.json()
 }

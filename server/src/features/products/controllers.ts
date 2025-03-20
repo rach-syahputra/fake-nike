@@ -54,8 +54,11 @@ class ProductsController {
 
   async getProductDetail(req: Request, res: Response, next: NextFunction) {
     try {
-      const { productStyleSlug } = req.params
-      const data = await ProductsService.getProductDetail(productStyleSlug)
+      const { productSlug, productStyleSlug } = req.params
+      const data = await ProductsService.getProductDetail({
+        productSlug,
+        productStyleSlug
+      })
 
       res.status(200).send({
         success: true,
@@ -69,22 +72,44 @@ class ProductsController {
 
   async getCartProducts(req: Request, res: Response, next: NextFunction) {
     try {
-      const { ids } = req.query
+      const { slugs } = req.query
 
-      if (!ids) throw new Error('Product style id(s) is required')
+      if (!slugs) throw new Error('Product style id(s) is required')
 
       const data = await ProductsService.getCartProducts(
-        ids
-          ? ids
+        slugs
+          ? slugs
               .toString()
               .split(',')
-              .map((id) => Number(id))
+              .map((slug) => slug)
           : []
       )
 
       res.status(200).send({
         success: true,
         message: 'Cart products retrieved successfully',
+        data
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getProductStylePreviews(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const { productSlug } = req.params
+
+      if (!productSlug) throw new Error('Product id is required')
+
+      const data = await ProductsService.getProductStylePreviews(productSlug)
+
+      res.status(200).send({
+        success: true,
+        message: 'Product styles previews retrieved successfully',
         data
       })
     } catch (error) {

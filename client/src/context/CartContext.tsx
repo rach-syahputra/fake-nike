@@ -23,7 +23,7 @@ import { getLocalStorage, setLocalStorage } from '@/hooks/local-storage'
 
 interface ICartContext {
   cart: ICart[]
-  addToCart: ({ id, size }: IUpdateCart) => void
+  addToCart: ({ slug, size }: IUpdateCart) => void
   selectedSize: ISize | null
   setSelectedSize: Dispatch<SetStateAction<ISize | null>>
   errors: ICartContextErrors | null
@@ -34,8 +34,8 @@ interface ICartContext {
   setCartProducts: Dispatch<SetStateAction<ICartProductCard[]>>
   isLoading: boolean
   setIsLoading: Dispatch<SetStateAction<boolean>>
-  increaseCount: ({ id, size }: IUpdateCartCount) => void
-  decreaseCount: ({ id, size }: IUpdateCartCount) => void
+  increaseCount: ({ slug, size }: IUpdateCartCount) => void
+  decreaseCount: ({ slug, size }: IUpdateCartCount) => void
   getCartProducts: () => void
 }
 
@@ -65,7 +65,9 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       setCart((prevState) => {
         const existingIndex = prevState.findIndex(
-          (item) => item.id === product.id && item.size.id === product.size.id
+          (item) =>
+            item.slug === product.productStyle.slug &&
+            item.size.id === product.size.id
         )
 
         if (existingIndex !== -1) {
@@ -75,7 +77,10 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
           return updatedCart
         }
 
-        return [...prevState, { id: product.id, size: product.size, count: 1 }]
+        return [
+          ...prevState,
+          { slug: product.productStyle.slug, size: product.size, count: 1 }
+        ]
       })
 
       setAddedProduct(product)
@@ -92,25 +97,31 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       setIsLoading(true)
 
-      const cartProductIds = cart.map((item) => item.id)
+      const cardProductSlugs = cart.map((item) => item.slug)
 
-      if (cartProductIds.length > 0) {
-        const response = await fetchGetCartProducts(cartProductIds)
+      if (cardProductSlugs.length > 0) {
+        const response = await fetchGetCartProducts(cardProductSlugs)
+
         const data = response.data
 
         const cartData: ICartProductCard[] = cart
           .map((cart) => {
-            const product = data.products.find((item) => item.id === cart.id)
+            const product = data.products.find(
+              (item) => item.productStyle.slug === cart.slug
+            )
 
             return product
               ? {
-                  id: product?.id,
-                  slug: product?.slug,
-                  title: product?.title,
-                  category: product?.category,
-                  createdAt: product?.createdAt,
-                  image: product?.image,
-                  price: product?.price,
+                  slug: product.slug,
+                  title: product.title,
+                  category: product.category,
+                  price: product.price,
+                  productStyle: {
+                    id: product.productStyle.id,
+                    slug: product.productStyle.slug,
+                    image: product.productStyle.image,
+                    createdAt: product.productStyle.createdAt
+                  },
                   size: cart.size,
                   count: cart.count
                 }
@@ -129,10 +140,10 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  const increaseCount = ({ id, size }: IUpdateCartCount) => {
+  const increaseCount = ({ slug, size }: IUpdateCartCount) => {
     setCart((prevState) => {
       const existingIndex = prevState.findIndex(
-        (item) => item.id === id && item.size.id === size.id
+        (item) => item.slug === slug && item.size.id === size.id
       )
 
       if (existingIndex !== -1) {
@@ -146,10 +157,10 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const decreaseCount = ({ id, size }: IUpdateCartCount) => {
+  const decreaseCount = ({ slug, size }: IUpdateCartCount) => {
     setCart((prevState) => {
       const existingIndex = prevState.findIndex(
-        (item) => item.id === id && item.size.id === size.id
+        (item) => item.slug === slug && item.size.id === size.id
       )
 
       if (existingIndex !== -1) {

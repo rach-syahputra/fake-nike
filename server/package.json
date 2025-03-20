@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "node src/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.ts",
     "format": "prettier --write .",

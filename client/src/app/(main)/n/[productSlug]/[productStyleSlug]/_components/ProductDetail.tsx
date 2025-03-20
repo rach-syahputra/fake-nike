@@ -3,14 +3,20 @@ import { IProductDetail } from '@/lib/types/products'
 import Heading from '@/components/elements/Heading'
 import Size from './Size'
 import ProductActions from './ProductActions'
+import ProductStyleImagePreview from './ProductStyleImagePreview'
 
-type ProductDetailProps = {
-  product: IProductDetail
+interface ProductDetailProps extends IProductDetail {
   className?: string
 }
 
 export default function ProductDetail({
-  product,
+  title,
+  price,
+  slug,
+  category,
+  description,
+  productStyle,
+  productStylePreviews,
   className
 }: ProductDetailProps) {
   return (
@@ -23,21 +29,37 @@ export default function ProductDetail({
       <div className='flex flex-col gap-3'>
         <div className='flex flex-col'>
           <Heading level={1} className='text-xl'>
-            {product.title}
+            {title}
           </Heading>
           <p className='font-[family-name:var(--font-helvetica-now-text)] text-gray-500'>
-            {product.category.label}
+            {category.label}
           </p>
         </div>
-        <p className='font-semibold'>{formatToRupiah(product.price)}</p>
+        <p className='font-semibold'>{formatToRupiah(price)}</p>
       </div>
 
-      <Size sizes={product.sizes} />
+      <ProductStyleImagePreview
+        productSlug={slug}
+        currentProductStyle={productStyle.slug}
+        images={productStylePreviews}
+      />
 
-      <ProductActions product={product} />
+      <Size sizes={productStyle.sizes} />
+
+      <ProductActions
+        product={{
+          slug,
+          price,
+          title,
+          category,
+          description,
+          productStyle,
+          productStylePreviews
+        }}
+      />
 
       <p className='pt-5 font-[family-name:var(--font-helvetica-now-text)]'>
-        {product.description}
+        {description}
       </p>
     </div>
   )

@@ -10,3 +10,13 @@ export interface GetProductsRequest {
   categories?: number[]
   sizes?: number[]
 }
+
+export interface GetProductDetailRequest {
+  productSlug: string
+  productStyleSlug: string
+}
+
+export interface CheckProductStyleOwnershipRequest {
+  productSlug: string
+  productStyleSlug: string
+}

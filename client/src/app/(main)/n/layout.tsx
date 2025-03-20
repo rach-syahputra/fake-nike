@@ -1,4 +1,4 @@
-export default function ShoesLayout({
+export default function ProductDetailLayout({
   children
 }: Readonly<{
   children: React.ReactNode
