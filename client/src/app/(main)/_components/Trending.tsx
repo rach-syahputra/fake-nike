@@ -1,8 +1,8 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import Heading from '@/components/elements/Heading'
 import Container from '@/components/layouts/Container'
-import Link from 'next/link'
 
 export default function Trending() {
   const links = [
@@ -25,7 +25,7 @@ export default function Trending() {
 
   return (
     <section>
-      <Container className='flex flex-col gap-6 px-12 md:px-12 lg:px-24 xl:px-24'>
+      <Container className='flex flex-col gap-6 md:px-12 lg:px-24 xl:px-24'>
         <Heading level={1}>Trending</Heading>
         <div className='transparent-scrollbar overflow-x-scroll'>
           <div className='grid w-full grid-flow-col gap-3 lg:grid-cols-3'>
@@ -33,7 +33,7 @@ export default function Trending() {
               <Link
                 href={link.href}
                 key={index}
-                className='xs:w-[70vw] flex min-w-[300px] flex-col gap-6 lg:w-full'
+                className='flex min-w-[300px] flex-col gap-6 xs:w-[70vw] lg:w-full'
               >
                 <Image
                   src={link.src}
